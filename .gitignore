@@ -1,0 +1,13 @@
+__pycache__/
+venv/
+.env
+.idea
+node_modules
+upload_files
+
+.json
+.png
+.jpg
+.jpeg
+
+db.sqlite3

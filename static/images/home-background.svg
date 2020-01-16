@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Background</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Background" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#0F1847" x="0" y="0" width="1440" height="1024"></rect>
+        <g transform="translate(-76.000000, -66.000000)" id="Group-12" opacity="0.3">
+            <g>
+                <g id="Group-4" transform="translate(996.000000, 527.000000)" stroke="#FFFFFF">
+                    <line x1="9.26490236" y1="8.06735751" x2="29.5264645" y2="68.3160622" id="Line" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(20.607914, 60.621762)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-11" transform="translate(1261.000000, 566.000000) scale(-1, 1) translate(-1261.000000, -566.000000) translate(1119.000000, 425.000000)">
+                    <line x1="257.800959" y1="118.389865" x2="275.580336" y2="181.081638" id="Line-2" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.632882" y1="120.81279" x2="233.532586" y2="178.658713" id="Line-3" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.527492" y1="179.036269" x2="275.609198" y2="182.26943" id="Line-5" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="232.323921" y1="180.228497" x2="262.266007" y2="273.22228" id="Line-6" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.181141" y1="178.641309" x2="202.009507" y2="145.078898" id="Line-7" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.016527" y1="145.930052" x2="258.630955" y2="119.593264" id="Line-8" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.013115" y1="145.070511" x2="275.605591" y2="179.862131" id="Line-9" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.955254" y1="91.7072539" x2="258.62748" y2="118.044041" id="Line-10" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.953417" y1="91.7293856" x2="201.654496" y2="145.90792" id="Line-11" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27227154" y1="8.06044905" x2="155.591038" y2="91.3592401" id="Line-12" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(253.356115, 264.310881)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(266.690647, 173.378238)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(224.262590, 169.740933)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(248.507194, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(192.744604, 137.005181)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(146.679856, 83.658031)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-11" transform="translate(892.000000, 347.000000) scale(-1, 1) translate(-892.000000, -347.000000) translate(750.000000, 206.000000)">
+                    <line x1="257.800959" y1="118.389865" x2="275.580336" y2="181.081638" id="Line-2" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.632882" y1="120.81279" x2="233.532586" y2="178.658713" id="Line-3" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.527492" y1="179.036269" x2="275.609198" y2="182.26943" id="Line-5" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="232.323921" y1="180.228497" x2="262.266007" y2="273.22228" id="Line-6" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.181141" y1="178.641309" x2="202.009507" y2="145.078898" id="Line-7" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.016527" y1="145.930052" x2="258.630955" y2="119.593264" id="Line-8" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.013115" y1="145.070511" x2="275.605591" y2="179.862131" id="Line-9" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.955254" y1="91.7072539" x2="258.62748" y2="118.044041" id="Line-10" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.953417" y1="91.7293856" x2="201.654496" y2="145.90792" id="Line-11" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27227154" y1="8.06044905" x2="155.591038" y2="91.3592401" id="Line-12" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(253.356115, 264.310881)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(266.690647, 173.378238)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(224.262590, 169.740933)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(248.507194, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(192.744604, 137.005181)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(146.679856, 83.658031)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-11" transform="translate(197.032838, 527.391783) scale(-1, 1) rotate(-124.000000) translate(-197.032838, -527.391783) translate(55.032838, 386.391783)">
+                    <line x1="257.800959" y1="118.389865" x2="275.580336" y2="181.081638" id="Line-2" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.632882" y1="120.81279" x2="233.532586" y2="178.658713" id="Line-3" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.527492" y1="179.036269" x2="275.609198" y2="182.26943" id="Line-5" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="232.323921" y1="180.228497" x2="262.266007" y2="273.22228" id="Line-6" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.181141" y1="178.641309" x2="202.009507" y2="145.078898" id="Line-7" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.016527" y1="145.930052" x2="258.630955" y2="119.593264" id="Line-8" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.013115" y1="145.070511" x2="275.605591" y2="179.862131" id="Line-9" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.955254" y1="91.7072539" x2="258.62748" y2="118.044041" id="Line-10" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.953417" y1="91.7293856" x2="201.654496" y2="145.90792" id="Line-11" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27227154" y1="8.06044905" x2="155.591038" y2="91.3592401" id="Line-12" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(253.356115, 264.310881)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(266.690647, 173.378238)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(224.262590, 169.740933)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(248.507194, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(192.744604, 137.005181)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(146.679856, 83.658031)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-10" transform="translate(790.500000, 667.000000) scale(-1, 1) translate(-790.500000, -667.000000) translate(621.000000, 592.000000)">
+                    <line x1="330.879763" y1="52.2191353" x2="247.595057" y2="141.583974" id="Line-13" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="330.878808" y1="51.8393782" x2="258.506084" y2="34.0569948" id="Line-14" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.145599" y1="34.0489119" x2="159.102602" y2="72.4588601" id="Line-15" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="159.103433" y1="71.6290155" x2="247.234696" y2="141.573057" id="Line-16" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.1299896" y1="69.2176166" x2="158.736917" y2="72.4507772" id="Line-17" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="39.0929179" y1="90.6373057" x2="158.741615" y2="72.8549223" id="Line-18" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.9670638" y1="69.1887491" x2="39.1012815" y2="89.453738" id="Line-19" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.79660843" y1="9.79274611" x2="62.9659815" y2="70.0414508" id="Line-20" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.78794964" y1="9.79274611" x2="38.730036" y2="90.6528497" id="Line-21" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-2" transform="translate(249.233813, 25.974093)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(54.064748, 59.922280)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(29.820144, 80.533679)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(321.967626, 42.948187)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(149.830935, 63.559585)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(238.323741, 132.668394)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(0.726619, 0.512953)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-10" transform="translate(511.500000, 368.000000) scale(-1, -1) translate(-511.500000, -368.000000) translate(342.000000, 293.000000)">
+                    <line x1="330.879763" y1="52.2191353" x2="247.595057" y2="141.583974" id="Line-13" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="330.878808" y1="51.8393782" x2="258.506084" y2="34.0569948" id="Line-14" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.145599" y1="34.0489119" x2="159.102602" y2="72.4588601" id="Line-15" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="159.103433" y1="71.6290155" x2="247.234696" y2="141.573057" id="Line-16" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.1299896" y1="69.2176166" x2="158.736917" y2="72.4507772" id="Line-17" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="39.0929179" y1="90.6373057" x2="158.741615" y2="72.8549223" id="Line-18" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.9670638" y1="69.1887491" x2="39.1012815" y2="89.453738" id="Line-19" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.79660843" y1="9.79274611" x2="62.9659815" y2="70.0414508" id="Line-20" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.78794964" y1="9.79274611" x2="38.730036" y2="90.6528497" id="Line-21" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-2" transform="translate(249.233813, 25.974093)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(54.064748, 59.922280)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(29.820144, 80.533679)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(321.967626, 42.948187)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(149.830935, 63.559585)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(238.323741, 132.668394)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(0.726619, 0.512953)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-10" transform="translate(556.500000, 142.000000) scale(-1, -1) rotate(-26.000000) translate(-556.500000, -142.000000) translate(387.000000, 67.000000)">
+                    <line x1="330.879763" y1="52.2191353" x2="247.595057" y2="141.583974" id="Line-13" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="330.878808" y1="51.8393782" x2="258.506084" y2="34.0569948" id="Line-14" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.145599" y1="34.0489119" x2="159.102602" y2="72.4588601" id="Line-15" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="159.103433" y1="71.6290155" x2="247.234696" y2="141.573057" id="Line-16" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.1299896" y1="69.2176166" x2="158.736917" y2="72.4507772" id="Line-17" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="39.0929179" y1="90.6373057" x2="158.741615" y2="72.8549223" id="Line-18" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.9670638" y1="69.1887491" x2="39.1012815" y2="89.453738" id="Line-19" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.79660843" y1="9.79274611" x2="62.9659815" y2="70.0414508" id="Line-20" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.78794964" y1="9.79274611" x2="38.730036" y2="90.6528497" id="Line-21" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-2" transform="translate(249.233813, 25.974093)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(54.064748, 59.922280)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(29.820144, 80.533679)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(321.967626, 42.948187)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(149.830935, 63.559585)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(238.323741, 132.668394)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(0.726619, 0.512953)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-9" transform="translate(511.000000, 443.000000)" stroke="#FFFFFF">
+                    <line x1="48.9088268" y1="9.27383971" x2="9.27822357" y2="81.6588028" id="Line-22" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 72.746114)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(38.791367, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-9" transform="translate(555.000000, 866.000000)" stroke="#FFFFFF">
+                    <line x1="48.9088268" y1="9.27383971" x2="9.27822357" y2="81.6588028" id="Line-22" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 72.746114)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(38.791367, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(782.064748, 1064.891192)" stroke="#FFFFFF">
+                    <line x1="63.8104516" y1="9.27512953" x2="90.1427858" y2="23.4606218" id="Line-23" stroke-linecap="round"></line>
+                    <line x1="90.1246541" y1="23.8193005" x2="9.27822357" y2="59.8387306" id="Line-24" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 52.134715)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(54.550360, -0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(81.219424, 15.761658)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(791.000000, 527.000000)" stroke="#FFFFFF">
+                    <line x1="63.8104516" y1="9.27512953" x2="90.1427858" y2="23.4606218" id="Line-23" stroke-linecap="round"></line>
+                    <line x1="90.1246541" y1="23.8193005" x2="9.27822357" y2="59.8387306" id="Line-24" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 52.134715)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(54.550360, -0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(81.219424, 15.761658)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-10" transform="translate(235.500000, 888.000000) scale(-1, 1) translate(-235.500000, -888.000000) translate(66.000000, 813.000000)">
+                    <line x1="330.879763" y1="52.2191353" x2="247.595057" y2="141.583974" id="Line-13" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="330.878808" y1="51.8393782" x2="258.506084" y2="34.0569948" id="Line-14" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.145599" y1="34.0489119" x2="159.102602" y2="72.4588601" id="Line-15" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="159.103433" y1="71.6290155" x2="247.234696" y2="141.573057" id="Line-16" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.1299896" y1="69.2176166" x2="158.736917" y2="72.4507772" id="Line-17" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="39.0929179" y1="90.6373057" x2="158.741615" y2="72.8549223" id="Line-18" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="62.9670638" y1="69.1887491" x2="39.1012815" y2="89.453738" id="Line-19" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.79660843" y1="9.79274611" x2="62.9659815" y2="70.0414508" id="Line-20" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="8.78794964" y1="9.79274611" x2="38.730036" y2="90.6528497" id="Line-21" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-2" transform="translate(249.233813, 25.974093)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(54.064748, 59.922280)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(29.820144, 80.533679)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(321.967626, 42.948187)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(149.830935, 63.559585)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(238.323741, 132.668394)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(0.726619, 0.512953)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(236.000000, 748.000000)" stroke="#FFFFFF">
+                    <line x1="63.8104516" y1="9.27512953" x2="90.1427858" y2="23.4606218" id="Line-23" stroke-linecap="round"></line>
+                    <line x1="90.1246541" y1="23.8193005" x2="9.27822357" y2="59.8387306" id="Line-24" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 52.134715)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(54.550360, -0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(81.219424, 15.761658)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(1040.000000, 418.000000)" stroke="#FFFFFF">
+                    <line x1="63.8104516" y1="9.27512953" x2="90.1427858" y2="23.4606218" id="Line-23" stroke-linecap="round"></line>
+                    <line x1="90.1246541" y1="23.8193005" x2="9.27822357" y2="59.8387306" id="Line-24" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 52.134715)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(54.550360, -0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(81.219424, 15.761658)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-6" transform="translate(689.000000, 795.000000) scale(-1, 1) translate(-689.000000, -795.000000) translate(539.000000, 742.000000)" stroke="#FFFFFF">
+                    <line x1="168.078021" y1="96.2077993" x2="291.357231" y2="8.06163076" id="Line-25" stroke-linecap="round"></line>
+                    <line x1="166.50162" y1="96.208981" x2="9.27176081" y2="55.3454231" id="Line-26" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 47.284974)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(157.589928, 88.507772)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(282.449640, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-6" transform="translate(423.000000, 615.000000) scale(-1, -1) translate(-423.000000, -615.000000) translate(273.000000, 562.000000)" stroke="#FFFFFF">
+                    <line x1="168.078021" y1="96.2077993" x2="291.357231" y2="8.06163076" id="Line-25" stroke-linecap="round"></line>
+                    <line x1="166.50162" y1="96.208981" x2="9.27176081" y2="55.3454231" id="Line-26" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 47.284974)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(157.589928, 88.507772)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(282.449640, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-6" transform="translate(1389.528083, 933.059101) scale(-1, -1) rotate(45.000000) translate(-1389.528083, -933.059101) translate(1239.528083, 880.059101)" stroke="#FFFFFF">
+                    <line x1="168.078021" y1="96.2077993" x2="291.357231" y2="8.06163076" id="Line-25" stroke-linecap="round"></line>
+                    <line x1="166.50162" y1="96.208981" x2="9.27176081" y2="55.3454231" id="Line-26" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 47.284974)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(157.589928, 88.507772)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(282.449640, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-8" transform="translate(921.000000, 721.000000)">
+                    <line x1="249.293146" y1="118.395031" x2="390.764408" y2="247.76041" id="Line-27" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="391.126079" y1="248.121762" x2="499.863129" y2="369.007772" id="Line-28" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="257.396882" y1="25.0338062" x2="249.315348" y2="119.245987" id="Line-29" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="183.840485" y1="9.27256805" x2="248.925702" y2="119.245567" id="Line-30" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="248.9321" y1="119.576425" x2="97.765742" y2="130.185233" id="Line-31" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0873249" y1="136.577263" x2="88.9234665" y2="215.028955" id="Line-32" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0951146" y1="136.156477" x2="97.4012883" y2="129.366839" id="Line-33" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="160.458225" id="Line-34" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="185.919365" id="Line-35" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0633993" y1="136.585492" x2="41.6704137" y2="196.834197" id="Line-36" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9422662" y1="136.585492" x2="17.7591727" y2="196.834197" id="Line-37" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9220624" y1="136.572169" x2="9.29376499" y2="156.837158" id="Line-38" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="157.212435" x2="82.8609862" y2="160.445596" id="Line-39" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27249779" y1="156.841969" x2="97.4037612" y2="130.505181" id="Line-40" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="155.989365" x2="82.8609862" y2="184.704936" id="Line-41" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27822357" y1="157.185847" x2="90.1246541" y2="215.03177" id="Line-42" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.28458143" y1="157.196891" x2="42.8413179" y2="196.834197" id="Line-43" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.29376499" y1="157.196891" x2="17.3752998" y2="196.834197" id="Line-44" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.5516049" y1="195.625015" x2="97.3980354" y2="129.307627" id="Line-45" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="18.9771754" y1="195.631477" x2="84.0623929" y2="159.612047" id="Line-46" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.656736" x2="82.8545257" y2="185.047927" id="Line-47" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7556073" y1="195.80829" x2="42.8559035" y2="195.80829" id="Line-48" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7578831" y1="195.994819" x2="90.1306062" y2="215.020725" id="Line-49" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.990155" x2="82.8545257" y2="273.22228" id="Line-50" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.990155" x2="82.8581801" y2="273.22228" id="Line-51" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="41.9979113" y1="195.994819" x2="88.922952" y2="215.020725" id="Line-52" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.656736" x2="82.8581801" y2="185.047927" id="Line-53" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.631477" x2="82.8581801" y2="159.612047" id="Line-54" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0071443" y1="194.408216" x2="97.3993305" y2="129.311991" id="Line-55" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="83.0377698" y1="184.718074" x2="83.0377698" y2="159.613532" id="Line-56" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="90.068705" y1="215.382738" x2="83.2802158" y2="273.228661" id="Line-57" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="89.3009592" y1="215.019878" x2="97.382494" y2="129.311729" id="Line-58" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(175.773381, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(247.294964, 15.761658)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(490.953237, 361.305699)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(240.021583, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(381.852518, 240.062176)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(73.946043, 264.310881)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 151.554404)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 177.015544)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(88.492806, 121.243523)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(21.820144, 127.305699)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(-0.000000, 147.917098)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(32.730216, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(8.485612, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(81.219424, 206.113990)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-8" transform="translate(744.410179, 195.642074) scale(-1, 1) rotate(-122.000000) translate(-744.410179, -195.642074) translate(611.910179, 54.642074)">
+                    <line x1="257.396882" y1="25.0338062" x2="249.315348" y2="119.245987" id="Line-29" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="183.840485" y1="9.27256805" x2="248.925702" y2="119.245567" id="Line-30" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="248.9321" y1="119.576425" x2="97.765742" y2="130.185233" id="Line-31" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0873249" y1="136.577263" x2="88.9234665" y2="215.028955" id="Line-32" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0951146" y1="136.156477" x2="97.4012883" y2="129.366839" id="Line-33" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="160.458225" id="Line-34" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="185.919365" id="Line-35" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0633993" y1="136.585492" x2="41.6704137" y2="196.834197" id="Line-36" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9422662" y1="136.585492" x2="17.7591727" y2="196.834197" id="Line-37" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9220624" y1="136.572169" x2="9.29376499" y2="156.837158" id="Line-38" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="157.212435" x2="82.8609862" y2="160.445596" id="Line-39" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27249779" y1="156.841969" x2="97.4037612" y2="130.505181" id="Line-40" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="155.989365" x2="82.8609862" y2="184.704936" id="Line-41" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27822357" y1="157.185847" x2="90.1246541" y2="215.03177" id="Line-42" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.28458143" y1="157.196891" x2="42.8413179" y2="196.834197" id="Line-43" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.29376499" y1="157.196891" x2="17.3752998" y2="196.834197" id="Line-44" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.5516049" y1="195.625015" x2="97.3980354" y2="129.307627" id="Line-45" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="18.9771754" y1="195.631477" x2="84.0623929" y2="159.612047" id="Line-46" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.656736" x2="82.8545257" y2="185.047927" id="Line-47" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7556073" y1="195.80829" x2="42.8559035" y2="195.80829" id="Line-48" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7578831" y1="195.994819" x2="90.1306062" y2="215.020725" id="Line-49" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.990155" x2="82.8545257" y2="273.22228" id="Line-50" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.990155" x2="82.8581801" y2="273.22228" id="Line-51" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="41.9979113" y1="195.994819" x2="88.922952" y2="215.020725" id="Line-52" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.656736" x2="82.8581801" y2="185.047927" id="Line-53" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.631477" x2="82.8581801" y2="159.612047" id="Line-54" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0071443" y1="194.408216" x2="97.3993305" y2="129.311991" id="Line-55" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="83.0377698" y1="184.718074" x2="83.0377698" y2="159.613532" id="Line-56" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="90.068705" y1="215.382738" x2="83.2802158" y2="273.228661" id="Line-57" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="89.3009592" y1="215.019878" x2="97.382494" y2="129.311729" id="Line-58" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(175.773381, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(247.294964, 15.761658)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(240.021583, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(73.946043, 264.310881)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 151.554404)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 177.015544)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(88.492806, 121.243523)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(21.820144, 127.305699)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(-0.000000, 147.917098)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(32.730216, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(8.485612, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(81.219424, 206.113990)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-8" transform="translate(1286.000000, 242.500000) scale(-1, 1) translate(-1286.000000, -242.500000) translate(1032.000000, 53.000000)">
+                    <line x1="249.293146" y1="118.395031" x2="390.764408" y2="247.76041" id="Line-27" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="391.126079" y1="248.121762" x2="499.863129" y2="369.007772" id="Line-28" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="257.396882" y1="25.0338062" x2="249.315348" y2="119.245987" id="Line-29" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="183.840485" y1="9.27256805" x2="248.925702" y2="119.245567" id="Line-30" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="248.9321" y1="119.576425" x2="97.765742" y2="130.185233" id="Line-31" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0873249" y1="136.577263" x2="88.9234665" y2="215.028955" id="Line-32" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0951146" y1="136.156477" x2="97.4012883" y2="129.366839" id="Line-33" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="160.458225" id="Line-34" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="185.919365" id="Line-35" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0633993" y1="136.585492" x2="41.6704137" y2="196.834197" id="Line-36" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9422662" y1="136.585492" x2="17.7591727" y2="196.834197" id="Line-37" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9220624" y1="136.572169" x2="9.29376499" y2="156.837158" id="Line-38" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="157.212435" x2="82.8609862" y2="160.445596" id="Line-39" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27249779" y1="156.841969" x2="97.4037612" y2="130.505181" id="Line-40" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="155.989365" x2="82.8609862" y2="184.704936" id="Line-41" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27822357" y1="157.185847" x2="90.1246541" y2="215.03177" id="Line-42" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.28458143" y1="157.196891" x2="42.8413179" y2="196.834197" id="Line-43" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.29376499" y1="157.196891" x2="17.3752998" y2="196.834197" id="Line-44" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.5516049" y1="195.625015" x2="97.3980354" y2="129.307627" id="Line-45" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="18.9771754" y1="195.631477" x2="84.0623929" y2="159.612047" id="Line-46" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.656736" x2="82.8545257" y2="185.047927" id="Line-47" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7556073" y1="195.80829" x2="42.8559035" y2="195.80829" id="Line-48" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7578831" y1="195.994819" x2="90.1306062" y2="215.020725" id="Line-49" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.990155" x2="82.8545257" y2="273.22228" id="Line-50" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.990155" x2="82.8581801" y2="273.22228" id="Line-51" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="41.9979113" y1="195.994819" x2="88.922952" y2="215.020725" id="Line-52" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.656736" x2="82.8581801" y2="185.047927" id="Line-53" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.631477" x2="82.8581801" y2="159.612047" id="Line-54" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0071443" y1="194.408216" x2="97.3993305" y2="129.311991" id="Line-55" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="83.0377698" y1="184.718074" x2="83.0377698" y2="159.613532" id="Line-56" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="90.068705" y1="215.382738" x2="83.2802158" y2="273.228661" id="Line-57" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="89.3009592" y1="215.019878" x2="97.382494" y2="129.311729" id="Line-58" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(175.773381, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(247.294964, 15.761658)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(490.953237, 361.305699)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(240.021583, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(381.852518, 240.062176)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(73.946043, 264.310881)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 151.554404)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 177.015544)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(88.492806, 121.243523)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(21.820144, 127.305699)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(-0.000000, 147.917098)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(32.730216, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(8.485612, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(81.219424, 206.113990)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-8" transform="translate(659.000000, 945.500000) scale(1, -1) translate(-659.000000, -945.500000) translate(405.000000, 756.000000)">
+                    <line x1="249.293146" y1="118.395031" x2="390.764408" y2="247.76041" id="Line-27" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="391.126079" y1="248.121762" x2="499.863129" y2="369.007772" id="Line-28" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="257.396882" y1="25.0338062" x2="249.315348" y2="119.245987" id="Line-29" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="183.840485" y1="9.27256805" x2="248.925702" y2="119.245567" id="Line-30" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="248.9321" y1="119.576425" x2="97.765742" y2="130.185233" id="Line-31" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0873249" y1="136.577263" x2="88.9234665" y2="215.028955" id="Line-32" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0951146" y1="136.156477" x2="97.4012883" y2="129.366839" id="Line-33" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="160.458225" id="Line-34" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0901397" y1="136.588407" x2="82.8595006" y2="185.919365" id="Line-35" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.0633993" y1="136.585492" x2="41.6704137" y2="196.834197" id="Line-36" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9422662" y1="136.585492" x2="17.7591727" y2="196.834197" id="Line-37" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="31.9220624" y1="136.572169" x2="9.29376499" y2="156.837158" id="Line-38" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="157.212435" x2="82.8609862" y2="160.445596" id="Line-39" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27249779" y1="156.841969" x2="97.4037612" y2="130.505181" id="Line-40" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.26851019" y1="155.989365" x2="82.8609862" y2="184.704936" id="Line-41" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27822357" y1="157.185847" x2="90.1246541" y2="215.03177" id="Line-42" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.28458143" y1="157.196891" x2="42.8413179" y2="196.834197" id="Line-43" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.29376499" y1="157.196891" x2="17.3752998" y2="196.834197" id="Line-44" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.5516049" y1="195.625015" x2="97.3980354" y2="129.307627" id="Line-45" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="18.9771754" y1="195.631477" x2="84.0623929" y2="159.612047" id="Line-46" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.656736" x2="82.8545257" y2="185.047927" id="Line-47" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7556073" y1="195.80829" x2="42.8559035" y2="195.80829" id="Line-48" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="17.7578831" y1="195.994819" x2="90.1306062" y2="215.020725" id="Line-49" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="16.548352" y1="195.990155" x2="82.8545257" y2="273.22228" id="Line-50" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.990155" x2="82.8581801" y2="273.22228" id="Line-51" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="41.9979113" y1="195.994819" x2="88.922952" y2="215.020725" id="Line-52" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.656736" x2="82.8581801" y2="185.047927" id="Line-53" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0015321" y1="195.631477" x2="82.8581801" y2="159.612047" id="Line-54" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="42.0071443" y1="194.408216" x2="97.3993305" y2="129.311991" id="Line-55" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="83.0377698" y1="184.718074" x2="83.0377698" y2="159.613532" id="Line-56" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="90.068705" y1="215.382738" x2="83.2802158" y2="273.228661" id="Line-57" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="89.3009592" y1="215.019878" x2="97.382494" y2="129.311729" id="Line-58" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(175.773381, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(247.294964, 15.761658)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(490.953237, 361.305699)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(240.021583, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(381.852518, 240.062176)" fill="#263494" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(73.946043, 264.310881)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 151.554404)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(73.946043, 177.015544)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(88.492806, 121.243523)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(21.820144, 127.305699)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-7" transform="translate(-0.000000, 147.917098)" fill="#C7E9B4" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(32.730216, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-8" transform="translate(8.485612, 187.927461)" fill="#EDF8B1" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-6" transform="translate(81.219424, 206.113990)" fill="#7FCDBB" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-7" transform="translate(978.000000, 700.000000)" stroke="#FFFFFF">
+                    <line x1="88.0382194" y1="8.0626943" x2="92.5840827" y2="38.0098446" id="Line-59" stroke-linecap="round"></line>
+                    <line x1="87.7183253" y1="9.26165803" x2="61.3859912" y2="35.5984456" id="Line-60" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.06943005" x2="78.3620247" y2="78.0134715" id="Line-61" stroke-linecap="round"></line>
+                    <line x1="88.0685252" y1="9.27156355" x2="102.251619" y2="61.04968" id="Line-62" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.08290155" x2="45.6318088" y2="11.3160622" id="Line-63" stroke-linecap="round"></line>
+                    <line x1="87.7084215" y1="8.07135455" x2="9.26999577" y2="62.249889" id="Line-64" stroke-linecap="round"></line>
+                    <line x1="87.7030194" y1="9.27156355" x2="37.1566928" y2="61.04968" id="Line-65" stroke-linecap="round"></line>
+                    <line x1="88.904964" y1="8.0626943" x2="50.5015108" y2="85.2948187" id="Line-66" stroke-linecap="round"></line>
+                    <line x1="88.9113138" y1="9.25859633" x2="23.8260963" y2="24.6895902" id="Line-67" stroke-linecap="round"></line>
+                    <line x1="45.634602" y1="11.6865285" x2="92.5596426" y2="38.0233161" id="Line-68" stroke-linecap="round"></line>
+                    <line x1="45.6239372" y1="11.7075777" x2="61.0523218" y2="35.5773964" id="Line-69" stroke-linecap="round"></line>
+                    <line x1="46.4688249" y1="11.7202073" x2="23.8405276" y2="24.6528497" id="Line-70" stroke-linecap="round"></line>
+                    <line x1="45.2565947" y1="11.7075777" x2="37.17506" y2="61.0385363" id="Line-71" stroke-linecap="round"></line>
+                    <line x1="45.2818495" y1="11.701837" x2="9.26851019" y2="62.2567122" id="Line-72" stroke-linecap="round"></line>
+                    <line x1="45.6101619" y1="15.3399414" x2="50.1560252" y2="86.5046182" id="Line-73" stroke-linecap="round"></line>
+                    <line x1="45.6514879" y1="11.7014098" x2="79.2082243" y2="78.0187974" id="Line-74" stroke-linecap="round"></line>
+                    <line x1="46.8560651" y1="11.7075777" x2="102.248251" y2="61.0385363" id="Line-75" stroke-linecap="round"></line>
+                    <line x1="23.832446" y1="25.0064767" x2="62.2358993" y2="35.615285" id="Line-76" stroke-linecap="round"></line>
+                    <line x1="25.0297989" y1="23.8243523" x2="92.556532" y2="38.0098446" id="Line-77" stroke-linecap="round"></line>
+                    <line x1="23.8167584" y1="25.0317358" x2="102.255184" y2="61.0511658" id="Line-78" stroke-linecap="round"></line>
+                    <line x1="23.823691" y1="23.8330126" x2="79.2158773" y2="78.011547" id="Line-79" stroke-linecap="round"></line>
+                    <line x1="23.8203237" y1="25.0317358" x2="38.0034173" y2="61.0511658" id="Line-80" stroke-linecap="round"></line>
+                    <line x1="23.8068545" y1="23.8243523" x2="50.1391886" y2="85.2948187" id="Line-81" stroke-linecap="round"></line>
+                    <line x1="23.4566547" y1="23.8364767" x2="9.27356115" y2="62.2464249" id="Line-82" stroke-linecap="round"></line>
+                    <line x1="9.26999577" y1="62.2720207" x2="61.0393567" y2="35.9352332" id="Line-83" stroke-linecap="round"></line>
+                    <line x1="9.28313139" y1="62.1373057" x2="37.993847" y2="60.3186528" id="Line-84" stroke-linecap="round"></line>
+                    <line x1="10.486935" y1="62.2509715" x2="92.5526334" y2="38.3811528" id="Line-85" stroke-linecap="round"></line>
+                    <line x1="9.27356115" y1="62.1373057" x2="102.251619" y2="60.3186528" id="Line-86" stroke-linecap="round"></line>
+                    <line x1="9.28029576" y1="62.6057466" x2="79.21251" y2="78.0367405" id="Line-87" stroke-linecap="round"></line>
+                    <line x1="9.27131628" y1="62.6298575" x2="50.1279643" y2="86.4996762" id="Line-88" stroke-linecap="round"></line>
+                    <line x1="50.1055156" y1="85.2983846" x2="37.17506" y2="60.1938433" id="Line-89" stroke-linecap="round"></line>
+                    <line x1="50.4590827" y1="86.5054169" x2="61.0660971" y2="35.9505417" id="Line-90" stroke-linecap="round"></line>
+                    <line x1="50.4989587" y1="86.4870466" x2="79.2096744" y2="78.4041451" id="Line-91" stroke-linecap="round"></line>
+                    <line x1="50.4858231" y1="85.2983846" x2="102.255184" y2="60.1938433" id="Line-92" stroke-linecap="round"></line>
+                    <line x1="50.4807297" y1="85.3006853" x2="92.5624358" y2="38.3677085" id="Line-93" stroke-linecap="round"></line>
+                    <line x1="78.3782599" y1="78" x2="102.244042" y2="60.2176166" id="Line-94" stroke-linecap="round"></line>
+                    <line x1="78.3706835" y1="78.015544" x2="92.553777" y2="38.3782383" id="Line-95" stroke-linecap="round"></line>
+                    <line x1="79.1990408" y1="78.0288675" x2="61.4196643" y2="35.9400444" id="Line-96" stroke-linecap="round"></line>
+                    <line x1="79.2214895" y1="78" x2="38.3648415" y2="60.2176166" id="Line-97" stroke-linecap="round"></line>
+                    <line x1="102.260277" y1="61.0259067" x2="92.9087873" y2="38.3937824" id="Line-98" stroke-linecap="round"></line>
+                    <line x1="102.253864" y1="61.04968" x2="61.3972156" y2="35.9451387" id="Line-99" stroke-linecap="round"></line>
+                    <line x1="102.245846" y1="61.2279793" x2="37.1606286" y2="61.2279793" id="Line-100" stroke-linecap="round"></line>
+                    <line x1="92.5624358" y1="39.2020725" x2="61.3908016" y2="35.9689119" id="Line-101" stroke-linecap="round"></line>
+                    <line x1="92.5504097" y1="38.3937824" x2="37.1582234" y2="61.0259067" id="Line-102" stroke-linecap="round"></line>
+                    <line x1="39.5995204" y1="61.04968" x2="62.2278177" y2="35.9451387" id="Line-103" stroke-linecap="round"></line>
+                    <g id="Node-9" transform="translate(78.794964, 0.000000)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(83.643885, 30.310881)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(93.341727, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(69.097122, 70.321244)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(41.215827, 77.595855)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(29.093525, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(52.125899, 26.673575)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(36.366906, 3.637306)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(14.546763, 15.761658)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(-0.000000, 54.559585)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-7" transform="translate(603.000000, 486.000000)" stroke="#FFFFFF">
+                    <line x1="88.0382194" y1="8.0626943" x2="92.5840827" y2="38.0098446" id="Line-59" stroke-linecap="round"></line>
+                    <line x1="87.7183253" y1="9.26165803" x2="61.3859912" y2="35.5984456" id="Line-60" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.06943005" x2="78.3620247" y2="78.0134715" id="Line-61" stroke-linecap="round"></line>
+                    <line x1="88.0685252" y1="9.27156355" x2="102.251619" y2="61.04968" id="Line-62" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.08290155" x2="45.6318088" y2="11.3160622" id="Line-63" stroke-linecap="round"></line>
+                    <line x1="87.7084215" y1="8.07135455" x2="9.26999577" y2="62.249889" id="Line-64" stroke-linecap="round"></line>
+                    <line x1="87.7030194" y1="9.27156355" x2="37.1566928" y2="61.04968" id="Line-65" stroke-linecap="round"></line>
+                    <line x1="88.904964" y1="8.0626943" x2="50.5015108" y2="85.2948187" id="Line-66" stroke-linecap="round"></line>
+                    <line x1="88.9113138" y1="9.25859633" x2="23.8260963" y2="24.6895902" id="Line-67" stroke-linecap="round"></line>
+                    <line x1="45.634602" y1="11.6865285" x2="92.5596426" y2="38.0233161" id="Line-68" stroke-linecap="round"></line>
+                    <line x1="45.6239372" y1="11.7075777" x2="61.0523218" y2="35.5773964" id="Line-69" stroke-linecap="round"></line>
+                    <line x1="46.4688249" y1="11.7202073" x2="23.8405276" y2="24.6528497" id="Line-70" stroke-linecap="round"></line>
+                    <line x1="45.2565947" y1="11.7075777" x2="37.17506" y2="61.0385363" id="Line-71" stroke-linecap="round"></line>
+                    <line x1="45.2818495" y1="11.701837" x2="9.26851019" y2="62.2567122" id="Line-72" stroke-linecap="round"></line>
+                    <line x1="45.6101619" y1="15.3399414" x2="50.1560252" y2="86.5046182" id="Line-73" stroke-linecap="round"></line>
+                    <line x1="45.6514879" y1="11.7014098" x2="79.2082243" y2="78.0187974" id="Line-74" stroke-linecap="round"></line>
+                    <line x1="46.8560651" y1="11.7075777" x2="102.248251" y2="61.0385363" id="Line-75" stroke-linecap="round"></line>
+                    <line x1="23.832446" y1="25.0064767" x2="62.2358993" y2="35.615285" id="Line-76" stroke-linecap="round"></line>
+                    <line x1="25.0297989" y1="23.8243523" x2="92.556532" y2="38.0098446" id="Line-77" stroke-linecap="round"></line>
+                    <line x1="23.8167584" y1="25.0317358" x2="102.255184" y2="61.0511658" id="Line-78" stroke-linecap="round"></line>
+                    <line x1="23.823691" y1="23.8330126" x2="79.2158773" y2="78.011547" id="Line-79" stroke-linecap="round"></line>
+                    <line x1="23.8203237" y1="25.0317358" x2="38.0034173" y2="61.0511658" id="Line-80" stroke-linecap="round"></line>
+                    <line x1="23.8068545" y1="23.8243523" x2="50.1391886" y2="85.2948187" id="Line-81" stroke-linecap="round"></line>
+                    <line x1="23.4566547" y1="23.8364767" x2="9.27356115" y2="62.2464249" id="Line-82" stroke-linecap="round"></line>
+                    <line x1="9.26999577" y1="62.2720207" x2="61.0393567" y2="35.9352332" id="Line-83" stroke-linecap="round"></line>
+                    <line x1="9.28313139" y1="62.1373057" x2="37.993847" y2="60.3186528" id="Line-84" stroke-linecap="round"></line>
+                    <line x1="10.486935" y1="62.2509715" x2="92.5526334" y2="38.3811528" id="Line-85" stroke-linecap="round"></line>
+                    <line x1="9.27356115" y1="62.1373057" x2="102.251619" y2="60.3186528" id="Line-86" stroke-linecap="round"></line>
+                    <line x1="9.28029576" y1="62.6057466" x2="79.21251" y2="78.0367405" id="Line-87" stroke-linecap="round"></line>
+                    <line x1="9.27131628" y1="62.6298575" x2="50.1279643" y2="86.4996762" id="Line-88" stroke-linecap="round"></line>
+                    <line x1="50.1055156" y1="85.2983846" x2="37.17506" y2="60.1938433" id="Line-89" stroke-linecap="round"></line>
+                    <line x1="50.4590827" y1="86.5054169" x2="61.0660971" y2="35.9505417" id="Line-90" stroke-linecap="round"></line>
+                    <line x1="50.4989587" y1="86.4870466" x2="79.2096744" y2="78.4041451" id="Line-91" stroke-linecap="round"></line>
+                    <line x1="50.4858231" y1="85.2983846" x2="102.255184" y2="60.1938433" id="Line-92" stroke-linecap="round"></line>
+                    <line x1="50.4807297" y1="85.3006853" x2="92.5624358" y2="38.3677085" id="Line-93" stroke-linecap="round"></line>
+                    <line x1="78.3782599" y1="78" x2="102.244042" y2="60.2176166" id="Line-94" stroke-linecap="round"></line>
+                    <line x1="78.3706835" y1="78.015544" x2="92.553777" y2="38.3782383" id="Line-95" stroke-linecap="round"></line>
+                    <line x1="79.1990408" y1="78.0288675" x2="61.4196643" y2="35.9400444" id="Line-96" stroke-linecap="round"></line>
+                    <line x1="79.2214895" y1="78" x2="38.3648415" y2="60.2176166" id="Line-97" stroke-linecap="round"></line>
+                    <line x1="102.260277" y1="61.0259067" x2="92.9087873" y2="38.3937824" id="Line-98" stroke-linecap="round"></line>
+                    <line x1="102.253864" y1="61.04968" x2="61.3972156" y2="35.9451387" id="Line-99" stroke-linecap="round"></line>
+                    <line x1="102.245846" y1="61.2279793" x2="37.1606286" y2="61.2279793" id="Line-100" stroke-linecap="round"></line>
+                    <line x1="92.5624358" y1="39.2020725" x2="61.3908016" y2="35.9689119" id="Line-101" stroke-linecap="round"></line>
+                    <line x1="92.5504097" y1="38.3937824" x2="37.1582234" y2="61.0259067" id="Line-102" stroke-linecap="round"></line>
+                    <line x1="39.5995204" y1="61.04968" x2="62.2278177" y2="35.9451387" id="Line-103" stroke-linecap="round"></line>
+                    <g id="Node-9" transform="translate(78.794964, 0.000000)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(83.643885, 30.310881)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(93.341727, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(69.097122, 70.321244)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(41.215827, 77.595855)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(29.093525, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(52.125899, 26.673575)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(36.366906, 3.637306)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(14.546763, 15.761658)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(-0.000000, 54.559585)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-7" transform="translate(970.000000, 47.000000)" stroke="#FFFFFF">
+                    <line x1="88.0382194" y1="8.0626943" x2="92.5840827" y2="38.0098446" id="Line-59" stroke-linecap="round"></line>
+                    <line x1="87.7183253" y1="9.26165803" x2="61.3859912" y2="35.5984456" id="Line-60" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.06943005" x2="78.3620247" y2="78.0134715" id="Line-61" stroke-linecap="round"></line>
+                    <line x1="88.0685252" y1="9.27156355" x2="102.251619" y2="61.04968" id="Line-62" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.08290155" x2="45.6318088" y2="11.3160622" id="Line-63" stroke-linecap="round"></line>
+                    <line x1="87.7084215" y1="8.07135455" x2="9.26999577" y2="62.249889" id="Line-64" stroke-linecap="round"></line>
+                    <line x1="87.7030194" y1="9.27156355" x2="37.1566928" y2="61.04968" id="Line-65" stroke-linecap="round"></line>
+                    <line x1="88.904964" y1="8.0626943" x2="50.5015108" y2="85.2948187" id="Line-66" stroke-linecap="round"></line>
+                    <line x1="88.9113138" y1="9.25859633" x2="23.8260963" y2="24.6895902" id="Line-67" stroke-linecap="round"></line>
+                    <line x1="45.634602" y1="11.6865285" x2="92.5596426" y2="38.0233161" id="Line-68" stroke-linecap="round"></line>
+                    <line x1="45.6239372" y1="11.7075777" x2="61.0523218" y2="35.5773964" id="Line-69" stroke-linecap="round"></line>
+                    <line x1="46.4688249" y1="11.7202073" x2="23.8405276" y2="24.6528497" id="Line-70" stroke-linecap="round"></line>
+                    <line x1="45.2565947" y1="11.7075777" x2="37.17506" y2="61.0385363" id="Line-71" stroke-linecap="round"></line>
+                    <line x1="45.2818495" y1="11.701837" x2="9.26851019" y2="62.2567122" id="Line-72" stroke-linecap="round"></line>
+                    <line x1="45.6101619" y1="15.3399414" x2="50.1560252" y2="86.5046182" id="Line-73" stroke-linecap="round"></line>
+                    <line x1="45.6514879" y1="11.7014098" x2="79.2082243" y2="78.0187974" id="Line-74" stroke-linecap="round"></line>
+                    <line x1="46.8560651" y1="11.7075777" x2="102.248251" y2="61.0385363" id="Line-75" stroke-linecap="round"></line>
+                    <line x1="23.832446" y1="25.0064767" x2="62.2358993" y2="35.615285" id="Line-76" stroke-linecap="round"></line>
+                    <line x1="25.0297989" y1="23.8243523" x2="92.556532" y2="38.0098446" id="Line-77" stroke-linecap="round"></line>
+                    <line x1="23.8167584" y1="25.0317358" x2="102.255184" y2="61.0511658" id="Line-78" stroke-linecap="round"></line>
+                    <line x1="23.823691" y1="23.8330126" x2="79.2158773" y2="78.011547" id="Line-79" stroke-linecap="round"></line>
+                    <line x1="23.8203237" y1="25.0317358" x2="38.0034173" y2="61.0511658" id="Line-80" stroke-linecap="round"></line>
+                    <line x1="23.8068545" y1="23.8243523" x2="50.1391886" y2="85.2948187" id="Line-81" stroke-linecap="round"></line>
+                    <line x1="23.4566547" y1="23.8364767" x2="9.27356115" y2="62.2464249" id="Line-82" stroke-linecap="round"></line>
+                    <line x1="9.26999577" y1="62.2720207" x2="61.0393567" y2="35.9352332" id="Line-83" stroke-linecap="round"></line>
+                    <line x1="9.28313139" y1="62.1373057" x2="37.993847" y2="60.3186528" id="Line-84" stroke-linecap="round"></line>
+                    <line x1="10.486935" y1="62.2509715" x2="92.5526334" y2="38.3811528" id="Line-85" stroke-linecap="round"></line>
+                    <line x1="9.27356115" y1="62.1373057" x2="102.251619" y2="60.3186528" id="Line-86" stroke-linecap="round"></line>
+                    <line x1="9.28029576" y1="62.6057466" x2="79.21251" y2="78.0367405" id="Line-87" stroke-linecap="round"></line>
+                    <line x1="9.27131628" y1="62.6298575" x2="50.1279643" y2="86.4996762" id="Line-88" stroke-linecap="round"></line>
+                    <line x1="50.1055156" y1="85.2983846" x2="37.17506" y2="60.1938433" id="Line-89" stroke-linecap="round"></line>
+                    <line x1="50.4590827" y1="86.5054169" x2="61.0660971" y2="35.9505417" id="Line-90" stroke-linecap="round"></line>
+                    <line x1="50.4989587" y1="86.4870466" x2="79.2096744" y2="78.4041451" id="Line-91" stroke-linecap="round"></line>
+                    <line x1="50.4858231" y1="85.2983846" x2="102.255184" y2="60.1938433" id="Line-92" stroke-linecap="round"></line>
+                    <line x1="50.4807297" y1="85.3006853" x2="92.5624358" y2="38.3677085" id="Line-93" stroke-linecap="round"></line>
+                    <line x1="78.3782599" y1="78" x2="102.244042" y2="60.2176166" id="Line-94" stroke-linecap="round"></line>
+                    <line x1="78.3706835" y1="78.015544" x2="92.553777" y2="38.3782383" id="Line-95" stroke-linecap="round"></line>
+                    <line x1="79.1990408" y1="78.0288675" x2="61.4196643" y2="35.9400444" id="Line-96" stroke-linecap="round"></line>
+                    <line x1="79.2214895" y1="78" x2="38.3648415" y2="60.2176166" id="Line-97" stroke-linecap="round"></line>
+                    <line x1="102.260277" y1="61.0259067" x2="92.9087873" y2="38.3937824" id="Line-98" stroke-linecap="round"></line>
+                    <line x1="102.253864" y1="61.04968" x2="61.3972156" y2="35.9451387" id="Line-99" stroke-linecap="round"></line>
+                    <line x1="102.245846" y1="61.2279793" x2="37.1606286" y2="61.2279793" id="Line-100" stroke-linecap="round"></line>
+                    <line x1="92.5624358" y1="39.2020725" x2="61.3908016" y2="35.9689119" id="Line-101" stroke-linecap="round"></line>
+                    <line x1="92.5504097" y1="38.3937824" x2="37.1582234" y2="61.0259067" id="Line-102" stroke-linecap="round"></line>
+                    <line x1="39.5995204" y1="61.04968" x2="62.2278177" y2="35.9451387" id="Line-103" stroke-linecap="round"></line>
+                    <g id="Node-9" transform="translate(78.794964, 0.000000)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(83.643885, 30.310881)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(93.341727, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(69.097122, 70.321244)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(41.215827, 77.595855)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(29.093525, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(52.125899, 26.673575)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(36.366906, 3.637306)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(14.546763, 15.761658)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(-0.000000, 54.559585)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-7" transform="translate(82.000000, 111.000000)" stroke="#FFFFFF">
+                    <line x1="88.0382194" y1="8.0626943" x2="92.5840827" y2="38.0098446" id="Line-59" stroke-linecap="round"></line>
+                    <line x1="87.7183253" y1="9.26165803" x2="61.3859912" y2="35.5984456" id="Line-60" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.06943005" x2="78.3620247" y2="78.0134715" id="Line-61" stroke-linecap="round"></line>
+                    <line x1="88.0685252" y1="9.27156355" x2="102.251619" y2="61.04968" id="Line-62" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.08290155" x2="45.6318088" y2="11.3160622" id="Line-63" stroke-linecap="round"></line>
+                    <line x1="87.7084215" y1="8.07135455" x2="9.26999577" y2="62.249889" id="Line-64" stroke-linecap="round"></line>
+                    <line x1="87.7030194" y1="9.27156355" x2="37.1566928" y2="61.04968" id="Line-65" stroke-linecap="round"></line>
+                    <line x1="88.904964" y1="8.0626943" x2="50.5015108" y2="85.2948187" id="Line-66" stroke-linecap="round"></line>
+                    <line x1="88.9113138" y1="9.25859633" x2="23.8260963" y2="24.6895902" id="Line-67" stroke-linecap="round"></line>
+                    <line x1="45.634602" y1="11.6865285" x2="92.5596426" y2="38.0233161" id="Line-68" stroke-linecap="round"></line>
+                    <line x1="45.6239372" y1="11.7075777" x2="61.0523218" y2="35.5773964" id="Line-69" stroke-linecap="round"></line>
+                    <line x1="46.4688249" y1="11.7202073" x2="23.8405276" y2="24.6528497" id="Line-70" stroke-linecap="round"></line>
+                    <line x1="45.2565947" y1="11.7075777" x2="37.17506" y2="61.0385363" id="Line-71" stroke-linecap="round"></line>
+                    <line x1="45.2818495" y1="11.701837" x2="9.26851019" y2="62.2567122" id="Line-72" stroke-linecap="round"></line>
+                    <line x1="45.6101619" y1="15.3399414" x2="50.1560252" y2="86.5046182" id="Line-73" stroke-linecap="round"></line>
+                    <line x1="45.6514879" y1="11.7014098" x2="79.2082243" y2="78.0187974" id="Line-74" stroke-linecap="round"></line>
+                    <line x1="46.8560651" y1="11.7075777" x2="102.248251" y2="61.0385363" id="Line-75" stroke-linecap="round"></line>
+                    <line x1="23.832446" y1="25.0064767" x2="62.2358993" y2="35.615285" id="Line-76" stroke-linecap="round"></line>
+                    <line x1="25.0297989" y1="23.8243523" x2="92.556532" y2="38.0098446" id="Line-77" stroke-linecap="round"></line>
+                    <line x1="23.8167584" y1="25.0317358" x2="102.255184" y2="61.0511658" id="Line-78" stroke-linecap="round"></line>
+                    <line x1="23.823691" y1="23.8330126" x2="79.2158773" y2="78.011547" id="Line-79" stroke-linecap="round"></line>
+                    <line x1="23.8203237" y1="25.0317358" x2="38.0034173" y2="61.0511658" id="Line-80" stroke-linecap="round"></line>
+                    <line x1="23.8068545" y1="23.8243523" x2="50.1391886" y2="85.2948187" id="Line-81" stroke-linecap="round"></line>
+                    <line x1="23.4566547" y1="23.8364767" x2="9.27356115" y2="62.2464249" id="Line-82" stroke-linecap="round"></line>
+                    <line x1="9.26999577" y1="62.2720207" x2="61.0393567" y2="35.9352332" id="Line-83" stroke-linecap="round"></line>
+                    <line x1="9.28313139" y1="62.1373057" x2="37.993847" y2="60.3186528" id="Line-84" stroke-linecap="round"></line>
+                    <line x1="10.486935" y1="62.2509715" x2="92.5526334" y2="38.3811528" id="Line-85" stroke-linecap="round"></line>
+                    <line x1="9.27356115" y1="62.1373057" x2="102.251619" y2="60.3186528" id="Line-86" stroke-linecap="round"></line>
+                    <line x1="9.28029576" y1="62.6057466" x2="79.21251" y2="78.0367405" id="Line-87" stroke-linecap="round"></line>
+                    <line x1="9.27131628" y1="62.6298575" x2="50.1279643" y2="86.4996762" id="Line-88" stroke-linecap="round"></line>
+                    <line x1="50.1055156" y1="85.2983846" x2="37.17506" y2="60.1938433" id="Line-89" stroke-linecap="round"></line>
+                    <line x1="50.4590827" y1="86.5054169" x2="61.0660971" y2="35.9505417" id="Line-90" stroke-linecap="round"></line>
+                    <line x1="50.4989587" y1="86.4870466" x2="79.2096744" y2="78.4041451" id="Line-91" stroke-linecap="round"></line>
+                    <line x1="50.4858231" y1="85.2983846" x2="102.255184" y2="60.1938433" id="Line-92" stroke-linecap="round"></line>
+                    <line x1="50.4807297" y1="85.3006853" x2="92.5624358" y2="38.3677085" id="Line-93" stroke-linecap="round"></line>
+                    <line x1="78.3782599" y1="78" x2="102.244042" y2="60.2176166" id="Line-94" stroke-linecap="round"></line>
+                    <line x1="78.3706835" y1="78.015544" x2="92.553777" y2="38.3782383" id="Line-95" stroke-linecap="round"></line>
+                    <line x1="79.1990408" y1="78.0288675" x2="61.4196643" y2="35.9400444" id="Line-96" stroke-linecap="round"></line>
+                    <line x1="79.2214895" y1="78" x2="38.3648415" y2="60.2176166" id="Line-97" stroke-linecap="round"></line>
+                    <line x1="102.260277" y1="61.0259067" x2="92.9087873" y2="38.3937824" id="Line-98" stroke-linecap="round"></line>
+                    <line x1="102.253864" y1="61.04968" x2="61.3972156" y2="35.9451387" id="Line-99" stroke-linecap="round"></line>
+                    <line x1="102.245846" y1="61.2279793" x2="37.1606286" y2="61.2279793" id="Line-100" stroke-linecap="round"></line>
+                    <line x1="92.5624358" y1="39.2020725" x2="61.3908016" y2="35.9689119" id="Line-101" stroke-linecap="round"></line>
+                    <line x1="92.5504097" y1="38.3937824" x2="37.1582234" y2="61.0259067" id="Line-102" stroke-linecap="round"></line>
+                    <line x1="39.5995204" y1="61.04968" x2="62.2278177" y2="35.9451387" id="Line-103" stroke-linecap="round"></line>
+                    <g id="Node-9" transform="translate(78.794964, 0.000000)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(83.643885, 30.310881)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(93.341727, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(69.097122, 70.321244)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(41.215827, 77.595855)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(29.093525, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(52.125899, 26.673575)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(36.366906, 3.637306)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(14.546763, 15.761658)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(-0.000000, 54.559585)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-7" transform="translate(1421.000000, 475.000000)" stroke="#FFFFFF">
+                    <line x1="88.0382194" y1="8.0626943" x2="92.5840827" y2="38.0098446" id="Line-59" stroke-linecap="round"></line>
+                    <line x1="87.7183253" y1="9.26165803" x2="61.3859912" y2="35.5984456" id="Line-60" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.06943005" x2="78.3620247" y2="78.0134715" id="Line-61" stroke-linecap="round"></line>
+                    <line x1="88.0685252" y1="9.27156355" x2="102.251619" y2="61.04968" id="Line-62" stroke-linecap="round"></line>
+                    <line x1="87.7135149" y1="8.08290155" x2="45.6318088" y2="11.3160622" id="Line-63" stroke-linecap="round"></line>
+                    <line x1="87.7084215" y1="8.07135455" x2="9.26999577" y2="62.249889" id="Line-64" stroke-linecap="round"></line>
+                    <line x1="87.7030194" y1="9.27156355" x2="37.1566928" y2="61.04968" id="Line-65" stroke-linecap="round"></line>
+                    <line x1="88.904964" y1="8.0626943" x2="50.5015108" y2="85.2948187" id="Line-66" stroke-linecap="round"></line>
+                    <line x1="88.9113138" y1="9.25859633" x2="23.8260963" y2="24.6895902" id="Line-67" stroke-linecap="round"></line>
+                    <line x1="45.634602" y1="11.6865285" x2="92.5596426" y2="38.0233161" id="Line-68" stroke-linecap="round"></line>
+                    <line x1="45.6239372" y1="11.7075777" x2="61.0523218" y2="35.5773964" id="Line-69" stroke-linecap="round"></line>
+                    <line x1="46.4688249" y1="11.7202073" x2="23.8405276" y2="24.6528497" id="Line-70" stroke-linecap="round"></line>
+                    <line x1="45.2565947" y1="11.7075777" x2="37.17506" y2="61.0385363" id="Line-71" stroke-linecap="round"></line>
+                    <line x1="45.2818495" y1="11.701837" x2="9.26851019" y2="62.2567122" id="Line-72" stroke-linecap="round"></line>
+                    <line x1="45.6101619" y1="15.3399414" x2="50.1560252" y2="86.5046182" id="Line-73" stroke-linecap="round"></line>
+                    <line x1="45.6514879" y1="11.7014098" x2="79.2082243" y2="78.0187974" id="Line-74" stroke-linecap="round"></line>
+                    <line x1="46.8560651" y1="11.7075777" x2="102.248251" y2="61.0385363" id="Line-75" stroke-linecap="round"></line>
+                    <line x1="23.832446" y1="25.0064767" x2="62.2358993" y2="35.615285" id="Line-76" stroke-linecap="round"></line>
+                    <line x1="25.0297989" y1="23.8243523" x2="92.556532" y2="38.0098446" id="Line-77" stroke-linecap="round"></line>
+                    <line x1="23.8167584" y1="25.0317358" x2="102.255184" y2="61.0511658" id="Line-78" stroke-linecap="round"></line>
+                    <line x1="23.823691" y1="23.8330126" x2="79.2158773" y2="78.011547" id="Line-79" stroke-linecap="round"></line>
+                    <line x1="23.8203237" y1="25.0317358" x2="38.0034173" y2="61.0511658" id="Line-80" stroke-linecap="round"></line>
+                    <line x1="23.8068545" y1="23.8243523" x2="50.1391886" y2="85.2948187" id="Line-81" stroke-linecap="round"></line>
+                    <line x1="23.4566547" y1="23.8364767" x2="9.27356115" y2="62.2464249" id="Line-82" stroke-linecap="round"></line>
+                    <line x1="9.26999577" y1="62.2720207" x2="61.0393567" y2="35.9352332" id="Line-83" stroke-linecap="round"></line>
+                    <line x1="9.28313139" y1="62.1373057" x2="37.993847" y2="60.3186528" id="Line-84" stroke-linecap="round"></line>
+                    <line x1="10.486935" y1="62.2509715" x2="92.5526334" y2="38.3811528" id="Line-85" stroke-linecap="round"></line>
+                    <line x1="9.27356115" y1="62.1373057" x2="102.251619" y2="60.3186528" id="Line-86" stroke-linecap="round"></line>
+                    <line x1="9.28029576" y1="62.6057466" x2="79.21251" y2="78.0367405" id="Line-87" stroke-linecap="round"></line>
+                    <line x1="9.27131628" y1="62.6298575" x2="50.1279643" y2="86.4996762" id="Line-88" stroke-linecap="round"></line>
+                    <line x1="50.1055156" y1="85.2983846" x2="37.17506" y2="60.1938433" id="Line-89" stroke-linecap="round"></line>
+                    <line x1="50.4590827" y1="86.5054169" x2="61.0660971" y2="35.9505417" id="Line-90" stroke-linecap="round"></line>
+                    <line x1="50.4989587" y1="86.4870466" x2="79.2096744" y2="78.4041451" id="Line-91" stroke-linecap="round"></line>
+                    <line x1="50.4858231" y1="85.2983846" x2="102.255184" y2="60.1938433" id="Line-92" stroke-linecap="round"></line>
+                    <line x1="50.4807297" y1="85.3006853" x2="92.5624358" y2="38.3677085" id="Line-93" stroke-linecap="round"></line>
+                    <line x1="78.3782599" y1="78" x2="102.244042" y2="60.2176166" id="Line-94" stroke-linecap="round"></line>
+                    <line x1="78.3706835" y1="78.015544" x2="92.553777" y2="38.3782383" id="Line-95" stroke-linecap="round"></line>
+                    <line x1="79.1990408" y1="78.0288675" x2="61.4196643" y2="35.9400444" id="Line-96" stroke-linecap="round"></line>
+                    <line x1="79.2214895" y1="78" x2="38.3648415" y2="60.2176166" id="Line-97" stroke-linecap="round"></line>
+                    <line x1="102.260277" y1="61.0259067" x2="92.9087873" y2="38.3937824" id="Line-98" stroke-linecap="round"></line>
+                    <line x1="102.253864" y1="61.04968" x2="61.3972156" y2="35.9451387" id="Line-99" stroke-linecap="round"></line>
+                    <line x1="102.245846" y1="61.2279793" x2="37.1606286" y2="61.2279793" id="Line-100" stroke-linecap="round"></line>
+                    <line x1="92.5624358" y1="39.2020725" x2="61.3908016" y2="35.9689119" id="Line-101" stroke-linecap="round"></line>
+                    <line x1="92.5504097" y1="38.3937824" x2="37.1582234" y2="61.0259067" id="Line-102" stroke-linecap="round"></line>
+                    <line x1="39.5995204" y1="61.04968" x2="62.2278177" y2="35.9451387" id="Line-103" stroke-linecap="round"></line>
+                    <g id="Node-9" transform="translate(78.794964, 0.000000)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(83.643885, 30.310881)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(93.341727, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(69.097122, 70.321244)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(41.215827, 77.595855)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(29.093525, 52.134715)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(52.125899, 26.673575)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(36.366906, 3.637306)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(14.546763, 15.761658)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-9" transform="translate(-0.000000, 54.559585)" fill="#FFFFD9">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(960.904774, 375.192622) rotate(67.000000) translate(-960.904774, -375.192622) translate(908.904774, 329.692622)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(833.000000, 976.500000) scale(1, -1) translate(-833.000000, -976.500000) translate(781.000000, 931.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(279.000000, 991.500000) scale(1, -1) translate(-279.000000, -991.500000) translate(227.000000, 946.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-4" transform="translate(333.000000, 245.000000)" stroke="#FFFFFF">
+                    <line x1="9.26490236" y1="8.06735751" x2="29.5264645" y2="68.3160622" id="Line" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(20.607914, 60.621762)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(128.000000, 245.000000)" stroke="#FFFFFF">
+                    <line x1="63.8104516" y1="9.27512953" x2="90.1427858" y2="23.4606218" id="Line-23" stroke-linecap="round"></line>
+                    <line x1="90.1246541" y1="23.8193005" x2="9.27822357" y2="59.8387306" id="Line-24" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 52.134715)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(54.550360, -0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(81.219424, 15.761658)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-4" transform="translate(367.000000, 495.000000) scale(-1, -1) rotate(59.000000) translate(-367.000000, -495.000000) translate(348.000000, 456.000000)" stroke="#FFFFFF">
+                    <line x1="9.26490236" y1="8.06735751" x2="29.5264645" y2="68.3160622" id="Line" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(20.607914, 60.621762)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(229.000000, 90.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(371.000000, 668.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(74.000000, 475.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-6" transform="translate(1390.000000, 645.000000) scale(-1, -1) translate(-1390.000000, -645.000000) translate(1240.000000, 592.000000)" stroke="#FFFFFF">
+                    <line x1="168.078021" y1="96.2077993" x2="291.357231" y2="8.06163076" id="Line-25" stroke-linecap="round"></line>
+                    <line x1="166.50162" y1="96.208981" x2="9.27176081" y2="55.3454231" id="Line-26" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 47.284974)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(157.589928, 88.507772)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(282.449640, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(1338.000000, 698.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(1259.000000, 368.500000) scale(1, -1) translate(-1259.000000, -368.500000) translate(1207.000000, 323.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(1123.000000, 188.500000) scale(1, -1) rotate(55.000000) translate(-1123.000000, -188.500000) translate(1071.000000, 143.000000)" stroke="#FFFFFF">
+                    <line x1="9.27356115" y1="9.27007772" x2="70.7336331" y2="82.875" id="Line-4" stroke-linecap="round"></line>
+                    <line x1="94.970661" y1="40.7897853" x2="71.1048786" y2="82.8786084" id="Line-4" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(61.823741, 73.958549)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(86.068345, 31.523316)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-11" transform="translate(1232.000000, 1015.000000) scale(-1, -1) translate(-1232.000000, -1015.000000) translate(1090.000000, 874.000000)">
+                    <line x1="257.800959" y1="118.389865" x2="275.580336" y2="181.081638" id="Line-2" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="258.632882" y1="120.81279" x2="233.532586" y2="178.658713" id="Line-3" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.527492" y1="179.036269" x2="275.609198" y2="182.26943" id="Line-5" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="232.323921" y1="180.228497" x2="262.266007" y2="273.22228" id="Line-6" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="233.181141" y1="178.641309" x2="202.009507" y2="145.078898" id="Line-7" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.016527" y1="145.930052" x2="258.630955" y2="119.593264" id="Line-8" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="202.013115" y1="145.070511" x2="275.605591" y2="179.862131" id="Line-9" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.955254" y1="91.7072539" x2="258.62748" y2="118.044041" id="Line-10" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="155.953417" y1="91.7293856" x2="201.654496" y2="145.90792" id="Line-11" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <line x1="9.27227154" y1="8.06044905" x2="155.591038" y2="91.3592401" id="Line-12" stroke="#FFFFFF" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(253.356115, 264.310881)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(-0.000000, 0.000000)" fill="#081D58" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-3" transform="translate(266.690647, 173.378238)" fill="#225EA8" stroke="#FFFFFF">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-5" transform="translate(224.262590, 169.740933)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(248.507194, 110.331606)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(192.744604, 137.005181)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-4" transform="translate(146.679856, 83.658031)" fill="#4CC8EB" stroke="#A1E0F2" stroke-width="0.5">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(156.500000, 724.000000) scale(-1, 1) translate(-156.500000, -724.000000) translate(107.000000, 689.000000)" stroke="#FFFFFF">
+                    <line x1="63.8104516" y1="9.27512953" x2="90.1427858" y2="23.4606218" id="Line-23" stroke-linecap="round"></line>
+                    <line x1="90.1246541" y1="23.8193005" x2="9.27822357" y2="59.8387306" id="Line-24" stroke-linecap="round"></line>
+                    <g id="Node-1" transform="translate(-0.000000, 52.134715)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-1" transform="translate(54.550360, -0.000000)" fill="#081D58">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                    <g id="Node-2" transform="translate(81.219424, 15.761658)" fill="#263494">
+                        <ellipse id="Oval" cx="8.48561151" cy="8.48704663" rx="3.85709614" ry="3.85774847"></ellipse>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
