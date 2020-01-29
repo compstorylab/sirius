@@ -31,9 +31,12 @@ welcome to create a pull request.
 4. Create a .env file under the project folder, which contains 
     ```text
        SIRIUS_SETTINGS_SECRET_KEY={your string value here with quotes}
-       ENVIRONMENT={can be 'local' 'dev' 'qa' 'prod'}
+       (this one is optional)ENVIRONMENT={"dev" or "qa" or "prod"}
     ```
-5. Start the server
+5. Execute the following command to set up the database structure
+
+    ```python manage.py migrate```    
+6. Start the server
 
     ```python manage.py runserver```
     
