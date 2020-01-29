@@ -25,7 +25,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env.str('SIRIUS_SETTINGS_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ENVIRONMENT = env.str('ENVIRONMENT', 'local')
+ENVIRONMENT = env.str('ENVIRONMENT', 'dev')
 DEBUG = (ENVIRONMENT == 'local' or ENVIRONMENT == 'dev')
 
 ALLOWED_HOSTS = []
