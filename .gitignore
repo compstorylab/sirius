@@ -12,3 +12,4 @@ upload_files
 
 db.sqlite3
 utilities/output/charts/*.png
+demo_widsdatathon2020/training_v2.csv
