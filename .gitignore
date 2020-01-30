@@ -11,4 +11,4 @@ upload_files
 .jpeg
 
 db.sqlite3
-utilities/charts/*.png
+utilities/output/charts/*.png
