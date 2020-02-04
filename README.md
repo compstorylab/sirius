@@ -33,6 +33,8 @@ welcome to create a pull request.
        SIRIUS_SETTINGS_SECRET_KEY={your string value here with quotes}
        (this one is optional)ENVIRONMENT={"dev" or "qa" or "prod"}
     ```
+    secret key should be set to a unique, unpredictable value. It is used for sessions, messages, PasswordResetView tokens
+    or any usage of is cryptographic signing unless a different key is provided.
 5. Execute the following command to set up the database structure
 
     ```python manage.py migrate```    
@@ -56,15 +58,15 @@ You can access it by the url returned from the above command, usually it is [htt
 2. viola! you will see a network graph with options to explore with.
 
 <b>Note<b>:
-1. please use "_" as delimiters between features/variables name
+1. please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
 
 ## Development
 If you would like to contribute to the development, WELCOME!
 
 Please make sure you have `npm` installed.
-We use typescript in this project. Please execute `webpack` to compiles typescript into javascript.
+We use typescript in this project. Please execute `webpack` to compile typescript into javascript.
 
-Thorough docstring is required in development
+Thorough documentation is required in development
 
 
 
