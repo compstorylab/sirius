@@ -64,7 +64,8 @@ You can access it by the url returned from the above command, usually it is [htt
 If you would like to contribute to the development, WELCOME!
 
 Please make sure you have `npm` installed.
-We use typescript in this project. Please execute `webpack` to compile typescript into javascript.
+Then `npm install` to install all required js libraries for development.
+We use typescript in this project. Please execute `./node_modules/.bin/webpack` to compile typescript into javascript.
 
 Thorough documentation is required in development
 
