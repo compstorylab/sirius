@@ -40,7 +40,9 @@ export function generateGraghChart(jsonUrl){
                 .append("circle")
                 .attr("r", nodeRadius)
                 // .style("opacity", "0.5");
-                .style('fill',  Color.White);
+                .style('fill',  Color.White)
+            .on("mouseover", nodeMouseOverBehavior)
+            .on("mouseout", nodeMouseOutBehavior);
 
         simulation.nodes(data.nodes)
             .on("tick", ticked);
@@ -48,13 +50,13 @@ export function generateGraghChart(jsonUrl){
 
         function ticked(){
             links
-                .attr("x1", function(d) { return d.source.x; })
-                .attr("y1", function(d) { return d.source.y; })
-                .attr("x2", function(d) { return d.target.x; })
-                .attr("y2", function(d) { return d.target.y; });
+                .attr("x1", function(d:any) { return d.source.x; })
+                .attr("y1", function(d:any) { return d.source.y; })
+                .attr("x2", function(d:any) { return d.target.x; })
+                .attr("y2", function(d:any) { return d.target.y; });
             nodes
-                .attr("cx", function(d) { return d.x; })
-                .attr("cy", function(d) { return d.y; })
+                .attr("cx", function(d:any) { return d.x; })
+                .attr("cy", function(d:any) { return d.y; })
                 .attr("stroke",  Color.White)
                 .attr("stroke-width", 1);
 
@@ -62,4 +64,33 @@ export function generateGraghChart(jsonUrl){
         }
     });
 
+}
+
+/**
+ * a function for mouse over behavior of the node in network graph. When user hovers over the node, display the feature
+ * name
+ * @param d: data, from the <circle> element's data attributes
+ * @param i: index
+ */
+function nodeMouseOverBehavior(d, i){
+    let svg = d3.select('svg');
+    svg.append("text")
+        .attr('id', d.source + '_index_' + d.index)
+        .attr('x', function() { return d.x - 50})
+        .attr('y', function(){ return d.y - 12})
+        // .attr('class', 'node-text')
+        .text(function(){ return d.source; })
+        .style('fill', 'white')  // need Design QA: font color, size, family, position?
+    ;
+}
+
+/**
+ * a function for mouse out behavior of the node in network graph. When the user moves the mouse out of node, remove the
+ * feature name
+ * @param d: data, from the <circle> element's data attributes
+ * @param i: index
+ */
+function nodeMouseOutBehavior(d, i){
+    // select by id
+    d3.select("#" + d.source + '_index_' + d.index).remove();
 }
