@@ -743,7 +743,7 @@ stack = pd.read_csv(cd+'results.csv')
 
 
 # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
-sorted_stack = s.sort_values(by='v',ascending=False)
+sorted_stack = stack.sort_values(by='v',ascending=False)
 #sorted_stack = sorted_stack[sorted_stack['v']<1]
 
 
