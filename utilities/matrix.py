@@ -481,7 +481,6 @@ def DD_mi(df):
               l.append(pmi[i][j]*joint_probability)
         # Sum the list of all pointwise mutual information
         mi = sum(l)
-        if (chart or output): viz(U,V)
   if max_mi==0:
       nmi = 0
   else:
