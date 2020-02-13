@@ -5,13 +5,13 @@ venv/
 node_modules
 upload_files
 
-.json
-.png
+
 .jpg
 .jpeg
+.json
+.png
 
 db.sqlite3
-utilities/output/charts/*.png
 demo_widsdatathon2020/training_v2.csv
 utilities/.ipynb_checkpoints/
 utilities/*/.DS_Store
