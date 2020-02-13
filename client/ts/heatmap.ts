@@ -1,5 +1,11 @@
 import Plotly from 'plotly.js-dist';
 
+/**
+ * Creates a heatmap from raw data using plotly.
+ * @param x An array of categorical values. Number or string
+ * @param y An array of categrorical values. Numnber or string
+ * @param chartHolderId The id of the html element to render the chart in.
+ */
 export function heatmap(x:Array<any>, y:Array<any>, chartHolderId:string): void {
     let data = processForHeatmap(x, y);
     var chartData = [
@@ -14,6 +20,11 @@ export function heatmap(x:Array<any>, y:Array<any>, chartHolderId:string): void 
     Plotly.newPlot(chartHolderId, chartData);
 }
 
+/**
+ * Transoform raw data into a form the heatmap function of Plotly can use. 
+ * @param x An array of categorical values. Number or string
+ * @param y An array of categrorical values. Numnber or string
+ */
 export function processForHeatmap(x:Array<any>, y:Array<any>) {
     let x_labels = unique(x);
     let y_labels = unique(y);
@@ -39,24 +50,39 @@ export function processForHeatmap(x:Array<any>, y:Array<any>) {
     };
 }
 
-function create2dZeroMatrix(x:number, y:number):Array<Array<number>> {
+/**
+ * Create a 2D array populated with zeros or a specified initial value.
+ * @param x An integer denoting the number of columns
+ * @param y An integer denoting the number of rows
+ * @param initialValue The initial value.
+ */
+function create2dZeroMatrix(x:number, y:number, initialValue:any=0):Array<Array<number>> {
     let matrix = Array<Array<number>>();
     for(let i = 0; i < y; i++){
         let arr = new Array();
         for (let j = 0; j < x; j++) {
-            arr.push(0);
+            arr.push(initialValue);
         }
         matrix.push(arr);
     }
     return matrix;
 }
 
+/**
+ * Gets the unique values within an array.
+ * @param arr An array on categorical values
+ */
 function unique(arr):Array<any> {
     let unique_vals:Array<any> = Array.from(new Set(arr));
     unique_vals.sort();
     return unique_vals;
 }
 
+/**
+ * Creates a map from label value to array index.
+ * getLabelIndexDict(['a', 'b']) -> {a:0, b:1}
+ * @param labels An array of labels
+ */
 function getLabelIndexDict(labels){
     let d = {};
     for (let i = 0; i < labels.length; i++) {
