@@ -437,7 +437,7 @@ def viz(U,V):
 
 # ### Discrete-Discrete
 
-# In[85]:
+# In[19]:
 
 
 def DD_mi(df):
@@ -488,7 +488,7 @@ def DD_mi(df):
   return mi
 
 
-# In[90]:
+# In[20]:
 
 
 # Test it out:
@@ -533,7 +533,7 @@ def DC_mi(df):
   return mi
 
 
-# In[23]:
+# In[22]:
 
 
 # Test it out:
@@ -543,7 +543,7 @@ except: pass
 
 # ### Continuous-Continuous
 
-# In[24]:
+# In[23]:
 
 
 def CC_mi(df):
@@ -560,7 +560,7 @@ def CC_mi(df):
   return mi
 
 
-# In[25]:
+# In[24]:
 
 
 # Test it out:
@@ -570,7 +570,7 @@ except: pass
 
 # #### Comparison: Correlation
 
-# In[26]:
+# In[25]:
 
 
 def CC_corr(df):
@@ -587,7 +587,7 @@ def CC_corr(df):
   return corr
 
 
-# In[27]:
+# In[26]:
 
 
 # Test it out:
@@ -597,7 +597,7 @@ except: pass
 
 # ## Matrix Functions
 
-# In[31]:
+# In[27]:
 
 
 def matrixify(df):
@@ -606,7 +606,7 @@ def matrixify(df):
   return m
 
 
-# In[30]:
+# In[28]:
 
 
 def stack(matrix):
@@ -621,7 +621,7 @@ def stack(matrix):
 
 # ## Data Processing
 
-# In[100]:
+# In[29]:
 
 
 def calc_pairtype(U,V):
@@ -647,7 +647,7 @@ def calc_pairtype(U,V):
   return pair_type
 
 
-# In[29]:
+# In[30]:
 
 
 def calc_mi(U,V):
@@ -684,7 +684,7 @@ def calc_mi(U,V):
   except: return 0
 
 
-# In[32]:
+# In[31]:
 
 
 def run_calc(features):
@@ -718,7 +718,7 @@ stack.to_csv(cd+'results.csv',index=False)
 
 # # Network Graphing
 
-# In[140]:
+# In[32]:
 
 
 # Re-import the Mutual Information results
@@ -727,7 +727,7 @@ stack.to_csv(cd+'results.csv',index=False)
 stack = pd.read_csv(cd+'results.csv')
 
 
-# In[141]:
+# In[33]:
 
 
 # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
@@ -737,14 +737,14 @@ sorted_stack = stack.sort_values(by='v',ascending=False)
 
 # ## Thresholding
 
-# In[142]:
+# In[34]:
 
 
 # Create a data frame of edge counts and number of components for a given threshold
 e = pd.DataFrame(columns=['mi_threshold','edge_count','components'])
 
 
-# In[143]:
+# In[35]:
 
 
 # Fill in the 'e' data frame with the number of edges and number of components across a range of thresholds
@@ -759,21 +759,21 @@ for i in np.arange(np.round(sorted_stack['v'].min(),2), np.round(sorted_stack['v
     e = e.append({'mi_threshold': i, 'edge_count': (sorted_stack['v']>i).sum(), 'components':nx.number_connected_components(G)},ignore_index=True)
 
 
-# In[144]:
+# In[36]:
 
 
 # Plot the number of edges for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['edge_count'])
 
 
-# In[145]:
+# In[37]:
 
 
 # Plot the number of components for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['components'])
 
 
-# In[146]:
+# In[38]:
 
 
 # Find the mutual information threshold which maximizes the component count
@@ -785,7 +785,7 @@ max_component_threshold = e[e['components']==max(e['components'])].max()['mi_thr
 # while still maximizing component counts
 
 
-# In[147]:
+# In[39]:
 
 
 # Threshold the edge list by the mutual information threshold which maximizes the component count
@@ -797,20 +797,20 @@ thresh_stack
 
 # ## Node and Edge Lists
 
-# In[148]:
+# In[40]:
 
 
 # Create a networkx graph from the list of pairs
 G=nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
 
 
-# In[149]:
+# In[41]:
 
 
 list(dict(G['h1_platelets_min']).keys())
 
 
-# In[150]:
+# In[42]:
 
 
 nodelist = []
@@ -818,13 +818,13 @@ for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_s
     nodelist.append({'name':n,'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':list(dict(G[n]).keys())})
 
 
-# In[151]:
+# In[43]:
 
 
 nodelist
 
 
-# In[152]:
+# In[44]:
 
 
 json_out = {}
@@ -832,14 +832,14 @@ json_out['nodes']=nodelist
 json_out['links']=(thresh_stack).to_dict(orient='records')
 
 
-# In[153]:
+# In[45]:
 
 
 with open(str(cd+'output/graph.json'), 'w') as json_file:
   json.dump(json_out, json_file)
 
 
-# In[154]:
+# In[46]:
 
 
 for i,row in thresh_stack.iterrows():
@@ -848,7 +848,7 @@ for i,row in thresh_stack.iterrows():
 
 # ## Positioning
 
-# In[ ]:
+# In[47]:
 
 
 def calculate_positions(thresh_stack):
@@ -902,7 +902,7 @@ def calculate_positions(thresh_stack):
   return edges,nodes
 
 
-# In[ ]:
+# In[48]:
 
 
 [edges,nodes] = calculate_positions(thresh_stack)
@@ -910,7 +910,7 @@ def calculate_positions(thresh_stack):
 
 # ## Draw Graph
 
-# In[ ]:
+# In[51]:
 
 
 def draw_graph(edges,nodes,title,**kwargs):
@@ -953,13 +953,25 @@ def draw_graph(edges,nodes,title,**kwargs):
   
   fig.update_traces(textposition='top center')
   # Show figure
-  fig.show()
+  if chart: fig.show()
+  if output: fig.write_image(str(cd+'output/graph_example.png'), scale=resolution//72)
 
 
-# In[ ]:
+# In[52]:
 
 
 draw_graph(edges,nodes,'Example Graph')
+
+
+# In[60]:
+
+
+components = []
+for i in nx.connected_components(G):
+    components.append(list(i))
+if output:
+    with open(str(cd+'output/components.json'), 'w') as json_file:
+        json.dump(components, json_file)
 
 
 # In[ ]:
