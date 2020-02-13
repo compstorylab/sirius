@@ -12,18 +12,18 @@
     </body>
 
     <script type="text/javascript">
-        let data = {x:[], y:[]}
-        for (let i = 0; i < 100; i ++) {
-            data['x'].push(Math.floor(5.0 * Math.random()))
-            data['y'].push(Math.floor(5.0 * Math.random()))
-        }
+        let data = {x:['a', 'a', 'b', 'b', 'a'], y:['C', 'B', 'A', 'B', 'B']}
+        // for (let i = 0; i < 100; i ++) {
+        //     data['x'].push(Math.floor(5.0 * Math.random()))
+        //     data['y'].push(Math.floor(5.0 * Math.random()))
+        // }
 
         let x_labels = unique(data['x']);
         let y_labels = unique(data['y']);
 
         let x_label_index = get_label_index_dict(x_labels);
         let y_label_index = get_label_index_dict(y_labels);
-
+        
         let counts = new Array();
         for(let i = 0; i < y_labels.length; i++){
             let arr = new Array();
@@ -49,8 +49,8 @@
         var chartData = [
             {
                 z: counts,
-                x: x_label_index,
-                y: y_label_index,
+                x: x_labels,
+                y: y_labels,
                 type: 'heatmap',
                 hoverongaps: false
             }
