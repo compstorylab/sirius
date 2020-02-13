@@ -57,7 +57,7 @@ from plotly.offline import download_plotlyjs, plot, iplot #, init_notebook_mode
 # In[3]:
 
 
-chart = True # boolean for whether to display images while running computation
+chart = False # boolean for whether to display images while running computation
 debug = True # boolean for whether to print updates to the console while running
 output = True # boolean for whether to output json and pngs to files
 charter = 'Plotly' # also accepts 'Seaborn'
@@ -609,7 +609,7 @@ def matrixify(df):
 # In[30]:
 
 
-def stack(matrix,chart=False):
+def stack(matrix):
   ''' For undirected matrices: Takes a matrix and returns a dataframe with columns [x,y,v] corresponding to [source,target,value] '''
   s = pd.DataFrame(matrix.mask(np.triu(np.ones(matrix.shape)).astype(bool)).stack()).reset_index().rename(columns={'level_0':'x','level_1':'y',0:'v'})
   s = s[s['x']!=s['y']]
@@ -703,12 +703,6 @@ def run_calc(features):
 
 
 # # Calculation
-
-# In[ ]:
-
-
-chart=False
-
 
 # In[ ]:
 
@@ -847,8 +841,6 @@ with open(str(cd+'output/graph.json'), 'w') as json_file:
 
 # In[154]:
 
-
-chart=True
 
 for i,row in thresh_stack.iterrows():
     viz(row['source'],row['target'])
