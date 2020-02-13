@@ -16,4 +16,4 @@ demo_widsdatathon2020/training_v2.csv
 utilities/.ipynb_checkpoints/
 utilities/*/.DS_Store
 utilities/*.ipynb
-
+.DS_Store
