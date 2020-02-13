@@ -46,10 +46,10 @@ import plotly.figure_factory as ff
 from plotly.colors import n_colors
 
 # If you're using this code locally:
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from plotly.offline import download_plotlyjs, plot, iplot #, init_notebook_mode
 
 # If you're copying this into a jupyter notebook, add:
-init_notebook_mode(connected=True)
+# init_notebook_mode(connected=True)
 
 
 # ## Parameter settings
@@ -57,7 +57,7 @@ init_notebook_mode(connected=True)
 # In[3]:
 
 
-chart = False # boolean for whether to display images while running computation
+chart = True # boolean for whether to display images while running computation
 debug = True # boolean for whether to print updates to the console while running
 output = True # boolean for whether to output json and pngs to files
 charter = 'Plotly' # also accepts 'Seaborn'
@@ -437,7 +437,7 @@ def viz(U,V):
 
 # ### Discrete-Discrete
 
-# In[19]:
+# In[85]:
 
 
 def DD_mi(df):
@@ -447,7 +447,7 @@ def DD_mi(df):
   U=list(df.columns)[0]
   V=list(df.columns)[1]
 
-  if debug: print(f'Calculating discrete-discrete normalized MI for {U} and {V}')
+  if debug: print(f'Calculating discrete-discrete MI for {U} and {V}')
   min_response_count = min(len(list(df[U].unique())),len(list(df[V].unique())))
   max_mi = np.log2(min_response_count)
   if U == V:
@@ -481,25 +481,19 @@ def DD_mi(df):
               l.append(pmi[i][j]*joint_probability)
         # Sum the list of all pointwise mutual information
         mi = sum(l)
-  if max_mi==0:
-      nmi = 0
-  else:
-      nmi = mi/max_mi
-  return nmi
+  # Normalize by response count (not recommended)
+  #if max_mi==0: nmi = 0
+  #else: nmi = mi/max_mi
+  if debug: print(f'MI: {mi}')
+  return mi
 
 
-# In[20]:
+# In[90]:
 
 
 # Test it out:
 try: DD_mi(df.filter(random.sample(discrete,2)).dropna(how='any'))
 except: print('Error calculating MI for two discrete features')
-
-
-# In[21]:
-
-
-DD_mi(df.filter(random.sample(discrete,2)).dropna(how='any'))
 
 
 # ### Discrete-Continuous
@@ -508,7 +502,7 @@ DD_mi(df.filter(random.sample(discrete,2)).dropna(how='any'))
 # 
 # This requires us to sparsify the discrete matrix by response
 
-# In[22]:
+# In[21]:
 
 
 def DC_mi(df):
@@ -562,7 +556,7 @@ def CC_mi(df):
   if debug: print(f'Calculating mutual information for {U} and {V}')
 
   mi = mutual_info_regression(df.filter([U]),df[V])[0]
-  if debug: print(f'MI = {mi}')
+  if debug: print(f'MI: {mi}')
   return mi
 
 
@@ -627,7 +621,7 @@ def stack(matrix,chart=False):
 
 # ## Data Processing
 
-# In[28]:
+# In[100]:
 
 
 def calc_pairtype(U,V):
@@ -730,7 +724,7 @@ stack.to_csv(cd+'results.csv',index=False)
 
 # # Network Graphing
 
-# In[ ]:
+# In[140]:
 
 
 # Re-import the Mutual Information results
@@ -739,7 +733,7 @@ stack.to_csv(cd+'results.csv',index=False)
 stack = pd.read_csv(cd+'results.csv')
 
 
-# In[ ]:
+# In[141]:
 
 
 # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
@@ -749,14 +743,14 @@ sorted_stack = stack.sort_values(by='v',ascending=False)
 
 # ## Thresholding
 
-# In[ ]:
+# In[142]:
 
 
 # Create a data frame of edge counts and number of components for a given threshold
 e = pd.DataFrame(columns=['mi_threshold','edge_count','components'])
 
 
-# In[ ]:
+# In[143]:
 
 
 # Fill in the 'e' data frame with the number of edges and number of components across a range of thresholds
@@ -771,21 +765,21 @@ for i in np.arange(np.round(sorted_stack['v'].min(),2), np.round(sorted_stack['v
     e = e.append({'mi_threshold': i, 'edge_count': (sorted_stack['v']>i).sum(), 'components':nx.number_connected_components(G)},ignore_index=True)
 
 
-# In[ ]:
+# In[144]:
 
 
 # Plot the number of edges for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['edge_count'])
 
 
-# In[ ]:
+# In[145]:
 
 
 # Plot the number of components for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['components'])
 
 
-# In[ ]:
+# In[146]:
 
 
 # Find the mutual information threshold which maximizes the component count
@@ -797,55 +791,67 @@ max_component_threshold = e[e['components']==max(e['components'])].max()['mi_thr
 # while still maximizing component counts
 
 
-# In[ ]:
+# In[147]:
 
 
 # Threshold the edge list by the mutual information threshold which maximizes the component count
 thresh_stack = sorted_stack[sorted_stack['v']>max_component_threshold]
-thresh_stack = thresh_stack.rename(columns={'x':'src','y':'target','v':'weight'})
-thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['src'],thresh_stack['target'])]
+thresh_stack = thresh_stack.rename(columns={'x':'source','y':'target','v':'weight'})
+thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['source'],thresh_stack['target'])]
 thresh_stack
 
 
 # ## Node and Edge Lists
 
-# In[ ]:
+# In[148]:
 
 
 # Create a networkx graph from the list of pairs
-G=nx.from_pandas_edgelist(thresh_stack, 'src', 'target', ['weight'])
+G=nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
 
 
-# In[ ]:
+# In[149]:
 
 
-nodelist = {}
-for n in list(dict.fromkeys((list(s['x'].unique())+list(s['y'].unique())))):
-    nodelist[n]={'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':dict(G[n])}
+list(dict(G['h1_platelets_min']).keys())
 
 
-# In[ ]:
+# In[150]:
+
+
+nodelist = []
+for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_stack['target'].unique())))):
+    nodelist.append({'name':n,'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':list(dict(G[n]).keys())})
+
+
+# In[151]:
+
+
+nodelist
+
+
+# In[152]:
 
 
 json_out = {}
-json_out['edges']=(thresh_stack).to_dict(orient='records')
 json_out['nodes']=nodelist
+json_out['links']=(thresh_stack).to_dict(orient='records')
 
 
-# In[ ]:
+# In[153]:
 
 
 with open(str(cd+'output/graph.json'), 'w') as json_file:
   json.dump(json_out, json_file)
 
 
-# In[ ]:
+# In[154]:
 
 
 chart=True
 
 for i,row in thresh_stack.iterrows():
-    viz(row['src'],row['target'])
+    viz(row['source'],row['target'])
 
 
 # ## Positioning
