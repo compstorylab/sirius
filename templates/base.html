@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Rubik&display=swap" rel="stylesheet">
+
     <link href="{% static 'styles/web.css' %}" rel="stylesheet">
     <link href="{% static 'styles/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'styles/font-awesome.css' %}" rel="stylesheet">
@@ -17,7 +19,7 @@
     </nav>
     <div id="drawing-section" class="container">
         <svg width="1100" height="900"></svg>
-        <div id="right-bar" class="col-3">
+        <div id="right-bar" class="col-4">
             <div>
                 <span class="close-btn"><i class="fa fa-times-circle"></i></span>
             </div>
@@ -31,8 +33,7 @@
                 <form class="upload-form" method="post" id="upload_form" encType="multipart/form-data">
                     {% csrf_token %}
                     <input class="file-input-box" type="file" name="{{ upload_form.file_field.html_name }}" id="upload_box" multiple/>
-                    <label class="file-input-label" for="upload_box">Upload Your Dataset</label>
-                    <button class="submit-btn" type="submit">Upload Dataset</button>
+                    <label class="btn btn-primary" for="upload_box">Upload Your Dataset</label>
                 </form>
             </div>
             <div class="right-bar-image" hidden>

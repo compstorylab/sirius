@@ -1,11 +1,18 @@
-
+:root{
+    /* define variables */
+    --base-bg-color: #0F1847;
+    --nav-bar-bg-color:  #102136;
+    --nav-bar-border-bt-color: #3f62b8;
+    --right-bar-bg-color: #202644;
+    --button-color: #3f62b8;
+}
 .base-bg {
     background-image: url("../../static/images/home-background.svg");
-    background-color: #0F1847;
+    background-color: var(--base-bg-color);
 }
 .navbar.navbar-expand-lg.eat-bar{
-    background-color: #102136;
-    border-bottom: 2px solid #3f62b8;
+    background-color: var(--nav-bar-bg-color);
+    border-bottom: 2px solid var(--nav-bar-border-bt-color);
     height: 70px;
 
 }
@@ -13,23 +20,79 @@ span.navbar-brand.eat-nav-title{
     color: white;
     font-size: 20px;
     letter-spacing: 1.94px;
+    font-family: Rubik;
 }
 span.navbar-brand.eat-nav-title .small{
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 1.36px;
+    font-family: Rubik;
 }
 span.navbar-brand.upload-link{
     color: white;
     font-size: 16px;
-    /*font-family: Raleway;*/
-    letter-spacing: 1.62px;
+    font-family: Rubik;
     position: absolute;
     right: 30px;
+    margin-right:0;
 }
 span.navbar-brand.upload-link:hover{
     cursor: pointer;
 }
 
+.container.drawing-section-container{
+    margin:0;
+}
+#right-bar{
+    overflow: visible;
+    background-color: var(--right-bar-bg-color);
+    /*z-index: 1;*/
+    height: 100%;
+    width: 505px;
+    position: absolute;
+    top: 70px;
+    right: 0;
+
+    /*position: relative;*/
+    /*background-color: #202644;*/
+    /*height:100%;*/
+    /*right: 0;*/
+    /*z-index: 1;*/
+
+}
+.close-btn {
+    top: 40px;   /* needs design QA for the value when the page is shrinking*/
+    right: 40px;
+    position: absolute;
+  /*  position: relative;*/
+}
+.close-btn .fa.fa-times-circle {
+    font-size: 20px;
+    color: white;
+}
+.close-btn .fa.fa-times-circle:hover{
+    cursor: pointer;
+}
+
+
+.right-bar-content{
+    position: relative;
+    top: 70px;
+    margin: 60px;
+    color: white;
+    font-family: Rubik;
+}
+.right-bar-content h2{
+    /*the title of the right bar */
+    font-weight: 300;
+    font-size: 60px;
+    margin-bottom: 40px;
+}
+.right-bar-content .content-p{
+    font-weight: 600;
+    font-family: Raleway;
+    font-size: 18px;
+    letter-spacing: 1.75px;
+}
 .file-input-box{
     width: 0.01px;
 	height: 0.01px;
@@ -41,39 +104,24 @@ span.navbar-brand.upload-link:hover{
 .file-input-label{
     color: white;
     cursor: pointer;
+    font-family: Rubik;
+    font-size: 24px;
+    letter-spacing: 2.33px;
 }
 
-#right-bar{
-    overflow: visible;
-    background-color: #202644;
-    /*z-index: 1;*/
-    width: 505px;
-    height: 951px;
-    position: absolute;
-    top: 70px;
-    right: 0;
-
-}
-.close-btn {
-  top: 40px;
-  right: 40px;
-  position: absolute;
-}
-.close-btn .fa.fa-times-circle {
-  font-size: 20px;
-  color: white;
-}
-.close-btn .fa.fa-times-circle:hover{
-  cursor: pointer;
+.submit-btn{  /* like browse button next to a submit button? */
+    background-color: var(--button-color);
+    border: none;
+    color: white;
+    font-family: 'Raleway', sans-serif;;
+    font-size: 12px;
+    font-weight: bold;
+    width: 185px;
+    height: 45px;
+    letter-spacing: 1.62px;
+    text-align: center;
 }
 
-
-.right-bar-content{
-  position: absolute;
-  top: 70px;
-  margin: 60px;
-  color: white;
-}
 .right-bar-image{
     color: white;
     margin-left: 10px;
@@ -91,19 +139,7 @@ span.navbar-brand.upload-link:hover{
 .upload-form{
   margin-top: 100px;
 }
-.submit-btn{
-  background-color: #3f62b8;
-  border: none;
-  color: white;
-  font-size: 12px;
-  width: 185px;
-  height: 45px;
-  letter-spacing: 1.62px;
-  text-align: center;
-}
+
 svg g line:hover{
    cursor: pointer;
 }
-/*.node-text{*/
-/*    color: white;*/
-/*}*/
