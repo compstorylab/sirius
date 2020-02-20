@@ -46,7 +46,7 @@ span.navbar-brand.upload-link:hover{
     overflow: visible;
     background-color: var(--right-bar-bg-color);
     /*z-index: 1;*/
-    height: 100%;
+    height: max(900px, 100vh);
     width: 505px;
     position: absolute;
     top: 70px;

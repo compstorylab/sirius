@@ -31,7 +31,8 @@ export function generateGraghChart(jsonUrl){
             .enter()
             .append("line")
             .attr("stroke", Color.White)
-            .attr("stroke-width", 2);
+            .attr("stroke-width", 2)
+            .attr('stroke-opacity', 0.75);
 
         let nodes = svg.append("g")
             .selectAll("circle")
@@ -59,11 +60,8 @@ export function generateGraghChart(jsonUrl){
                 .attr("cy", function(d:any) { return d.y; })
                 .attr("stroke",  Color.White)
                 .attr("stroke-width", 1);
-
-
         }
     });
-
 }
 
 /**
@@ -74,12 +72,29 @@ export function generateGraghChart(jsonUrl){
  */
 function nodeMouseOverBehavior(d, i){
     let svg = d3.select('svg');
-    svg.append("text")
+
+    let avgCharWidth = 7;
+    let textWidth = d.source.length * avgCharWidth;
+    let boxWidth = textWidth + 20;
+
+    let popOverGroup = svg.append('g')
         .attr('id', d.source + '_index_' + d.index)
-        .attr('x', function() { return d.x - 50})
-        .attr('y', function(){ return d.y - 12})
-        // .attr('class', 'node-text')
-        .text(function(){ return d.source; })
+        .attr('transform', function() {
+            return `translate(${d.x},${d.y-30})`});
+
+    popOverGroup.append('rect')
+        .attr('width', boxWidth)
+        .attr('height', 20)
+        .attr('x', -0.5 * boxWidth)
+        .attr('rx', 5)
+        .attr('fill', "black")
+        .style('fill-opacity', 0.9);
+
+    popOverGroup.append("text")
+        .text(function(){ return d.source.split('_').join(' '); })
+        .attr('x', 0)
+        .attr('y', 15)
+        .style('text-anchor', 'middle')
         .style('fill', 'white')  // need Design QA: font color, size, family, position?
     ;
 }

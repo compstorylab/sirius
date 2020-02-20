@@ -15,10 +15,16 @@ import {displayChart} from "./display_difference_chart";
    uploadLink.addEventListener("click", function(){
       let rightContentBar = <HTMLElement>document.querySelector(".right-bar-content"),
           rightImageBar = <HTMLElement>document.querySelector(".right-bar-image");
-      rightBar.hidden = false;
-      rightContentBar.hidden = false;
-      rightImageBar.hidden = true;
 
+       if (rightBar.hidden) {
+         rightBar.hidden = false;
+         rightContentBar.hidden = false;
+      }
+      else {
+         rightBar.hidden = true;
+         rightContentBar.hidden = true;
+      }
+      rightImageBar.hidden = true;
    });
    // close the right panel
    closeBtn.addEventListener("click", function(evt){
