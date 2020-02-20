@@ -30,10 +30,10 @@
                     out connections in any data set so they can reveal stories from them.
                 </p>
                 <p>Click on any edge to explore connections.</p>
-                <form class="upload-form" method="post" id="upload_form" encType="multipart/form-data">
+                <form class="upload-form" method="post" id="upload-form" encType="multipart/form-data">
                     {% csrf_token %}
-                    <input class="file-input-box" type="file" name="{{ upload_form.file_field.html_name }}" id="upload_box" multiple/>
-                    <label class="btn btn-primary" for="upload_box">Upload Your Dataset</label>
+                    <input class="file-input-box" type="file" name="{{ upload_form.file_field.html_name }}" id="upload-box" multiple/>
+                    <label class="btn btn-primary" for="upload-box">Upload Your Dataset</label>
                 </form>
             </div>
             <div class="right-bar-image" hidden>
