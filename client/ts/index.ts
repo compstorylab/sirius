@@ -9,7 +9,7 @@ import {displayChart} from "./display_difference_chart";
        closeBtn = document.getElementsByClassName("close-btn")[0],
        rightBar = document.getElementById("right-bar"),
        uploadLink = document.getElementById("upload-link"),
-       fileSelectComponent = document.getElementById("upload_box");
+       fileSelectComponent = document.getElementById("upload-box");
 
    // display the right panel
    uploadLink.addEventListener("click", function(){
@@ -30,7 +30,7 @@ import {displayChart} from "./display_difference_chart";
       let fileInput:HTMLInputElement = event.target as HTMLInputElement;
       let filesList:FileList = fileInput.files;
       if(filesList.length > 0) {
-         let formElement:HTMLFormElement = document.getElementById('upload_form') as HTMLFormElement;
+         let formElement:HTMLFormElement = document.getElementById('upload-form') as HTMLFormElement;
          formElement.submit();
       }
    });
