@@ -8,22 +8,39 @@ import {displayChart} from "./display_difference_chart";
        body = document.getElementsByTagName("body")[0],
        closeBtn = document.getElementsByClassName("close-btn")[0],
        rightBar = document.getElementById("right-bar"),
-       uploadLink = document.getElementById("upload-link");
+       uploadLink = document.getElementById("upload-link"),
+       fileSelectComponent = document.getElementById("upload-box");
 
    // display the right panel
    uploadLink.addEventListener("click", function(){
       let rightContentBar = <HTMLElement>document.querySelector(".right-bar-content"),
           rightImageBar = <HTMLElement>document.querySelector(".right-bar-image");
-      rightBar.hidden = false;
-      rightContentBar.hidden = false;
-      rightImageBar.hidden = true;
 
+       if (rightBar.hidden) {
+         rightBar.hidden = false;
+         rightContentBar.hidden = false;
+      }
+      else {
+         rightBar.hidden = true;
+         rightContentBar.hidden = true;
+      }
+      rightImageBar.hidden = true;
    });
    // close the right panel
    closeBtn.addEventListener("click", function(evt){
       rightBar.hidden = true;
 
    });
+
+   fileSelectComponent.addEventListener('change', function (event) {
+      let fileInput:HTMLInputElement = event.target as HTMLInputElement;
+      let filesList:FileList = fileInput.files;
+      if(filesList.length > 0) {
+         let formElement:HTMLFormElement = document.getElementById('upload-form') as HTMLFormElement;
+         formElement.submit();
+      }
+   });
+
    // draw graph network
    if (jsonUrl && jsonUrl.value){
       // remove background image, replace with background color

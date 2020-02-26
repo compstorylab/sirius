@@ -74,8 +74,8 @@ export function displayChart(){
                     rightImageBar.hidden = false;
                     imageTitleElement.innerText = imageTitle;
                     imageElement.src = staticImageURL;
-                    imageElement.height = 200;
-                    imageElement.width = 300;
+                    imageElement.width = document.querySelector(".right-bar-image").clientWidth;
+                    imageElement.height = imageElement.width * 2/3;
 
                     // highlight currently clicked nodes, turn the previous clicked items into original color
                     clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
