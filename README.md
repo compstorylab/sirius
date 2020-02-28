@@ -54,7 +54,8 @@ You can access it by the url returned from the above command, usually it is [htt
 "links":[{"source": 1, "target": 2, "correlations": 0.58, "link": "node_1_to_2", "support": 300}]
 }
 ```
-(the json file can be generated from xxx (will be updated))
+There is an example json under `utilities/example_data`
+
 2. viola! you will see a network graph with options to explore with.
 
 <b>Note<b>:
