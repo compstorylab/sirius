@@ -8,7 +8,7 @@
 # ## Import libraries
 # ### Data processing
 
-# In[1]:
+# In[11]:
 
 
 from datetime import datetime
@@ -28,7 +28,7 @@ import json
 
 # ### Visualization
 
-# In[2]:
+# In[12]:
 
 
 import matplotlib.pyplot as plt
@@ -54,7 +54,7 @@ from plotly.offline import download_plotlyjs, plot, iplot #, init_notebook_mode
 
 # ## Parameter settings
 
-# In[3]:
+# In[13]:
 
 
 chart = False # boolean for whether to display images while running computation
@@ -66,11 +66,11 @@ resolution = 150 # int for resolution of output plots
 discrete_threshold = 5 # number of responses below which numeric responses are considered discrete
 compare_all = True # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
 #list1, list2 = [],[]
-sample_n = 1000 # Work with all data (None), or just a sample?
-cd = 'demo_widsdatathon2020/'
+sample_n = None # Work with all data (None), or just a sample?
+cd = 'demo_dummydata/'
 
 
-# In[4]:
+# In[14]:
 
 
 if output:
@@ -81,7 +81,7 @@ if output:
 
 # ## Import Data
 
-# In[5]:
+# In[15]:
 
 
 if sample_n: df = pd.read_csv(cd+'data.csv').sample(sample_n)
@@ -95,13 +95,14 @@ for i in list(df.columns):
 df = df.drop(columns=ignore)
 df = df.replace(np.nan, None)
 df = df.replace('nan', None)
+df.columns = [c.replace(' ','_') for c in list(df.columns)]
 if debug: print(f'Loaded data from {cd} with {df.shape[0]} observations and {df.shape[1]} features')
 
 
 # # Helper functions
 # ## Identify feature type
 
-# In[6]:
+# In[16]:
 
 
 # Get a list of all response types
@@ -115,7 +116,7 @@ df = df.drop(columns=only_one_r)
 response_list = response_list.drop(index=only_one_r)
 
 
-# In[7]:
+# In[17]:
 
 
 def get_types(U):
@@ -141,7 +142,7 @@ def get_types(U):
   return types
 
 
-# In[8]:
+# In[18]:
 
 
 response_list['types']=[get_types(col) for col in df.columns]
@@ -158,7 +159,7 @@ continuous = list(response_list[response_list['class']=='c'].index)
 if debug: print(f'Counted {len(discrete)} discrete features and {len(continuous)} features')
 
 
-# In[9]:
+# In[11]:
 
 
 # Format the data as a string or a float
@@ -176,7 +177,7 @@ for i in list(response_list.index):
 
 # ## Data structures
 
-# In[10]:
+# In[12]:
 
 
 def sparsify(series):
@@ -198,7 +199,7 @@ def compute_bandwidth(X):
 # ## Visualization
 # ### Discrete-Discrete Confusion Matrices
 
-# In[11]:
+# In[13]:
 
 
 def DD_viz(df):
@@ -253,7 +254,7 @@ def DD_viz(df):
   return 
 
 
-# In[12]:
+# In[14]:
 
 
 if debug:
@@ -265,7 +266,7 @@ if debug:
 
 # ### Discrete-Continuous Violin Plots
 
-# In[13]:
+# In[15]:
 
 
 def DC_viz(df):
@@ -321,7 +322,7 @@ def DC_viz(df):
   return
 
 
-# In[14]:
+# In[16]:
 
 
 if debug:
@@ -334,7 +335,7 @@ if debug:
 
 # ### Continuous-Continuous KDE Plots
 
-# In[15]:
+# In[17]:
 
 
 def CC_viz(df):
@@ -378,7 +379,7 @@ def CC_viz(df):
   return
 
 
-# In[16]:
+# In[18]:
 
 
 if debug:
@@ -391,7 +392,7 @@ if debug:
 
 # ### Matrix Heatmap
 
-# In[17]:
+# In[19]:
 
 
 def matrix_viz(matrix):
@@ -404,7 +405,7 @@ def matrix_viz(matrix):
 
 # ### Visualization Function Router
 
-# In[18]:
+# In[20]:
 
 
 def viz(U,V):
@@ -437,7 +438,7 @@ def viz(U,V):
 
 # ### Discrete-Discrete
 
-# In[19]:
+# In[21]:
 
 
 def DD_mi(df):
@@ -488,7 +489,7 @@ def DD_mi(df):
   return mi
 
 
-# In[20]:
+# In[22]:
 
 
 # Test it out:
@@ -502,7 +503,7 @@ except: print('Error calculating MI for two discrete features')
 # 
 # This requires us to sparsify the discrete matrix by response
 
-# In[21]:
+# In[23]:
 
 
 def DC_mi(df):
@@ -533,7 +534,7 @@ def DC_mi(df):
   return mi
 
 
-# In[22]:
+# In[24]:
 
 
 # Test it out:
@@ -543,7 +544,7 @@ except: pass
 
 # ### Continuous-Continuous
 
-# In[23]:
+# In[25]:
 
 
 def CC_mi(df):
@@ -560,7 +561,7 @@ def CC_mi(df):
   return mi
 
 
-# In[24]:
+# In[26]:
 
 
 # Test it out:
@@ -570,7 +571,7 @@ except: pass
 
 # #### Comparison: Correlation
 
-# In[25]:
+# In[27]:
 
 
 def CC_corr(df):
@@ -587,7 +588,7 @@ def CC_corr(df):
   return corr
 
 
-# In[26]:
+# In[28]:
 
 
 # Test it out:
@@ -597,7 +598,7 @@ except: pass
 
 # ## Matrix Functions
 
-# In[27]:
+# In[29]:
 
 
 def matrixify(df):
@@ -606,7 +607,7 @@ def matrixify(df):
   return m
 
 
-# In[28]:
+# In[30]:
 
 
 def stack(matrix):
@@ -621,7 +622,7 @@ def stack(matrix):
 
 # ## Data Processing
 
-# In[29]:
+# In[31]:
 
 
 def calc_pairtype(U,V):
@@ -647,7 +648,7 @@ def calc_pairtype(U,V):
   return pair_type
 
 
-# In[30]:
+# In[32]:
 
 
 def calc_mi(U,V):
@@ -684,7 +685,7 @@ def calc_mi(U,V):
   except: return 0
 
 
-# In[31]:
+# In[33]:
 
 
 def run_calc(features):
@@ -718,7 +719,7 @@ stack.to_csv(cd+'results.csv',index=False)
 
 # # Network Graphing
 
-# In[32]:
+# In[34]:
 
 
 # Re-import the Mutual Information results
@@ -727,7 +728,7 @@ stack.to_csv(cd+'results.csv',index=False)
 stack = pd.read_csv(cd+'results.csv')
 
 
-# In[33]:
+# In[35]:
 
 
 # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
@@ -737,14 +738,14 @@ sorted_stack = stack.sort_values(by='v',ascending=False)
 
 # ## Thresholding
 
-# In[34]:
+# In[36]:
 
 
 # Create a data frame of edge counts and number of components for a given threshold
 e = pd.DataFrame(columns=['mi_threshold','edge_count','components'])
 
 
-# In[35]:
+# In[37]:
 
 
 # Fill in the 'e' data frame with the number of edges and number of components across a range of thresholds
@@ -759,21 +760,21 @@ for i in np.arange(np.round(sorted_stack['v'].min(),2), np.round(sorted_stack['v
     e = e.append({'mi_threshold': i, 'edge_count': (sorted_stack['v']>i).sum(), 'components':nx.number_connected_components(G)},ignore_index=True)
 
 
-# In[36]:
+# In[38]:
 
 
 # Plot the number of edges for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['edge_count'])
 
 
-# In[37]:
+# In[39]:
 
 
 # Plot the number of components for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['components'])
 
 
-# In[38]:
+# In[40]:
 
 
 # Find the mutual information threshold which maximizes the component count
@@ -785,70 +786,75 @@ max_component_threshold = e[e['components']==max(e['components'])].max()['mi_thr
 # while still maximizing component counts
 
 
-# In[39]:
+# In[41]:
 
 
 # Threshold the edge list by the mutual information threshold which maximizes the component count
 thresh_stack = sorted_stack[sorted_stack['v']>max_component_threshold]
-thresh_stack = thresh_stack.rename(columns={'x':'source','y':'target','v':'weight'})
-thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['source'],thresh_stack['target'])]
+#thresh_stack = thresh_stack.rename(columns={'x':'source','y':'target','v':'weight'})
+#thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['source'],thresh_stack['target'])]
+thresh_stack = thresh_stack.rename(columns={'x':'src','y':'target','v':'weight'})
+thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['src'],thresh_stack['target'])]
 thresh_stack
 
 
 # ## Node and Edge Lists
 
-# In[40]:
-
-
-# Create a networkx graph from the list of pairs
-G=nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
-
-
-# In[41]:
-
-
-list(dict(G['h1_platelets_min']).keys())
-
-
 # In[42]:
 
 
-nodelist = []
-for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_stack['target'].unique())))):
-    nodelist.append({'name':n,'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':list(dict(G[n]).keys())})
+# Create a networkx graph from the list of pairs
+#G=nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
+G=nx.from_pandas_edgelist(thresh_stack, 'src', 'target', ['weight'])
 
 
 # In[43]:
 
 
-nodelist
+nodelist = {}
+for n in list(dict.fromkeys((list(s['x'].unique())+list(s['y'].unique())))):
+    nodelist[n]={'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':dict(G[n])}
+
+
+"""nodelist = []
+for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_stack['target'].unique())))):
+    nodelist.append({'name':n,'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':list(dict(G[n]).keys())})
+"""
 
 
 # In[44]:
 
 
-json_out = {}
-json_out['nodes']=nodelist
-json_out['links']=(thresh_stack).to_dict(orient='records')
+nodelist
 
 
 # In[45]:
+
+
+json_out = {}
+json_out['nodes']=nodelist
+#json_out['links']=(thresh_stack).to_dict(orient='records')
+json_out['edges']=(thresh_stack).to_dict(orient='records')
+
+
+# In[46]:
 
 
 with open(str(cd+'output/graph.json'), 'w') as json_file:
   json.dump(json_out, json_file)
 
 
-# In[46]:
+# In[47]:
 
 
 for i,row in thresh_stack.iterrows():
-    viz(row['source'],row['target'])
+    #viz(row['source'],row['target'])
+    viz(row['src'],row['target'])
 
 
 # ## Positioning
 
-# In[47]:
+# In[48]:
 
 
 def calculate_positions(thresh_stack):
@@ -902,7 +908,7 @@ def calculate_positions(thresh_stack):
   return edges,nodes
 
 
-# In[48]:
+# In[49]:
 
 
 [edges,nodes] = calculate_positions(thresh_stack)
@@ -910,7 +916,7 @@ def calculate_positions(thresh_stack):
 
 # ## Draw Graph
 
-# In[51]:
+# In[50]:
 
 
 def draw_graph(edges,nodes,title,**kwargs):
@@ -957,13 +963,13 @@ def draw_graph(edges,nodes,title,**kwargs):
   if output: fig.write_image(str(cd+'output/graph_example.png'), scale=resolution//72)
 
 
-# In[52]:
+# In[51]:
 
 
 draw_graph(edges,nodes,'Example Graph')
 
 
-# In[60]:
+# In[52]:
 
 
 components = []
