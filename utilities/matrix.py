@@ -67,7 +67,7 @@ discrete_threshold = 5 # number of responses below which numeric responses are c
 compare_all = True # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
 #list1, list2 = [],[]
 sample_n = None # Work with all data (None), or just a sample?
-cd = 'demo_dummydata/'
+cd = 'example_data/'
 
 
 # In[14]:
