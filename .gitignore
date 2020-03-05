@@ -10,6 +10,7 @@ upload_files
 .jpeg
 .json
 .png
+migrations/
 
 db.sqlite3
 utilities/demo_widsdatathon2020/
