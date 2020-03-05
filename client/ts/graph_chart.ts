@@ -12,17 +12,17 @@ export function generateGraghChart(jsonUrl){
     //     nodeRadius = 10;
     // svg.attr("width", width).attr("height", height);
     let svg = d3.select('svg'),
-        height = +svg.attr("height"),
-        width = +svg.attr("width"),
-        nodeRadius = 8;
+        width = window.innerWidth-50,
+        height = window.innerHeight-100,
+        nodeRadius = 5;
 
     let simulation = d3.forceSimulation()
-        .force('charge', d3.forceManyBody())
+        .force('charge', d3.forceManyBody().distanceMax(height/2))
         .force('center', d3.forceCenter(width/2, height/2))
         // .force('collide', d3.forceCollide().radius(nodeRadius*1.2))
         .force('collide', d3.forceCollide())
         .force('link', d3.forceLink().distance(80)) // distance sets the length of each link
-        .force('link', d3.forceLink().id(function(d){ return d.name; }));  // if want to source and targe value in links not using number based zero but based on cusomized string
+        .force('link', d3.forceLink().id(function(d){ return d.name; }));  // for source and targe value in links not using number based zero but based on customized string
 
     d3.json(jsonUrl.value, function(error, data){
         console.log("data?", data)
@@ -32,7 +32,8 @@ export function generateGraghChart(jsonUrl){
             .enter()
             .append("line")
             .attr("stroke", Color.White)
-            .attr("stroke-width", 1);
+            .attr("stroke-width", 2)
+            .attr('stroke-opacity', 0.75);
 
         let nodes = svg.append("g")
             .selectAll("circle")
@@ -63,7 +64,6 @@ export function generateGraghChart(jsonUrl){
                 .attr("stroke-width", 1);
         }
     });
-
 }
 
 /**
@@ -74,14 +74,29 @@ export function generateGraghChart(jsonUrl){
  */
 function nodeMouseOverBehavior(d, i){
     let svg = d3.select('svg');
-    svg.append("text")
-        // .attr('id', d.source + '_index_' + d.index)
-        .attr('id', 'text_' + d.name)
-        .attr('x', function() { return d.x - 50})
-        .attr('y', function(){ return d.y - 12})
-        // .attr('class', 'node-text')
-        // .text(function(){ return d.source; })
-        .text(function(){ return d.name; })
+
+    let avgCharWidth = 7;
+    let textWidth = d.name.length * avgCharWidth;
+    let boxWidth = textWidth + 20;
+
+    let popOverGroup = svg.append('g')
+        .attr('id', 'text_' + d.name) //.attr('id', 'text_' + d.name)
+        .attr('transform', function() {
+            return `translate(${d.x},${d.y-30})`});
+
+    popOverGroup.append('rect')
+        .attr('width', boxWidth)
+        .attr('height', 20)
+        .attr('x', -0.5 * boxWidth)
+        .attr('rx', 5)
+        .attr('fill', "black")
+        .style('fill-opacity', 0.9);
+
+    popOverGroup.append("text")
+        .text(function(){ return d.name; })  // .text(function(){ return d.name; })
+        .attr('x', 0)
+        .attr('y', 15)
+        .style('text-anchor', 'middle')
         .style('fill', 'white')  // need Design QA: font color, size, family, position?
     ;
 }
