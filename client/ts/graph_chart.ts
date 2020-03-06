@@ -25,7 +25,7 @@ export function generateGraghChart(jsonUrl){
         .force('link', d3.forceLink().id(function(d){ return d.name; }));  // for source and targe value in links not using number based zero but based on customized string
 
     d3.json(jsonUrl.value, function(error, data){
-        console.log("data?", data)
+        console.log("data",data);
         let links = svg.append("g")
             .selectAll("line")
             .data(data.links)
@@ -139,4 +139,4 @@ function nodeClickBehavior(d, i){
     }
 }
 
-// todo: when click on white space, all ndoes' opacity to 1
+// todo: when click on reset button, all ndoes' opacity to 1
