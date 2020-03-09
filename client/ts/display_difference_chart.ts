@@ -2,6 +2,8 @@ import * as d3 from "d3";
 import * as $ from "jquery";
 import {Color} from "./styles";
 
+import {Drawer} from './drawer';
+
 
 /**
  * when click an edge, higlight the edge and the corresponding pair of nodes. if click on another edge, return the previous
@@ -42,62 +44,85 @@ function clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, cli
  * highlight the clicked edge and its nodes.
  */
 export function displayChart(){
-    let clickedElementList = [];
     // add event listener to the document, ensure the listener can be created before the target element, lke line, is created
     document.addEventListener("click", function(e){
         let clickedElement: any = e.target;
-        let nodes = d3.selectAll("circle");
 
         if (clickedElement.nodeName=='line'){
             let sourceName = clickedElement.__data__.source.name,
                 sourceIndex = clickedElement.__data__.source.index,
                 targetName = clickedElement.__data__.target.name,
                 targetIndex = clickedElement.__data__.target.index,
-                imageType = '.png',
-                uploadFolderPath = '/static/upload_files/';
-            let staticImageFileName = sourceName + "_" + targetName;
-            staticImageFileName = staticImageFileName + imageType;
+                plotType = clickedElement.__data__.viztype;
 
-            let staticImageURL = uploadFolderPath + staticImageFileName,
-                rightContentBar = <HTMLElement>document.querySelector(".right-bar-content"),
-                imageElement = <HTMLImageElement>document.getElementById("difference_chart"),
-                rightImageBar = <HTMLElement>document.querySelector(".right-bar-image"),
-                uploadLink = document.getElementById("upload-link"),
-                imageTitleElement = document.getElementById("image-title"),
-                rightBar = document.getElementById("right-bar");
 
-                rightBar.hidden = false; // display right bar
-                rightContentBar.hidden = true;
-                rightImageBar.hidden = false; // display image bar, but hide conntent bar
-
-            $.ajax({
-                url: staticImageURL,
-                success: function(){
-                    // let imageTitle = sourceName.toUpperCase() + ' VS ' + targetName.toUpperCase();
-                    let imageTitle = sourceName.split("_").join(" ").toUpperCase() + ' VS ' + targetName.split("_").join(" ").toUpperCase();
-                    imageTitleElement.innerText = imageTitle;
-                    imageElement.src = staticImageURL;
-                    imageElement.width = document.querySelector(".right-bar-image").clientWidth;
-                    imageElement.height = imageElement.width * 2/3;
-                    console.log("imageElement", imageElement);
-                    console.log("imageElement size", imageElement.width, imageElement.height);
-
-                    // highlight currently clicked nodes, turn the previous clicked items into original color
-                    clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
-
-                },
-                error: function(){
-                    // highlight currently clicked nodes, turn the previous clicked items into original color
-                    clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
-                    // todo: in the future, using another way to handle missing pictures?
-                    imageTitleElement.innerText = "No Image For this Edge";
-                    imageElement.removeAttribute("src");
-                    imageElement.removeAttribute("height");
-                    imageElement.removeAttribute("width");
-                }
-            });
+            // Select Plot by type
+            if(plotType == 'DD') {
+                loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
+            }
+            else if(plotType == 'CD' || plotType == 'DC') {
+                loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
+            }
+            else if (plotType == 'CC') {
+                loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
+            }
 
         }
     });
+}
+
+function setImage(imageElement:HTMLImageElement, staticImageURL:string){
+    imageElement.src = staticImageURL;
+    imageElement.width = document.querySelector(".right-bar-image").clientWidth;
+    imageElement.height = imageElement.width * 2/3;
+
+    console.log("imageElement", imageElement);
+    console.log("imageElement size", imageElement.width, imageElement.height);
+}
+
+function clearImage(imageElement:HTMLImageElement) {
+    imageElement.removeAttribute("src");
+    imageElement.removeAttribute("height");
+    imageElement.removeAttribute("width");
+}
+
+
+function loadPNGGraph(sourceName:string, targetName:string, sourceIndex:number, targetIndex:number, clickedElement:HTMLElement){
+    let clickedElementList = [];
+    let imageType = '.png';
+    let staticImageFileName = sourceName + "_" + targetName + imageType;
+    let uploadFolderPath = '/static/upload_files/';
+
+    let staticImageURL = uploadFolderPath + staticImageFileName;
+    let imageElement:HTMLImageElement = document.getElementById("difference_chart") as HTMLImageElement;
+    let nodes = d3.selectAll("circle");
+
+    $.ajax({
+        url: staticImageURL,
+        success: function(){
+            setImage(imageElement, staticImageURL);
+
+            // let imageTitle = sourceName.toUpperCase() + ' VS ' + targetName.toUpperCase();
+            let imageTitle = sourceName.split("_").join(" ").toUpperCase() + ' VS ' + targetName.split("_").join(" ").toUpperCase();
+            Drawer.getInstance().open({mode:'plot', title: imageTitle});
+
+            // highlight currently clicked nodes, turn the previous clicked items into original color
+            clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
+
+        },
+        error: function(){
+            // highlight currently clicked nodes, turn the previous clicked items into original color
+            clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
+
+            // todo: in the future, using another way to handle missing pictures?
+            let errorMsg:string = "No Image For this Edge";
+            Drawer.getInstance().open({mode:'plot', title: errorMsg});
+
+            clearImage(imageElement);
+        }
+    });
+}
+
+function loadPlotylPlot(type:string){
 
 }
