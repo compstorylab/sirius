@@ -10,7 +10,7 @@ import {Color} from "./styles";
  * @param nodes: d3 selection obj, returned from d3.selectAll("circle")
  * @param sourceIndex: int, index of the source node
  * @param targetIndex: int, index of the target node
- * @param clickedElement: obj, the clicked edge, which is a line svg element
+ * @param clickedElement: obj, the clicked edge, which is a line svg element 
  */
 function clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement){
     // get the previously clicked item, if it is not empty, turn it to original color
@@ -49,13 +49,13 @@ export function displayChart(){
         let nodes = d3.selectAll("circle");
 
         if (clickedElement.nodeName=='line'){
-            let sourceName = clickedElement.__data__.source.source,
+            let sourceName = clickedElement.__data__.source.name,
                 sourceIndex = clickedElement.__data__.source.index,
-                targetName = clickedElement.__data__.target.source,
+                targetName = clickedElement.__data__.target.name,
                 targetIndex = clickedElement.__data__.target.index,
                 imageType = '.png',
                 uploadFolderPath = '/static/upload_files/';
-            let staticImageFileName = sourceName.split(" ").join("_") + "_" + targetName.split(" ").join("_");
+            let staticImageFileName = sourceName + "_" + targetName;
             staticImageFileName = staticImageFileName + imageType;
 
             let staticImageURL = uploadFolderPath + staticImageFileName,
@@ -63,19 +63,24 @@ export function displayChart(){
                 imageElement = <HTMLImageElement>document.getElementById("difference_chart"),
                 rightImageBar = <HTMLElement>document.querySelector(".right-bar-image"),
                 uploadLink = document.getElementById("upload-link"),
-                imageTitleElement = document.getElementById("image-title");
+                imageTitleElement = document.getElementById("image-title"),
+                rightBar = document.getElementById("right-bar");
+
+                rightBar.hidden = false; // display right bar
+                rightContentBar.hidden = true;
+                rightImageBar.hidden = false; // display image bar, but hide conntent bar
 
             $.ajax({
                 url: staticImageURL,
                 success: function(){
-                    let imageTitle = sourceName.toUpperCase() + ' VS ' + targetName.toUpperCase();
-                    uploadLink.click(); // or uploadLink.hidden = true;
-                    rightContentBar.hidden = true;
-                    rightImageBar.hidden = false;
+                    // let imageTitle = sourceName.toUpperCase() + ' VS ' + targetName.toUpperCase();
+                    let imageTitle = sourceName.split("_").join(" ").toUpperCase() + ' VS ' + targetName.split("_").join(" ").toUpperCase();
                     imageTitleElement.innerText = imageTitle;
                     imageElement.src = staticImageURL;
                     imageElement.width = document.querySelector(".right-bar-image").clientWidth;
                     imageElement.height = imageElement.width * 2/3;
+                    console.log("imageElement", imageElement);
+                    console.log("imageElement size", imageElement.width, imageElement.height);
 
                     // highlight currently clicked nodes, turn the previous clicked items into original color
                     clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
@@ -84,10 +89,6 @@ export function displayChart(){
                 error: function(){
                     // highlight currently clicked nodes, turn the previous clicked items into original color
                     clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
-
-                    uploadLink.click(); // or uploadLink.hidden = true;
-                    rightContentBar.hidden = true;
-                    rightImageBar.hidden = false;
                     // todo: in the future, using another way to handle missing pictures?
                     imageTitleElement.innerText = "No Image For this Edge";
                     imageElement.removeAttribute("src");
