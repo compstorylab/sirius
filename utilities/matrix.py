@@ -8,7 +8,7 @@
 # ## Import libraries
 # ### Data processing
 
-# In[11]:
+# In[2]:
 
 
 from datetime import datetime
@@ -28,7 +28,7 @@ import json
 
 # ### Visualization
 
-# In[12]:
+# In[3]:
 
 
 import matplotlib.pyplot as plt
@@ -54,7 +54,7 @@ from plotly.offline import download_plotlyjs, plot, iplot #, init_notebook_mode
 
 # ## Parameter settings
 
-# In[13]:
+# In[4]:
 
 
 chart = False # boolean for whether to display images while running computation
@@ -70,7 +70,7 @@ sample_n = None # Work with all data (None), or just a sample?
 cd = 'example_data/'
 
 
-# In[14]:
+# In[5]:
 
 
 if output:
@@ -81,7 +81,7 @@ if output:
 
 # ## Import Data
 
-# In[15]:
+# In[6]:
 
 
 if sample_n: df = pd.read_csv(cd+'data.csv').sample(sample_n)
@@ -102,7 +102,7 @@ if debug: print(f'Loaded data from {cd} with {df.shape[0]} observations and {df.
 # # Helper functions
 # ## Identify feature type
 
-# In[16]:
+# In[7]:
 
 
 # Get a list of all response types
@@ -116,7 +116,7 @@ df = df.drop(columns=only_one_r)
 response_list = response_list.drop(index=only_one_r)
 
 
-# In[17]:
+# In[8]:
 
 
 def get_types(U):
@@ -142,7 +142,7 @@ def get_types(U):
   return types
 
 
-# In[18]:
+# In[9]:
 
 
 response_list['types']=[get_types(col) for col in df.columns]
@@ -159,7 +159,7 @@ continuous = list(response_list[response_list['class']=='c'].index)
 if debug: print(f'Counted {len(discrete)} discrete features and {len(continuous)} features')
 
 
-# In[11]:
+# In[10]:
 
 
 # Format the data as a string or a float
@@ -177,7 +177,7 @@ for i in list(response_list.index):
 
 # ## Data structures
 
-# In[12]:
+# In[11]:
 
 
 def sparsify(series):
@@ -199,7 +199,7 @@ def compute_bandwidth(X):
 # ## Visualization
 # ### Discrete-Discrete Confusion Matrices
 
-# In[13]:
+# In[12]:
 
 
 def DD_viz(df):
@@ -254,7 +254,7 @@ def DD_viz(df):
   return 
 
 
-# In[14]:
+# In[13]:
 
 
 if debug:
@@ -266,7 +266,7 @@ if debug:
 
 # ### Discrete-Continuous Violin Plots
 
-# In[15]:
+# In[14]:
 
 
 def DC_viz(df):
@@ -322,7 +322,7 @@ def DC_viz(df):
   return
 
 
-# In[16]:
+# In[15]:
 
 
 if debug:
@@ -335,7 +335,7 @@ if debug:
 
 # ### Continuous-Continuous KDE Plots
 
-# In[17]:
+# In[16]:
 
 
 def CC_viz(df):
@@ -379,7 +379,7 @@ def CC_viz(df):
   return
 
 
-# In[18]:
+# In[17]:
 
 
 if debug:
@@ -392,7 +392,7 @@ if debug:
 
 # ### Matrix Heatmap
 
-# In[19]:
+# In[18]:
 
 
 def matrix_viz(matrix):
@@ -405,7 +405,7 @@ def matrix_viz(matrix):
 
 # ### Visualization Function Router
 
-# In[20]:
+# In[19]:
 
 
 def viz(U,V):
@@ -438,7 +438,7 @@ def viz(U,V):
 
 # ### Discrete-Discrete
 
-# In[21]:
+# In[20]:
 
 
 def DD_mi(df):
@@ -489,7 +489,7 @@ def DD_mi(df):
   return mi
 
 
-# In[22]:
+# In[21]:
 
 
 # Test it out:
@@ -503,7 +503,7 @@ except: print('Error calculating MI for two discrete features')
 # 
 # This requires us to sparsify the discrete matrix by response
 
-# In[23]:
+# In[22]:
 
 
 def DC_mi(df):
@@ -534,7 +534,7 @@ def DC_mi(df):
   return mi
 
 
-# In[24]:
+# In[23]:
 
 
 # Test it out:
@@ -544,7 +544,7 @@ except: pass
 
 # ### Continuous-Continuous
 
-# In[25]:
+# In[24]:
 
 
 def CC_mi(df):
@@ -561,7 +561,7 @@ def CC_mi(df):
   return mi
 
 
-# In[26]:
+# In[25]:
 
 
 # Test it out:
@@ -571,7 +571,7 @@ except: pass
 
 # #### Comparison: Correlation
 
-# In[27]:
+# In[26]:
 
 
 def CC_corr(df):
@@ -588,7 +588,7 @@ def CC_corr(df):
   return corr
 
 
-# In[28]:
+# In[27]:
 
 
 # Test it out:
@@ -598,7 +598,7 @@ except: pass
 
 # ## Matrix Functions
 
-# In[29]:
+# In[28]:
 
 
 def matrixify(df):
@@ -607,7 +607,7 @@ def matrixify(df):
   return m
 
 
-# In[30]:
+# In[29]:
 
 
 def stack(matrix):
@@ -622,7 +622,7 @@ def stack(matrix):
 
 # ## Data Processing
 
-# In[31]:
+# In[30]:
 
 
 def calc_pairtype(U,V):
@@ -648,7 +648,7 @@ def calc_pairtype(U,V):
   return pair_type
 
 
-# In[32]:
+# In[31]:
 
 
 def calc_mi(U,V):
@@ -685,7 +685,7 @@ def calc_mi(U,V):
   except: return 0
 
 
-# In[33]:
+# In[32]:
 
 
 def run_calc(features):
@@ -719,7 +719,7 @@ stack.to_csv(cd+'results.csv',index=False)
 
 # # Network Graphing
 
-# In[34]:
+# In[33]:
 
 
 # Re-import the Mutual Information results
@@ -728,7 +728,7 @@ stack.to_csv(cd+'results.csv',index=False)
 stack = pd.read_csv(cd+'results.csv')
 
 
-# In[35]:
+# In[34]:
 
 
 # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
@@ -738,14 +738,14 @@ sorted_stack = stack.sort_values(by='v',ascending=False)
 
 # ## Thresholding
 
-# In[36]:
+# In[35]:
 
 
 # Create a data frame of edge counts and number of components for a given threshold
 e = pd.DataFrame(columns=['mi_threshold','edge_count','components'])
 
 
-# In[37]:
+# In[36]:
 
 
 # Fill in the 'e' data frame with the number of edges and number of components across a range of thresholds
@@ -760,21 +760,21 @@ for i in np.arange(np.round(sorted_stack['v'].min(),2), np.round(sorted_stack['v
     e = e.append({'mi_threshold': i, 'edge_count': (sorted_stack['v']>i).sum(), 'components':nx.number_connected_components(G)},ignore_index=True)
 
 
-# In[38]:
+# In[37]:
 
 
 # Plot the number of edges for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['edge_count'])
 
 
-# In[39]:
+# In[38]:
 
 
 # Plot the number of components for a range of mutual information scores
 sns.lineplot(e['mi_threshold'],e['components'])
 
 
-# In[40]:
+# In[39]:
 
 
 # Find the mutual information threshold which maximizes the component count
@@ -786,43 +786,34 @@ max_component_threshold = e[e['components']==max(e['components'])].max()['mi_thr
 # while still maximizing component counts
 
 
-# In[41]:
+# In[40]:
 
 
 # Threshold the edge list by the mutual information threshold which maximizes the component count
 thresh_stack = sorted_stack[sorted_stack['v']>max_component_threshold]
-#thresh_stack = thresh_stack.rename(columns={'x':'source','y':'target','v':'weight'})
-#thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['source'],thresh_stack['target'])]
-thresh_stack = thresh_stack.rename(columns={'x':'src','y':'target','v':'weight'})
-thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['src'],thresh_stack['target'])]
+thresh_stack = thresh_stack.rename(columns={'x':'source','y':'target','v':'weight'})
+thresh_stack['viztype']=[calc_pairtype(x,y) for x,y in zip(thresh_stack['source'],thresh_stack['target'])]
 thresh_stack
 
 
 # ## Node and Edge Lists
 
-# In[42]:
+# In[41]:
 
 
 # Create a networkx graph from the list of pairs
-#G=nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
-G=nx.from_pandas_edgelist(thresh_stack, 'src', 'target', ['weight'])
+G=nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
+
+
+# In[42]:
+
+
+nodelist = []
+for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_stack['target'].unique())))):
+    nodelist.append({'name':n,'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':list(dict(G[n]).keys())})
 
 
 # In[43]:
-
-
-nodelist = {}
-for n in list(dict.fromkeys((list(s['x'].unique())+list(s['y'].unique())))):
-    nodelist[n]={'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':dict(G[n])}
-
-
-"""nodelist = []
-for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_stack['target'].unique())))):
-    nodelist.append({'name':n,'type':'continuous' if (response_list['class'][n])=='c' else 'discrete','neighbors':list(dict(G[n]).keys())})
-"""
-
-
-# In[44]:
 
 
 nodelist
@@ -833,8 +824,7 @@ nodelist
 
 json_out = {}
 json_out['nodes']=nodelist
-#json_out['links']=(thresh_stack).to_dict(orient='records')
-json_out['edges']=(thresh_stack).to_dict(orient='records')
+json_out['links']=(thresh_stack).to_dict(orient='records')
 
 
 # In[46]:
@@ -848,8 +838,7 @@ with open(str(cd+'output/graph.json'), 'w') as json_file:
 
 
 for i,row in thresh_stack.iterrows():
-    #viz(row['source'],row['target'])
-    viz(row['src'],row['target'])
+    viz(row['source'],row['target'])
 
 
 # ## Positioning
@@ -860,8 +849,6 @@ for i,row in thresh_stack.iterrows():
 def calculate_positions(thresh_stack):
 
   # Generate position data for each node:
-  #pos=layout(G)
-  # if weighted:
   pos=nx.kamada_kawai_layout(G, weight='weight')
       
   # Save x, y locations of each edge
