@@ -80,7 +80,7 @@ function nodeMouseOverBehavior(d, i){
     let boxWidth = textWidth + 20;
 
     let popOverGroup = svg.append('g')
-        .attr('id', 'text_' + d.name) //.attr('id', 'text_' + d.name)
+        .attr('id', 'text_' + d.name)
         .attr('transform', function() {
             return `translate(${d.x},${d.y-30})`});
 
@@ -93,11 +93,11 @@ function nodeMouseOverBehavior(d, i){
         .style('fill-opacity', 0.9);
 
     popOverGroup.append("text")
-        .text(function(){ return d.name; })  // .text(function(){ return d.name; })
+        .text(function(){ return d.name; })
         .attr('x', 0)
         .attr('y', 15)
         .style('text-anchor', 'middle')
-        .style('fill', 'white')  // need Design QA: font color, size, family, position?
+        .style('fill', 'white')
     ;
 }
 
@@ -109,7 +109,6 @@ function nodeMouseOverBehavior(d, i){
  */
 function nodeMouseOutBehavior(d, i){
     // select by id
-    // d3.select("#" + d.source + '_index_' + d.index).remove();
     d3.select("#text_" + d.name).remove();
 }
 
