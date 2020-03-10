@@ -155,8 +155,8 @@ function loadPlotylPlot(type:string, sourceName:string, targetName:string, sourc
  * It is not clear which name should be first from the graph.
  * @param {string} sourceName
  * @param {string} targetName
- * @param onComplete
- * @param onError
+ * @param onComplete Callback function. function(data:any):void
+ * @param onError Callback function function():void
  */
 function loadJson(sourceName:string, targetName:string, onComplete, onError) {
     let uploadFolderPath = '/static/upload_files/';
