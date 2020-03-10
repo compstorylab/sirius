@@ -1,6 +1,6 @@
-
-
-
+/**
+ * Singleton for opening and closing the side drawer.
+ */
 export class Drawer {
 
     rightBar:HTMLElement;
@@ -27,6 +27,15 @@ export class Drawer {
         this.fileSelectComponent.addEventListener('change', this.onFileSelectChange);
     }
 
+    /**
+     * Opens the drawer
+     * @param options(optional)
+     * {
+     *      mode:str{upload, plot},
+     *      title: str
+     * }
+     *
+     */
     open(options:any=null) {
         if(!options) {
             this.openForUpload();
@@ -42,6 +51,9 @@ export class Drawer {
         }
     }
 
+    /**
+     * Opens the drawer in 'upload' mode.
+     */
     private openForUpload() {
         let rightContentBar = <HTMLElement>document.querySelector(".right-bar-content");
         let rightImageBar = <HTMLElement>document.querySelector(".right-bar-image");
@@ -51,6 +63,10 @@ export class Drawer {
         rightImageBar.hidden = true;
     }
 
+    /**
+     * Opens the drawer in 'graph'mode.
+     * @param options
+     */
     private openForGraph(options:any) {
         let rightContentBar = <HTMLElement>document.querySelector(".right-bar-content");
         let rightImageBar = <HTMLElement>document.querySelector(".right-bar-image");
@@ -64,10 +80,17 @@ export class Drawer {
         }
     }
 
+    /**
+     * Close the drawer
+     */
     close() {
         this.rightBar.hidden = true;
     }
 
+    /**
+     * Test for visibility of the drawer
+     * @returns {boolean}
+     */
     visible():boolean {
         return this.rightBar.hidden;
     }
