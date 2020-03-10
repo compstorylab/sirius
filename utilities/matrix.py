@@ -25,7 +25,6 @@ from plotly.colors import n_colors
 # If you're using this code locally:
 from plotly.offline import download_plotlyjs, plot, iplot #, init_notebook_mode
 
-
 def get_types(U, response_list):
     types = {'floats': 0, 'strings': 0, 'nulls': 0}
     for i in response_list['responses'][U]:
@@ -64,7 +63,7 @@ def compute_bandwidth(X, df):
 ## Visualization
 
 # Discrete-Discrete Confusion Matrices
-def DD_viz(df, charter='Plotly', chart=False, output=False, cd=None, resolution=150):
+def DD_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Takes a filtered dataframe of two discrete feature columns and generates a heatmap '''
 
     U = list(df.columns)[0]
@@ -100,10 +99,10 @@ def DD_viz(df, charter='Plotly', chart=False, output=False, cd=None, resolution=
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_layout(font=dict(color="white"))
-            with open(str(cd + 'output/charts/' + U + '_' + V + '.json'), 'w') as outfile:
+            with open(output_dir / 'charts' / U + '_' + V + '.json', 'w') as outfile:
                 json.dump(fig.to_json(), outfile)
 
-            fig.write_image(str(cd + 'output/charts/' + U + '_' + V + '.png'), scale=resolution // 72)
+            fig.write_image(output_dir / 'charts' / U + '_' + V + '.png', scale=resolution // 72)
     else:
         plt.clf()
         plt.figure(dpi=resolution)
@@ -111,7 +110,7 @@ def DD_viz(df, charter='Plotly', chart=False, output=False, cd=None, resolution=
         plt.xlabel(U.replace('_', ' ').title())
         plt.ylabel(V.replace('_', ' ').title())
         if output:
-            plt.savefig(str(cd + 'output/charts/' + U + '_' + V + '.png'), dpi=resolution)
+            plt.savefig(output_dir / 'charts' / U + '_' + V + '.png', dpi=resolution)
 
         if chart:
             plt.show()
@@ -120,7 +119,7 @@ def DD_viz(df, charter='Plotly', chart=False, output=False, cd=None, resolution=
 
 
 # Discrete-Continuous Violin Plots
-def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, cd=None, resolution=150):
+def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Takes a subset dataframe of one continuous and one discrete feature and generates a Violin Plot '''
 
     U = list(df.columns)[0]
@@ -156,10 +155,10 @@ def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, cd=None,
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_layout(font=dict(color="white"))
-            with open(str(cd + 'output/charts/' + U + '_' + V + '.json'), 'w') as outfile:
+            with open(output_dir / 'charts' / U + '_' + V + '.json', 'w') as outfile:
                 json.dump(fig.to_json(), outfile)
 
-            fig.write_image(str(cd + 'output/charts/' + U + '_' + V + '.png'), scale=resolution // 72)
+            fig.write_image(output_dir / 'charts' / U + '_' + V + '.png', scale=resolution // 72)
     else:
         sns.violinplot(df[D], df[C])
         if len(df[D]) < 500:
@@ -169,7 +168,7 @@ def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, cd=None,
         plt.ylabel(C.replace('_', ' ').title())
 
         if output:
-            plt.savefig(str(cd + 'output/charts/' + U + '_' + V + '.png'), dpi=resolution)
+            plt.savefig(output_dir / 'charts' / U + '_' + V + '.png', dpi=resolution)
 
         if chart:
             plt.show()
@@ -178,7 +177,7 @@ def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, cd=None,
 
 
 # Continuous-Continuous KDE Plots
-def CC_viz(df, charter='Plotly', chart=False, output=False, cd=None, resolution=150):
+def CC_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Takes two continuous feature names and generates a 2D Kernel Density Plot '''
     U = list(df.columns)[0]
     V = list(df.columns)[1]
@@ -201,10 +200,10 @@ def CC_viz(df, charter='Plotly', chart=False, output=False, cd=None, resolution=
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_layout(font=dict(color="white"))
-            with open(str(cd + 'output/charts/' + U + '_' + V + '.json'), 'w') as outfile:
+            with open(output_dir / 'charts' / U + '_' + V + '.json', 'w') as outfile:
                 json.dump(fig.to_json(), outfile)
 
-            fig.write_image(str(cd + 'output/charts/' + U + '_' + V + '.png'), scale=resolution // 72)
+            fig.write_image(output_dir / 'charts' / U + '_' + V + '.png', scale=resolution // 72)
     else:
         sns.kdeplot(df[U], df[V], color='blue', shade=True, alpha=0.3, shade_lowest=False)
         if len(df[U]) < 500:
@@ -214,7 +213,7 @@ def CC_viz(df, charter='Plotly', chart=False, output=False, cd=None, resolution=
         plt.xlabel(U.replace('_', ' ').title())
         plt.ylabel(V.replace('_', ' ').title())
         if output:
-            plt.savefig(str(cd + 'output/charts/' + U + '_' + V + '.png'), dpi=resolution)
+            plt.savefig(output_dir / 'charts' / U + '_' + V + '.png', dpi=resolution)
 
         if chart:
             plt.show()
@@ -231,7 +230,7 @@ def matrix_viz(matrix):
 
 
 # Visualization Function Router
-def viz(U, V, df, discrete, continuous, charter='Plotly', chart=False, output=False, cd=None, resolution=150):
+def viz(U, V, df, discrete, continuous, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Generate a visualization based on feature types '''
     plt.clf()
     plt.figure(dpi=resolution)
@@ -240,18 +239,18 @@ def viz(U, V, df, discrete, continuous, charter='Plotly', chart=False, output=Fa
 
     # If both features are discrete:
     if U in discrete and V in discrete:
-        DD_viz(pairdf, charter='Plotly', chart=False, output=False, cd=None, resolution=150)
+        DD_viz(pairdf, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
     # If both features are continuous:
     elif U in continuous and V in continuous:
-        CC_viz(pairdf, charter='Plotly', chart=False, output=False, cd=None, resolution=150)
+        CC_viz(pairdf, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
     # If one feature is continuous and one feature is discrete:
     elif U in continuous and V in discrete or U in discrete and V in continuous:
-        DC_viz(pairdf, continuous, charter='Plotly', chart=False, output=False, cd=None, resolution=150)
+        DC_viz(pairdf, continuous, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
     else:
         raise Exception('Error on features', U, 'and', V)
 
     if output:
-        pairdf.to_json(str(cd + 'output/json/' + U + '_' + V + '.json'))
+        pairdf.to_json(output_dir / 'json' / U + '_' + V + '.json')
 
     return viz
 
@@ -437,7 +436,8 @@ def calc_pairtype(U, V, discrete, continuous, debug=False):
     return pair_type
 
 
-def calc_mi(df, U, V, discrete, continuous, debug=False, charter='Plotly', chart=False, output=False, cd=None, resolution=150):
+def calc_mi(df, U, V, discrete, continuous, debug=False, charter='Plotly', chart=False, output=False,
+            output_dir=None, resolution=150):
     ''' Takes two feature names and determines which mutual information method to use; returns calculated mutual information score '''
     try:
         pairdf = df.filter([U, V]).dropna(how='any')
@@ -467,7 +467,8 @@ def calc_mi(df, U, V, discrete, continuous, debug=False, charter='Plotly', chart
                 mi = 0
 
             if chart:
-                viz(U, V, df, discrete, continuous, charter=charter, chart=chart, output=output, cd=cd, resolution=resolution)
+                viz(U, V, df, discrete, continuous, charter=charter, chart=chart, output=output, output_dir=output_dir,
+                    resolution=resolution)
 
             if debug:
                 print('Elapsed time:', datetime.now() - mi_start_time)
@@ -477,7 +478,7 @@ def calc_mi(df, U, V, discrete, continuous, debug=False, charter='Plotly', chart
         return 0
 
 
-def run_calc(features, df, discrete, continuous, debug=False, charter='Plotly', chart=False, output=False, cd=None, resolution=150):
+def run_calc(features, df, discrete, continuous, debug=False, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     """
     Calculate the mutual information between every pair of columns in df.
     Return a dataframe whose columns are 'x' (the first column in the pair), 'y' (the second column),
@@ -487,8 +488,8 @@ def run_calc(features, df, discrete, continuous, debug=False, charter='Plotly', 
     start_time = datetime.now()
     pairs = list(itertools.combinations(df.columns, 2))
     xs, ys = zip(*pairs)
-    vs = [calc_mi(df, x, y, discrete, continuous, debug=debug, charter=charter, chart=chart, output=output, cd=cd,
-                  resolution=resolution)
+    vs = [calc_mi(df, x, y, discrete, continuous, debug=debug, charter=charter, chart=chart, output=output,
+                  output_dir=output_dir, resolution=resolution)
           for x, y in pairs]
     if debug:
         print('Elapsed time:', datetime.now() - start_time)
@@ -507,7 +508,7 @@ def run_calc(features, df, discrete, continuous, debug=False, charter='Plotly', 
     # return s
 
 
-def calculate_positions(thresh_stack, G):
+def calculate_positions(G):
     # Generate position data for each node
     pos = nx.kamada_kawai_layout(G, weight='weight')
 
@@ -555,7 +556,7 @@ def calculate_positions(thresh_stack, G):
     return edges, nodes
 
 
-def draw_graph(edges, nodes, title, chart=False, output=False, cd=None, resolution=150, **kwargs):
+def draw_graph(edges, nodes, title, chart=False, output=False, output_dir=None, resolution=150, **kwargs):
     # Draw edges
     edge_trace = go.Scatter(
         x=edges['x'], y=edges['y'],
@@ -599,40 +600,57 @@ def draw_graph(edges, nodes, title, chart=False, output=False, cd=None, resoluti
         fig.show()
 
     if output:
-        fig.write_image(str(cd + 'output/graph_example.png'), scale=resolution // 72)
+        fig.write_image(output_dir / 'graph_example.png', scale=resolution // 72)
 
 
-def main():
-    sns.set_style("whitegrid")
+def find_max_component_threshold(stack):
+    """
+    Find the mutual information threshold that maximizes the number of connected components (subgraphs with >1 node)
+    in the resulting graph.
+    :param stack: every row is a pair of features and their associated mutual information.
+    :return: the mutual information threshold.
+    """
 
-    # Parameter settings
-    chart = False  # boolean for whether to display images while running computation
-    debug = True  # boolean for whether to print updates to the console while running
-    output = False  # boolean for whether to output json and pngs to files
-    charter = 'Plotly'  # also accepts 'Seaborn'
-    # charter = 'Seaborn'
-    resolution = 150  # int for resolution of output plots
-    discrete_threshold = 5  # number of responses below which numeric responses are considered discrete
-    compare_all = True  # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
-    list1, list2 = [], []
-    sample_n = None  # Work with all data (None), or just a sample?
-    cd = 'example_data/'
+    # Create a data frame of edge counts and number of components for a given threshold
+    e = pd.DataFrame(columns=['mi_threshold', 'edge_count', 'components'])
 
-    # create output directories, if needed
-    if output:
-        Path(cd + 'output/').mkdir(parents=True, exist_ok=True)
-        Path(cd + 'output/charts').mkdir(parents=True, exist_ok=True)
-        Path(cd + 'output/json').mkdir(parents=True, exist_ok=True)
+    # Fill in the 'e' data frame with the number of edges and number of components across a range of thresholds
+    for i in np.arange(np.round(stack['v'].min(), 2), np.round(stack['v'].max(), 2), 0.01):
+        s = stack[stack['v'] > i]
 
-    # Import Data
+        G = nx.Graph()
+        G.add_nodes_from(list(dict.fromkeys((list(s['x'].unique()) + list(s['y'].unique())))))
+        G.add_edges_from(list(zip(s['x'], s['y'])))
+
+        e = e.append({'mi_threshold': i, 'edge_count': (stack['v'] > i).sum(),
+                      'components': nx.number_connected_components(G)}, ignore_index=True)
+
+    # Plot the number of edges for a range of mutual information scores
+    sns.lineplot(e['mi_threshold'], e['edge_count'])
+
+    # Plot the number of components for a range of mutual information scores
+    sns.lineplot(e['mi_threshold'], e['components'])
+
+    # Find the mutual information threshold which maximizes the component count
+    max_component_threshold = e[e['components'] == max(e['components'])].max()['mi_threshold']
+    # optional: if there are multiple MI thresholds which maximize the number of components,
+    # you may want to experiment with thresholding at .min()['mi_threshold'] instead of .max()['mi_threshold']
+    # depending on your application; we have selected the maximum threshold for maximizing component counts,
+    # as this minimizes the edge count over the minimum threshold, which reduces the visualization exploration space,
+    # while still maximizing component counts
+
+    return max_component_threshold
+
+
+def load_data(input_file, sample_n=None, debug=False):
+    # Load Data
+    df = pd.read_csv(input_file)
     if sample_n:
-        df = pd.read_csv(cd + 'data.csv').sample(sample_n)
-    else:
-        df = pd.read_csv(cd + 'data.csv')
+        df = df.sample(sample_n)
 
     # Ignore ID columns
     ignore = []
-    for i in list(df.columns):
+    for i in df.columns:
         try:
             # ? What is this doing?
             np.ma.fix_invalid(df[i])
@@ -645,15 +663,56 @@ def main():
     df = df.drop(columns=ignore)
     df = df.replace(np.nan, None)
     df = df.replace('nan', None)
-    df.columns = [c.replace(' ', '_') for c in list(df.columns)]
+    df.columns = [c.replace(' ', '_') for c in df.columns]
     if debug:
-        print(f'Loaded data from {cd} with {df.shape[0]} observations and {df.shape[1]} features')
+        print(f'Loaded data from {input_file} with {df.shape[0]} observations and {df.shape[1]} features')
+
+    return df
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description='Sirius Data Processing Pipeline')
+    parser.add_argument('--dpi', type=int, default=150, help='resolution of output plots')
+    parser.add_argument('--discrete-threshold', type=int, default=5,
+                        help='Number of responses below which numeric features are considered discrete')
+    parser.add_argument('--chart', action='store_true', default=False, help='Display images while running computation')
+    parser.add_argument('--charter', choices=['Plotly', 'Seaborn'], default='Plotly', help='The plotting library to use.')
+    parser.add_argument('--debug', action='store_true', default=False, help='Print updates to the console while running.')
+    parser.add_argument('--output', action='store_true', default=False, help='Output json and pngs to files.')
+    parser.add_argument('--sample-n', default=None, type=int, help='Subsample the data. By default, work with all the data.')
+    parser.add_argument('--input-file', default='example_data/data.csv', help='Location of the input CSV data.')
+    parser.add_argument('--output-dir', default='example_data/output', help='A directory in which to store the json and png files.')
+    args = parser.parse_args()
+
+    # Parameter settings
+    chart = args.chart  # boolean for whether to display images while running computation
+    debug = args.debug  # boolean for whether to print updates to the console while running
+    output = args.output  # boolean for whether to output json and pngs to files
+    charter = args.charter  # accepts 'Seaborn' or 'Plotly'
+    resolution = args.dpi  # int for resolution of output plots
+    discrete_threshold = args.discrete_threshold  # number of responses below which numeric responses are considered discrete
+    compare_all = True  # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
+    list1, list2 = [], []
+    sample_n = args.sample_n  # Work with all data (None), or just a sample?
+    input_file = Path(args.input_file)  # e.g. './example_data/data.csv'
+    output_dir = Path(args.output_dir)  # e.g. './example_data/output'
+    # cd = 'example_data/output'
+
+    sns.set_style("whitegrid")
+
+    # create output directories, if needed
+    if output:
+        for d in ['charts', 'json']:
+            (output_dir / d).mkdir(parents=True, exist_ok=True)
+
+    df = load_data(input_file, sample_n=sample_n, debug=debug)
 
     ## Identify feature type
 
     # Get a list of all response types
-    response_list = pd.DataFrame(columns=['responses', 'types'], index=list(df.columns))
-    response_list['responses'] = [list(df[col].value_counts().index) for col in df.columns]
+    response_list = pd.DataFrame(columns=['responses', 'types'], index=df.columns)
+    response_list['responses'] = [list(df[col].unique()) for col in df.columns]
 
     # Delete columns from the dataframe that only have one response
     response_list['only_one_r'] = [(len(r) < 2) for r in response_list['responses']]
@@ -676,7 +735,7 @@ def main():
     # print('continuous', continuous)
 
     if debug:
-        print(f'Counted {len(discrete)} discrete features and {len(continuous)} features')
+        print(f'Counted {len(discrete)} discrete features and {len(continuous)} continuous features')
 
     # Format values of discrete columns as strings and continuous columns as floats
     for i in list(response_list.index):
@@ -692,15 +751,15 @@ def main():
 
     # Calculation
     stack = run_calc(list(df.columns), df, discrete, continuous, debug=debug, charter=charter, chart=chart,
-                     output=output, cd=cd, resolution=resolution)
-    stack.to_csv(cd + 'results.csv', index=False)
+                     output=output, output_dir=output_dir, resolution=resolution)
+    stack.to_csv(output_dir / 'results.csv', index=False)
 
     # Network Graphing
 
     # Re-import the Mutual Information results
     # (this is helpful if you want to re-generate visualizations
     # without having to re-run the mutual information calculations)
-    stack = pd.read_csv(cd + 'results.csv')
+    stack = pd.read_csv(output_dir / 'results.csv')
 
     # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
     sorted_stack = stack.sort_values(by='v', ascending=False)
@@ -708,37 +767,11 @@ def main():
 
     # Thresholding
 
-    # Create a data frame of edge counts and number of components for a given threshold
-    e = pd.DataFrame(columns=['mi_threshold', 'edge_count', 'components'])
-
-    # Fill in the 'e' data frame with the number of edges and number of components across a range of thresholds
-    for i in np.arange(np.round(sorted_stack['v'].min(), 2), np.round(sorted_stack['v'].max(), 2), 0.01):
-        s = sorted_stack[sorted_stack['v'] > i]
-
-        G = nx.Graph()
-        G.add_nodes_from(list(dict.fromkeys((list(s['x'].unique()) + list(s['y'].unique())))))
-        G.add_edges_from(list(zip(s['x'], s['y'])))
-
-        e = e.append({'mi_threshold': i, 'edge_count': (sorted_stack['v'] > i).sum(),
-                      'components': nx.number_connected_components(G)}, ignore_index=True)
-
-    # Plot the number of edges for a range of mutual information scores
-    sns.lineplot(e['mi_threshold'], e['edge_count'])
-
-    # Plot the number of components for a range of mutual information scores
-    sns.lineplot(e['mi_threshold'], e['components'])
-
-    # Find the mutual information threshold which maximizes the component count
-    max_component_threshold = e[e['components'] == max(e['components'])].max()['mi_threshold']
-    # optional: if there are multiple MI thresholds which maximize the number of components,
-    # you may want to experiment with thresholding at .min()['mi_threshold'] instead of .max()['mi_threshold']
-    # depending on your application; we have selected the maximum threshold for maximizing component counts,
-    # as this minimizes the edge count over the minimum threshold, which reduces the visualization exploration space,
-    # while still maximizing component counts
+    max_component_threshold = find_max_component_threshold(sorted_stack)
 
     # Threshold the edge list by the mutual information threshold which maximizes the component count
     thresh_stack = sorted_stack[sorted_stack['v'] > max_component_threshold]
-    thresh_stack = thresh_stack.rename(columns={'x':'source','y':'target','v':'weight'})
+    thresh_stack = thresh_stack.rename(columns={'x': 'source', 'y': 'target', 'v': 'weight'})
     thresh_stack['viztype'] = [calc_pairtype(x, y, discrete, continuous) for x, y in zip(thresh_stack['source'], thresh_stack['target'])]
 
     # Node and Edge Lists
@@ -752,27 +785,28 @@ def main():
 
     json_out = {}
     json_out['nodes'] = nodelist
-    # json_out['links']=(thresh_stack).to_dict(orient='records')
-    json_out['edges'] = (thresh_stack).to_dict(orient='records')
+    json_out['links'] = thresh_stack.to_dict(orient='records')
+    # json_out['edges'] = (thresh_stack).to_dict(orient='records')
 
-    with open(str(cd + 'output/graph.json'), 'w') as json_file:
+    with open(output_dir / 'graph.json', 'w') as json_file:
         json.dump(json_out, json_file)
 
     for i, row in thresh_stack.iterrows():
-        viz(row['source'],row['target'], df, discrete, continuous, charter=charter, chart=chart, output=output, cd=cd,
-            resolution=resolution)
+        viz(row['source'],row['target'], df, discrete, continuous, charter=charter, chart=chart, output=output,
+            output_dir=output_dir, resolution=resolution)
         # viz(row['src'], row['target'], df, discrete, continuous)
 
     # Positioning
-    [edges, nodes] = calculate_positions(thresh_stack, G)
+    [edges, nodes] = calculate_positions(G)
 
-    draw_graph(edges, nodes, 'Example Graph')
+    draw_graph(edges, nodes, 'Example Graph', chart=chart, output=output, output_dir=output_dir, resolution=resolution)
 
     components = []
     for i in nx.connected_components(G):
         components.append(list(i))
+
     if output:
-        with open(str(cd + 'output/components.json'), 'w') as json_file:
+        with open(output_dir / 'components.json', 'w') as json_file:
             json.dump(components, json_file)
 
 
