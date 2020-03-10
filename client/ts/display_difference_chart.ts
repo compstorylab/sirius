@@ -3,7 +3,7 @@ import * as $ from "jquery";
 import {Color} from "./styles";
 
 import {Drawer} from './drawer';
-
+import {createPlot} from "./plots";
 
 /**
  * when click an edge, higlight the edge and the corresponding pair of nodes. if click on another edge, return the previous
@@ -56,17 +56,18 @@ export function displayChart(){
                 plotType = clickedElement.__data__.viztype;
 
 
+            // Clear previous plots first
+            // @ts-ignore
+            Plotly.purge('plot-parent');
+            clearImage(document.getElementById("difference_chart") as HTMLImageElement);
+
             // Select Plot by type
             if(plotType == 'DD') {
+                loadPlotylPlot(plotType, sourceName, targetName, sourceIndex, targetIndex, clickedElement);
+            }
+            else if(plotType == 'CD' || plotType == 'DC' || plotType == 'CC') {
                 loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
             }
-            else if(plotType == 'CD' || plotType == 'DC') {
-                loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
-            }
-            else if (plotType == 'CC') {
-                loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
-            }
-
         }
     });
 }
@@ -97,14 +98,14 @@ function loadPNGGraph(sourceName:string, targetName:string, sourceIndex:number, 
     let imageElement:HTMLImageElement = document.getElementById("difference_chart") as HTMLImageElement;
     let nodes = d3.selectAll("circle");
 
+    // let imageTitle = sourceName.toUpperCase() + ' VS ' + targetName.toUpperCase();
+    let imageTitle = sourceName.split("_").join(" ").toUpperCase() + ' VS ' + targetName.split("_").join(" ").toUpperCase();
+    Drawer.getInstance().open({mode:'plot', title: imageTitle});
+
     $.ajax({
         url: staticImageURL,
         success: function(){
             setImage(imageElement, staticImageURL);
-
-            // let imageTitle = sourceName.toUpperCase() + ' VS ' + targetName.toUpperCase();
-            let imageTitle = sourceName.split("_").join(" ").toUpperCase() + ' VS ' + targetName.split("_").join(" ").toUpperCase();
-            Drawer.getInstance().open({mode:'plot', title: imageTitle});
 
             // highlight currently clicked nodes, turn the previous clicked items into original color
             clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
@@ -123,6 +124,56 @@ function loadPNGGraph(sourceName:string, targetName:string, sourceIndex:number, 
     });
 }
 
-function loadPlotylPlot(type:string){
+/**
+ *
+ * @param {string} type
+ * @param {string} sourceName
+ * @param {string} targetName
+ * @param {number} sourceIndex
+ * @param {number} targetIndex
+ * @param {HTMLElement} clickedElement
+ */
+function loadPlotylPlot(type:string, sourceName:string, targetName:string, sourceIndex:number, targetIndex:number, clickedElement:HTMLElement){
+    loadJson(sourceName, targetName,
+        function (data){
+            let imageTitle = sourceName.split("_").join(" ").toUpperCase() + ' VS ' + targetName.split("_").join(" ").toUpperCase();
+            Drawer.getInstance().open({mode:'plot', title: imageTitle});
+            createPlot(type, data, 'plot-parent');
+        },
+        function () {
+            Drawer.getInstance().open({mode:'plot', title: "Could not load data to plot."});
+        });
+
+    let clickedElementList = [];
+    let nodes = d3.selectAll("circle");
+    clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
+}
+
+
+/**
+ * Tries to load the JSON by alternating node names.
+ * It is not clear which name should be first from the graph.
+ * @param {string} sourceName
+ * @param {string} targetName
+ * @param onComplete
+ * @param onError
+ */
+function loadJson(sourceName:string, targetName:string, onComplete, onError) {
+    let uploadFolderPath = '/static/upload_files/';
+    $.ajax({ url: uploadFolderPath + sourceName + "_" + targetName + ".json" })
+        .done(function (data) {
+            onComplete(data);
+        })
+        .fail(
+        function () {
+            return $.ajax({ url: uploadFolderPath + targetName + "_" + sourceName + ".json" })
+                .done(function (data) {
+                    onComplete(data);
+                })
+                .fail(function () {
+                    onError()
+                })
+        }
+    );
 
 }

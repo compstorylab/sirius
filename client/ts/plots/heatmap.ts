@@ -4,11 +4,13 @@ import Plotly from 'plotly.js-dist';
  * Creates a heatmap from raw data using plotly.
  * @param x An array of categorical values. Number or string
  * @param y An array of categrorical values. Numnber or string
+ * @param xName Title for the x-axis
+ * @param yName Title for the y-axis
  * @param chartHolderId The id of the html element to render the chart in.
  */
-export function heatmap(x:Array<any>, y:Array<any>, chartHolderId:string): void {
+export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string, chartHolderId:string): void {
     let data = processForHeatmap(x, y);
-    var chartData = [
+    let chartData = [
         {
             x: data['x'],
             y: data['y'],
@@ -17,7 +19,19 @@ export function heatmap(x:Array<any>, y:Array<any>, chartHolderId:string): void 
             hoverongaps: false
         }
     ];
-    Plotly.newPlot(chartHolderId, chartData);
+    let layout = {
+        xaxis: {
+            title: {
+                text: xName
+            }
+        },
+        yaxis: {
+            title: {
+                text: yName
+            }
+        }
+    };
+    Plotly.newPlot(chartHolderId, chartData, layout);
 }
 
 /**
