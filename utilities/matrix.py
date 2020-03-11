@@ -260,10 +260,12 @@ def viz(U, V, df, discrete, continuous, charter='Plotly', chart=False, output=Fa
 
 def sparsify(series):
     ''' For discrete values: takes a column name and returns a sparse matrix (0 or 1) with a column for each unique response '''
-    m = pd.DataFrame(columns=list(series.unique()))
-    for i in list(series.unique()):
-        m[i] = [int(x == i) for x in series]
-    return m
+    responses = series.unique()
+    m = pd.DataFrame(columns=responses)
+    for val in responses:
+        m[val] = series == val
+
+    return m.astype(int)
 
 
 # Discrete-Discrete
@@ -800,8 +802,10 @@ def main():
     G = nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
 
     nodelist = []
-    for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_stack['target'].unique())))):
-        nodelist.append({'name': n, 'type': 'continuous' if n in continuous else 'discrete', 'neighbors': list(dict(G[n]).keys())})
+    for n in set(thresh_stack['source']).union(thresh_stack['target']):
+        nodelist.append({'name': n,
+                         'type': 'continuous' if n in continuous else 'discrete',
+                         'neighbors': list(dict(G[n]).keys())})
 
     json_out = {}
     json_out['nodes'] = nodelist
