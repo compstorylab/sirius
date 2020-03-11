@@ -1,3 +1,13 @@
 Django==3.0.2
 django-environ==0.4.5
+matplotlib
+networkx
+numpy
+pandas
+plotly
+plotly-orca
+psutil
 pytz==2019.3
+requests
+scikit-learn
+seaborn
