@@ -25,6 +25,7 @@ from plotly.colors import n_colors
 # If you're using this code locally:
 from plotly.offline import download_plotlyjs, plot, iplot #, init_notebook_mode
 
+
 def get_types(U, response_list):
     types = {'floats': 0, 'strings': 0, 'nulls': 0}
     for i in response_list['responses'][U]:
@@ -66,11 +67,11 @@ def compute_bandwidth(X, df):
 def DD_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Takes a filtered dataframe of two discrete feature columns and generates a heatmap '''
 
-    U = list(df.columns)[0]
-    V = list(df.columns)[1]
+    U = df.columns[0]
+    V = df.columns[1]
 
-    i_range = list(df[U].unique())
-    j_range = list(df[V].unique())
+    i_range = df[U].unique()
+    j_range = df[V].unique()
     s = pd.DataFrame(columns=i_range, index=j_range)
     for i in i_range:
         for j in j_range:
@@ -670,50 +671,13 @@ def load_data(input_file, sample_n=None, debug=False):
     return df
 
 
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description='Sirius Data Processing Pipeline')
-    parser.add_argument('--dpi', type=int, default=150, help='resolution of output plots')
-    parser.add_argument('--discrete-threshold', type=int, default=5,
-                        help='Number of responses below which numeric features are considered discrete')
-    parser.add_argument('--chart', action='store_true', default=False, help='Display images while running computation')
-    parser.add_argument('--charter', choices=['Plotly', 'Seaborn'], default='Plotly', help='The plotting library to use.')
-    parser.add_argument('--debug', action='store_true', default=False, help='Print updates to the console while running.')
-    parser.add_argument('--output', action='store_true', default=False, help='Output json and pngs to files.')
-    parser.add_argument('--sample-n', default=None, type=int, help='Subsample the data. By default, work with all the data.')
-    parser.add_argument('--input-file', default='example_data/data.csv', help='Location of the input CSV data.')
-    parser.add_argument('--output-dir', default='example_data/output', help='A directory in which to store the json and png files.')
-    args = parser.parse_args()
-
-    # Parameter settings
-    chart = args.chart  # boolean for whether to display images while running computation
-    debug = args.debug  # boolean for whether to print updates to the console while running
-    output = args.output  # boolean for whether to output json and pngs to files
-    charter = args.charter  # accepts 'Seaborn' or 'Plotly'
-    resolution = args.dpi  # int for resolution of output plots
-    discrete_threshold = args.discrete_threshold  # number of responses below which numeric responses are considered discrete
-    compare_all = True  # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
-    list1, list2 = [], []
-    sample_n = args.sample_n  # Work with all data (None), or just a sample?
-    input_file = Path(args.input_file)  # e.g. './example_data/data.csv'
-    output_dir = Path(args.output_dir)  # e.g. './example_data/output'
-    # cd = 'example_data/output'
-
-    sns.set_style("whitegrid")
-
-    # create output directories, if needed
-    if output:
-        for d in ['charts', 'json']:
-            (output_dir / d).mkdir(parents=True, exist_ok=True)
-
-    df = load_data(input_file, sample_n=sample_n, debug=debug)
-
+def classify_features(df, discrete_threshold, debug=False):
     ## Identify feature type
 
     # Get a list of all response types
     response_list = pd.DataFrame(columns=['responses', 'types'], index=df.columns)
     response_list['responses'] = [list(df[col].unique()) for col in df.columns]
-
+    response_list['response_count'] = response_list['responses'].map(len)
     # Delete columns from the dataframe that only have one response
     response_list['only_one_r'] = [(len(r) < 2) for r in response_list['responses']]
     only_one_r = list(response_list[response_list['only_one_r'] == True].index)
@@ -731,35 +695,91 @@ def main():
     # Store these groups in a list
     discrete = list(response_list[response_list['class'] == 'd'].index)
     continuous = list(response_list[response_list['class'] == 'c'].index)
-    # print('discrete', discrete)
-    # print('continuous', continuous)
+    response_counts = {feature: response_list['response_count'][feature] for feature in response_list.index}
 
     if debug:
         print(f'Counted {len(discrete)} discrete features and {len(continuous)} continuous features')
 
-    # Format values of discrete columns as strings and continuous columns as floats
-    for i in list(response_list.index):
-        V = []
-        if (response_list['string'][i] == True) or (response_list['class'][i] == 'd'):
-            V = [str(v) for v in df[i]]
-            df[i] = V
-        elif response_list['float'][i] == True:
-            V = [float(v) for v in df[i]]
-            df[i] = V
-        else:
-            print('Error formatting column ', i)
+    return discrete, continuous, response_counts
 
-    # Calculation
-    stack = run_calc(list(df.columns), df, discrete, continuous, debug=debug, charter=charter, chart=chart,
-                     output=output, output_dir=output_dir, resolution=resolution)
-    stack.to_csv(output_dir / 'results.csv', index=False)
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description='Sirius Data Processing Pipeline')
+    parser.add_argument('--dpi', type=int, default=150, help='resolution of output plots')
+    parser.add_argument('--discrete-threshold', type=int, default=5,
+                        help='Number of responses below which numeric features are considered discrete')
+    parser.add_argument('--chart', action='store_true', default=False, help='Display images while running computation')
+    parser.add_argument('--charter', choices=['Plotly', 'Seaborn'], default='Plotly', help='The plotting library to use.')
+    parser.add_argument('--debug', action='store_true', default=False, help='Print updates to the console while running.')
+    parser.add_argument('--output', action='store_true', default=False, help='Output json and pngs to files.')
+    parser.add_argument('--no-viz', action='store_true', default=False, help='Do not output pair plots, network graph, or json.')
+    parser.add_argument('--no-mi', action='store_true', default=False, help='Do not compute MI. Use cached MI values instead.')
+    parser.add_argument('--cache', action='store_true', default=False, help='Cache MI values to use later when generating visualizations.')
+    parser.add_argument('--sample-n', default=None, type=int, help='Subsample the data. By default, work with all the data.')
+    parser.add_argument('--input-file', default='example_data/data.csv', help='Location of the input CSV data.')
+    parser.add_argument('--output-dir', default='example_data/output', help='A directory in which to store the json and png files.')
+    args = parser.parse_args()
+
+    # Parameter settings
+    chart = args.chart  # boolean for whether to display images while running computation
+    debug = args.debug  # boolean for whether to print updates to the console while running
+    output = args.output  # boolean for whether to output json and pngs to files
+    cache = args.cache
+    no_mi = args.no_mi
+    no_viz = args.no_viz
+    charter = args.charter  # accepts 'Seaborn' or 'Plotly'
+    resolution = args.dpi  # int for resolution of output plots
+    discrete_threshold = args.discrete_threshold  # number of responses below which numeric responses are considered discrete
+    compare_all = True  # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
+    list1, list2 = [], []
+    sample_n = args.sample_n  # Work with all data (None), or just a sample?
+    input_file = Path(args.input_file)  # e.g. './example_data/data.csv'
+    output_dir = Path(args.output_dir)  # e.g. './example_data/output'
+    # cd = 'example_data/output'
+
+    sns.set_style("whitegrid")
+
+    # create output directories, if needed
+    if cache:
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+    if output:
+        for d in ['charts', 'json']:
+            (output_dir / d).mkdir(parents=True, exist_ok=True)
+
+    df = load_data(input_file, sample_n=sample_n, debug=debug)
+
+    discrete, continuous, response_counts = classify_features(df, discrete_threshold, debug=debug)
+    # drop features with only a single response
+    df = df.drop(columns=[col for col in response_counts if response_counts[col] <= 1])
+    # Format values of discrete columns as strings and continuous columns as floats
+    for col in df.columns:
+        if col in discrete:
+            df[col] = df[col].map(str)
+        elif col in continuous:
+            df[col] = df[col].map(float)
+        else:
+            print('Error formatting column ', col)
+
+    if not no_mi:
+        # Calculation
+        stack = run_calc(list(df.columns), df, discrete, continuous, debug=debug, charter=charter, chart=chart,
+                         output=output, output_dir=output_dir, resolution=resolution)
+
+        if cache:
+            stack.to_csv(output_dir / 'results.csv', index=False)
 
     # Network Graphing
 
-    # Re-import the Mutual Information results
-    # (this is helpful if you want to re-generate visualizations
-    # without having to re-run the mutual information calculations)
-    stack = pd.read_csv(output_dir / 'results.csv')
+    if no_viz:
+        return
+
+    if cache:
+        # Re-import the Mutual Information results
+        # (this is helpful if you want to re-generate visualizations
+        # without having to re-run the mutual information calculations)
+        stack = pd.read_csv(output_dir / 'results.csv')
 
     # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
     sorted_stack = stack.sort_values(by='v', ascending=False)
@@ -781,7 +801,7 @@ def main():
 
     nodelist = []
     for n in list(dict.fromkeys((list(thresh_stack['source'].unique())+list(thresh_stack['target'].unique())))):
-        nodelist.append({'name': n, 'type': 'continuous' if (response_list['class'][n])=='c' else 'discrete', 'neighbors': list(dict(G[n]).keys())})
+        nodelist.append({'name': n, 'type': 'continuous' if n in continuous else 'discrete', 'neighbors': list(dict(G[n]).keys())})
 
     json_out = {}
     json_out['nodes'] = nodelist
