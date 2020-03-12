@@ -7,7 +7,7 @@ import numpy as np
 import math
 import random
 from sklearn.feature_selection import f_regression, mutual_info_regression
-from sklearn.metrics import normalized_mutual_info_score
+from sklearn.metrics import mutual_info_score
 from scipy.stats import multivariate_normal, pearsonr
 import scipy.integrate as integrate
 from sklearn.neighbors import KernelDensity
@@ -258,69 +258,11 @@ def viz(U, V, df, discrete, continuous, charter='Plotly', chart=False, output=Fa
 
 ## Mutual Information
 
-def sparsify(series):
-    ''' For discrete values: takes a column name and returns a sparse matrix (0 or 1) with a column for each unique response '''
-    responses = series.unique()
-    m = pd.DataFrame(columns=responses)
-    for val in responses:
-        m[val] = series == val
-
-    return m.astype(int)
-
 
 # Discrete-Discrete
 def DD_mi(df, debug=False):
-    ''' Takes two discrete feature names and calculates normalized mutual information (dividing mutual information by maximum possible) '''
-    U = list(df.columns)[0]
-    V = list(df.columns)[1]
-
-    if debug:
-        print(f'Calculating discrete-discrete MI for {U} and {V}')
-
-    min_response_count = min(len(list(df[U].unique())), len(list(df[V].unique())))
-    max_mi = np.log2(min_response_count)
-    if U == V:
-        mi = max_mi
-    else:
-        i_range = list(df[U].unique())
-        j_range = list(df[V].unique())
-        # We use 's' to denote a matrix of support for each i,j
-        s = pd.DataFrame(columns=i_range, index=j_range)
-        for i in i_range:
-            for j in j_range:
-                s[i][j] = df[(df[U] == i) & (df[V] == j)].filter([U, V], axis=1).shape[0]
-                mutual_support = s.sum().sum()
-        s = s.astype(int)
-        pmi = s.copy()
-        l = []
-        # If these features are never both answered, or if either feature only has one possible response:
-        if mutual_support <= 0 or len(i_range) <= 1 or len(j_range) <= 1:
-            # The whole pointwise mutual information matrix should be 0
-            pmi.fillna(0, inplace=True)
-        else:
-            for i in i_range:
-                for j in j_range:
-                    joint_support = s[i][j]
-                    joint_probability = joint_support / mutual_support
-                    marginal_probability_i = s.sum(axis=0)[i] / s.sum().sum()
-                    marginal_probability_j = s.sum(axis=1)[j] / s.sum().sum()
-                    if joint_probability != 0:
-                        pmi[i][j] = np.log2(joint_probability / (marginal_probability_i * marginal_probability_j))
-                        # Store all PMI (pointwise mutual information) in a list
-                        l.append(pmi[i][j] * joint_probability)
-            # Sum the list of all pointwise mutual information
-            mi = sum(l)
-
-    # Normalize by response count (not recommended)
-    # if max_mi==0:
-    #     nmi = 0
-    # else:
-    #     nmi = mi/max_mi
-
-    if debug:
-        print(f'MI: {mi}')
-
-    return mi
+    ''' Takes two discrete feature names and calculates mutual information '''
+    return np.log2(np.e) * mutual_info_score(df.iloc[:, 0].values, df.iloc[:, 1].values)
 
 
 # ### Discrete-Continuous
@@ -333,9 +275,8 @@ def DD_mi(df, debug=False):
 def DC_mi(df, continuous, debug=False):
     ''' Takes a subset df of one discrete and one continuous feature and, using a sparsified matrix of the discrete responses, returns mutual information score '''
 
-    U = list(df.columns)[0]
-    V = list(df.columns)[1]
-
+    U = df.columns[0]
+    V = df.columns[1]
     if debug:
         print(f'Calculating discrete-continious MI for {U} and {V}')
 
@@ -348,16 +289,17 @@ def DC_mi(df, continuous, debug=False):
     if debug:
         print(f'Discrete: {D} Continuous: {C}')
 
-    responses = list(df[D].unique())
+    responses = df[D].unique()
     if debug:
         print(f'responses = {responses}')
 
-    pmi = list(mutual_info_regression(sparsify(df[D]), df[C], discrete_features=True))
+    # point-wise mutual information
+    pmi = list(mutual_info_regression(pd.get_dummies(df[D]), df[C], discrete_features=True))
     if debug:
         print(f'pmi list = {pmi}')
 
     l = []
-    for i in list(range(0, (len(responses)))):
+    for i in range(len(responses)):
         conditional_probability = df[df[D] == responses[i]].shape[0] / len(df[C])
         l.append(pmi[i] * conditional_probability)
 
