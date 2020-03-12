@@ -48,13 +48,13 @@ export function processForHeatmap(x:Array<any>, y:Array<any>) {
 
     let counts = create2dZeroMatrix(x_labels.length, y_labels.length);
 
-    let count_max = -99999;
-    let count_min = 99999;
+    // let count_max = -99999;
+    // let count_min = 99999;
     let n = x.length;
     for (let i = 0; i < n; i++){
         counts[y_label_index[y[i]]][x_label_index[x[i]]] ++
-        count_max = Math.max(counts[y_label_index[y[i]]][x_label_index[x[i]]], count_max)
-        count_min = Math.min(counts[y_label_index[y[i]]][x_label_index[x[i]]], count_min)
+        // count_max = Math.max(counts[y_label_index[y[i]]][x_label_index[x[i]]], count_max)
+        // count_min = Math.min(counts[y_label_index[y[i]]][x_label_index[x[i]]], count_min)
     }
 
     return {
