@@ -573,7 +573,8 @@ def find_max_component_threshold(stack, chart=False):
 
         # Plot the number of components for a range of mutual information scores
         sns.lineplot(e['mi_threshold'], e['components'])
-
+        plt.show()
+        
     # Find the mutual information threshold which maximizes the component count
     max_component_threshold = e[e['components'] == max(e['components'])].max()['mi_threshold']
     # optional: if there are multiple MI thresholds which maximize the number of components,
