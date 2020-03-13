@@ -51,16 +51,14 @@ You can access it by the url returned from the above command, usually it is [htt
 ```json
 {"nodes": [
     {"name": "string_name_1",
-    "type": "continuous or discrete",
-    "neighbors": ["string_name_1", "string_name_2", "string_name_3"...]}
- ...],
+    "type": "continuous OR discrete",
+    "neighbors": ["string_name_1", "string_name_2", "string_name_3"]}],
  
 "links": [
     {"source": "string_name_of_source_node",
     "target": "string_name_of_target_node",
     "weight": 0.8986,
-    "viztype": "CC DC DD"} 
-...]}
+    "viztype": "CC or DC or DD"}]}
 
 ```
 There is an example json under `utilities/example_data`
