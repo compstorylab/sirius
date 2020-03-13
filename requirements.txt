@@ -5,7 +5,6 @@ networkx
 numpy
 pandas
 plotly
-plotly-orca
 psutil
 pytz==2019.3
 requests
