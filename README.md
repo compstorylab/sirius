@@ -65,7 +65,7 @@ There is an example json under `utilities/example_data`
 
 2. You should see a network graph with which to explore feature pairs with high mutual information.
 
-<b>Note<b>: Please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
+<b>Note</b>: Please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
 
 
 ## Data Processing
@@ -77,7 +77,7 @@ Sirius works by processing cleaned data to compute pairwise feature relationship
 All data processing takes place in `matrix.py`. There are a number of customizable parameters in this script:
 
 Argument | Type | Default | Description
------------- | ------------ | ------------- | ------------
+------------ | :-------------: | :-------------: | ------------
 `--dpi` | int | `150` | Resolution of output plots
 `--discrete-threshold` | int | `5` | Number of responses below which numeric features are considered discrete
 `--chart` | boolean | `False` | Display images while running computation
