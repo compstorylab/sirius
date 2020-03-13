@@ -231,12 +231,12 @@ def matrix_viz(matrix):
 
 
 # Visualization Function Router
-def viz(U, V, df, feature_types, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
+def viz(U, V, df, feature_info, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Generate a visualization based on feature types '''
     plt.clf()
     plt.figure(dpi=resolution)
     pairdf = df.filter([U, V]).dropna(how='any')
-
+    feature_types = feature_info['type'].to_dict()
     # If both features are discrete:
     if feature_types[U] == 'd' and feature_types[V] == 'd':
         DD_viz(pairdf, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
@@ -377,8 +377,20 @@ def calc_mi(df, feature_info, debug=False):
 
 ## Network Graph
 
-def output_pairs_json(df, output_dir, pairs=None, num_sample=None, random_state=None):
-    if pairs is None:
+def output_pairs_json(df, output_dir, pair_info=None, num_sample=None, random_state=None):
+    """
+    :param df:
+    :param output_dir:
+    :param pair_info: 'x' and 'y' columns specify feature pairs. 'v' column specifies mutual information.
+    :param num_sample:
+    :param random_state:
+    :return:
+    """
+    json_dir = output_dir / 'json'
+    json_dir.mkdir(parents=True, exist_ok=True)
+    if pair_info is not None:
+        pairs = list(zip(pair_info['x'], pair_info['y']))
+    else:
         pairs = list(itertools.combinations(df.columns, 2))
 
     for col1, col2 in pairs:
@@ -387,20 +399,35 @@ def output_pairs_json(df, output_dir, pairs=None, num_sample=None, random_state=
             # too many data points make the javascript visualizations cry.
             pairdf = pairdf.sample(n=num_sample, random_state=random_state)
 
-        pairdf.to_json(output_dir / 'json' / (col1 + '_' + col2 + '.json'))
+        pairdf.to_json(json_dir / (col1 + '_' + col2 + '.json'))
 
 
+def output_graph_json(pair_info, feature_info, output_dir):
+    """
+    :param pair_info: 'x' and 'y' columns specify feature pairs. 'v' column specifies mutual information.
+    :param feature_info: indexed by feature. 'type' column specifies 'c' for continuous and 'd' for discrete
+    :param output_dir:
+    :return:
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+    # Add visualization type to each pair: CC, DC, or DD
+    pair_info['viztype'] = pair_info.apply(
+        lambda s: ''.join(sorted([feature_info.loc[s['x'], 'type'], feature_info.loc[s['y'], 'type']],
+                                 reverse=True)).upper(),
+        axis=1)
 
-def output_graph_json(stack, feature_types, output_dir):
+    # Rename columns for Sirius
+    pair_info = pair_info.rename(columns={'x': 'source', 'y': 'target', 'v': 'weight'})
+
     # Create a networkx graph from the list of pairs
-    G = nx.from_pandas_edgelist(stack, 'source', 'target', ['weight'])
+    G = nx.from_pandas_edgelist(pair_info, 'source', 'target', ['weight'])
     nodelist = []
-    for n in set(stack['source']).union(stack['target']):
+    for n in set(pair_info['source']).union(pair_info['target']):
         nodelist.append({'name': n,
-                         'type': 'continuous' if feature_types[n] == 'c' else 'discrete',
+                         'type': 'continuous' if feature_info.loc[n, 'type'] == 'c' else 'discrete',
                          'neighbors': list(dict(G[n]).keys())})
 
-    json_out = {'nodes': nodelist, 'links': stack.to_dict(orient='records')}
+    json_out = {'nodes': nodelist, 'links': pair_info.to_dict(orient='records')}
     with open(output_dir / 'graph.json', 'w') as json_file:
         json.dump(json_out, json_file)
 
@@ -461,7 +488,7 @@ def calculate_positions(G):
 
 
 def draw_graph(stack, title, chart=False, output=False, output_dir=None, resolution=150, **kwargs):
-    G = nx.from_pandas_edgelist(stack, 'source', 'target', ['weight'])
+    G = nx.from_pandas_edgelist(stack, 'x', 'y', ['v'])
     [edges, nodes] = calculate_positions(G)
 
     # Draw edges
@@ -512,7 +539,13 @@ def draw_graph(stack, title, chart=False, output=False, output_dir=None, resolut
 
 ## Thresholding
 
-def find_max_component_threshold(stack):
+def threshold_by_max_component(pair_info, chart=False):
+    max_component_threshold = find_max_component_threshold(pair_info, chart=chart)
+    # Threshold the edge list by the mutual information threshold which maximizes the component count
+    return pair_info[pair_info['v'] > max_component_threshold]
+
+
+def find_max_component_threshold(stack, chart=False):
     """
     Find the mutual information threshold that maximizes the number of connected components (subgraphs with >1 node)
     in the resulting graph.
@@ -534,11 +567,12 @@ def find_max_component_threshold(stack):
         e = e.append({'mi_threshold': i, 'edge_count': (stack['v'] > i).sum(),
                       'components': nx.number_connected_components(G)}, ignore_index=True)
 
-    # Plot the number of edges for a range of mutual information scores
-    sns.lineplot(e['mi_threshold'], e['edge_count'])
+    if chart:
+        # Plot the number of edges for a range of mutual information scores
+        sns.lineplot(e['mi_threshold'], e['edge_count'])
 
-    # Plot the number of components for a range of mutual information scores
-    sns.lineplot(e['mi_threshold'], e['components'])
+        # Plot the number of components for a range of mutual information scores
+        sns.lineplot(e['mi_threshold'], e['components'])
 
     # Find the mutual information threshold which maximizes the component count
     max_component_threshold = e[e['components'] == max(e['components'])].max()['mi_threshold']
@@ -608,7 +642,6 @@ def main():
 
     # Classify Features
     feature_info = classify_features(df, discrete_threshold, debug=debug)
-    feature_types = feature_info['type'].to_dict()
     if debug:
         print('Classified Features:')
         print(feature_info)
@@ -627,43 +660,30 @@ def main():
         # Re-import the Mutual Information results
         # (this is helpful if you want to re-generate visualizations
         # without having to re-run the mutual information calculations)
-        stack = pd.read_csv(output_dir / 'results.csv')
+        pair_info = pd.read_csv(output_dir / 'results.csv')
 
     # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
-    sorted_stack = stack.sort_values(by='v', ascending=False)
+    pair_info = pair_info.sort_values(by='v', ascending=False)
     # sorted_stack = sorted_stack[sorted_stack['v'] < 1]
 
-    # Thresholding
-
-    max_component_threshold = find_max_component_threshold(sorted_stack)
     # Threshold the edge list by the mutual information threshold which maximizes the component count
-    thresh_stack = sorted_stack[sorted_stack['v'] > max_component_threshold]
+    pair_info = threshold_by_max_component(pair_info)
 
-    # Add visualization type to each pair: CC, DC, or DD
-    thresh_stack['viztype'] = thresh_stack.apply(
-        lambda s: ''.join(sorted([feature_info.loc[s['x'], 'type'], feature_info.loc[s['y'], 'type']],
-                                 reverse=True)).upper(),
-        axis=1)
-
-    thresh_stack = thresh_stack.rename(columns={'x': 'source', 'y': 'target', 'v': 'weight'})
-
-    # Network Graph
+    # Sirius JSON
 
     if output:
-        output_graph_json(thresh_stack, feature_types, output_dir)
+        output_graph_json(pair_info, feature_info, output_dir)
+        output_pairs_json(df, output_dir, pair_info, num_sample=output_max_n)
+
+    # Visualizations
 
     if output_chart or chart:
-        draw_graph(thresh_stack, 'Example Graph', chart=chart, output=output_chart, output_dir=output_dir, resolution=resolution)
-
-    # Feature Pairs
-
-    if output:
-        output_pairs_json(df, output_dir, pairs=list(zip(thresh_stack['source'], thresh_stack['target'])), num_sample=output_max_n)
-
-    if output_chart or chart:
-        for i, row in thresh_stack.iterrows():
-            viz(row['source'],row['target'], df, feature_types, charter=charter, chart=chart, output=output_chart,
+        draw_graph(pair_info, 'Example Graph', chart=chart, output=output_chart, output_dir=output_dir, resolution=resolution)
+        for x, y in zip(pair_info['x'], pair_info['y']):
+            viz(x, y, df, feature_info, charter=charter, chart=chart, output=output_chart,
                 output_dir=output_dir, resolution=resolution)
+
+
 
 
 if __name__ == '__main__':
