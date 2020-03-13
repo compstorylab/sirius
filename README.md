@@ -74,7 +74,7 @@ Sirius works by processing cleaned data to compute pairwise feature relationship
 
 ![Sirius Data Processing Flowchart](https://raw.githubusercontent.com/compstorylab/sirius/develop/static/documentation/flowchart.png)
 
-All data processing takes place in `matrix.py`. There are a number of customizable parameters in this script:
+All data processing can be run from the command line using `matrix.py`. There are a number of customizable parameters in this script, which can be changed using flags when running the script from the command line:
 
 Argument | Type | Default | Description
 ------------ | :-------------: | :-------------: | ------------
@@ -88,8 +88,13 @@ Argument | Type | Default | Description
 `--no-mi` | boolean | `False` | Do not compute MI. Use cached MI values instead
 `--cache` | boolean | `False` | Cache MI values to use later when generating visualizations
 `--sample-n` | int | `None` | Subsample the data. By default, work with all the data
-`--input-file` | string | `'example_data/data.csv'` | Location of the input data
+`--input-file` | string | `'example_data/data.csv'` | Location of the input data csv
 `--output-dir` | string | `'example_data/output'` | A directory in which to store the output json and png files
+
+For example, to process custom data using the tool, one might run from the command line:
+
+`python3 matrix.py --debug --input-file=my_custom_data/data.csv --output-dir=my_custom_data/output --sample-n=1000 --no-viz --cache > my_custom_data.log.v$(date "+%Y%m%d")` which would run the `matrix.py` script with debugging enabled, specifying custom directories for data input and outpt, using a 1k-observation sample from the data frame, outputting no visualization data, caching mutual information scores, and saving all logs to a log file named with today's date.
+
 
 
 
