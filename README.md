@@ -74,7 +74,7 @@ There is an example json under `utilities/example_data`
 
 Sirius works by processing cleaned data to compute pairwise feature relationships using mutual information, and generating a network graph layout for exploratory analysis. The following diagram may be helpful for understanding:
 
-
+![Sirius Data Processing Flowchart](https://raw.githubusercontent.com/compstorylab/sirius/develop/static/documentation/flowchart.png)
 
 
 
