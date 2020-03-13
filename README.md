@@ -77,7 +77,7 @@ Sirius works by processing cleaned data to compute pairwise feature relationship
 All data processing takes place in `matrix.py`. There are a number of customizable parameters in this script:
 
 Argument | Type | Default | Description
------------- | ------------ | ------------- | ------------ | -------------
+------------ | ------------ | ------------- | ------------
 `--dpi` | int | `150` | Resolution of output plots
 `--discrete-threshold` | int | `5` | Number of responses below which numeric features are considered discrete
 `--chart` | boolean | `False` | Display images while running computation
