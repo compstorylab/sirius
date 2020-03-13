@@ -230,15 +230,6 @@ def matrix_viz(matrix):
     plt.show()
 
 
-def output_pairs_json(df, output_dir, pairs=None):
-    if pairs is None:
-        pairs = list(itertools.combinations(df.columns, 2))
-
-    for col1, col2 in pairs:
-        pairdf = df.loc[:, [col1, col2]].dropna(how='any')
-        pairdf.to_json(output_dir / 'json' / (col1 + '_' + col2 + '.json'))
-
-
 # Visualization Function Router
 def viz(U, V, df, feature_types, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Generate a visualization based on feature types '''
@@ -385,6 +376,20 @@ def calc_mi(df, feature_info, debug=False):
 
 
 ## Network Graph
+
+def output_pairs_json(df, output_dir, pairs=None, num_sample=None, random_state=None):
+    if pairs is None:
+        pairs = list(itertools.combinations(df.columns, 2))
+
+    for col1, col2 in pairs:
+        pairdf = df.loc[:, [col1, col2]].dropna(how='any')
+        if num_sample and len(pairdf) > num_sample:
+            # too many data points make the javascript visualizations cry.
+            pairdf = pairdf.sample(n=num_sample, random_state=random_state)
+
+        pairdf.to_json(output_dir / 'json' / (col1 + '_' + col2 + '.json'))
+
+
 
 def output_graph_json(stack, feature_types, output_dir):
     # Create a networkx graph from the list of pairs
@@ -556,6 +561,7 @@ def main():
     parser.add_argument('--charter', choices=['Plotly', 'Seaborn'], default='Plotly', help='The plotting library to use.')
     parser.add_argument('--debug', action='store_true', default=False, help='Print updates to the console while running.')
     parser.add_argument('--output', action='store_true', default=False, help='Output network and feature pairs json to files.')
+    parser.add_argument('--output-max-n', type=int, default=None, help='The maximum number of data points to output in the feature pair json files.')
     parser.add_argument('--output-chart', action='store_true', default=False, help='Output chart json and pngs to files.')
     parser.add_argument('--no-viz', action='store_true', default=False, help='Do not output pair plots, network graph, or json.')
     parser.add_argument('--no-mi', action='store_true', default=False, help='Do not compute MI. Use cached MI values instead.')
@@ -569,6 +575,7 @@ def main():
     chart = args.chart  # boolean for whether to display images while running computation
     debug = args.debug  # boolean for whether to print updates to the console while running
     output = args.output  # boolean for whether to output json and pngs to files
+    output_max_n = args.output_max_n  # int for the maximum number of observations to output to the feature pair json files.
     output_chart = args.output_chart  # boolean for whether to output json and pngs to files
     cache = args.cache
     no_mi = args.no_mi
@@ -581,6 +588,7 @@ def main():
     sample_n = args.sample_n  # Work with all data (None), or just a sample?
     input_file = Path(args.input_file)  # e.g. './example_data/data.csv'
     output_dir = Path(args.output_dir)  # e.g. './example_data/output'
+    pairs_json_sample_size = 1000  # Max # of observations to save to the pair json files. None will output all data points for a pair.
     # cd = 'example_data/output'
 
     sns.set_style("whitegrid")
@@ -650,7 +658,7 @@ def main():
     # Feature Pairs
 
     if output:
-        output_pairs_json(df, output_dir, pairs=list(zip(thresh_stack['source'], thresh_stack['target'])))
+        output_pairs_json(df, output_dir, pairs=list(zip(thresh_stack['source'], thresh_stack['target'])), num_sample=output_max_n)
 
     if output_chart or chart:
         for i, row in thresh_stack.iterrows():
