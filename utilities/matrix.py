@@ -101,10 +101,10 @@ def DD_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, res
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_layout(font=dict(color="white"))
-            with open(output_dir / 'charts' / U + '_' + V + '.json', 'w') as outfile:
+            with open(output_dir / 'charts' / (U + '_' + V + '.json'), 'w') as outfile:
                 json.dump(fig.to_json(), outfile)
 
-            fig.write_image(output_dir / 'charts' / U + '_' + V + '.png', scale=resolution // 72)
+            fig.write_image(str(output_dir / 'charts' / (U + '_' + V + '.png')), scale=resolution // 72)
     else:
         plt.clf()
         plt.figure(dpi=resolution)
@@ -112,7 +112,7 @@ def DD_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, res
         plt.xlabel(U.replace('_', ' ').title())
         plt.ylabel(V.replace('_', ' ').title())
         if output:
-            plt.savefig(output_dir / 'charts' / U + '_' + V + '.png', dpi=resolution)
+            plt.savefig(output_dir / 'charts' / (U + '_' + V + '.png'), dpi=resolution)
 
         if chart:
             plt.show()
@@ -121,18 +121,17 @@ def DD_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, res
 
 
 # Discrete-Continuous Violin Plots
-def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
+def DC_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150, discrete_first=True):
     ''' Takes a subset dataframe of one continuous and one discrete feature and generates a Violin Plot '''
 
-    U = list(df.columns)[0]
-    V = list(df.columns)[1]
-
-    if (U in continuous):
-        D = V
-        C = U
-    else:
+    U = df.columns[0]
+    V = df.columns[1]
+    if discrete_first:
         D = U
         C = V
+    else:
+        D = V
+        C = U
 
     if charter == 'Plotly':
         fig = go.Figure()
@@ -144,8 +143,8 @@ def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, output_d
         fig.update_layout(
             xaxis_showgrid=False,
             xaxis_zeroline=False,
-            xaxis_title=U.replace('_', ' ').title(),
-            yaxis_title=V.replace('_', ' ').title(),
+            xaxis_title=C.replace('_', ' ').title(),
+            yaxis_title=D.replace('_', ' ').title(),
             plot_bgcolor="rgba(0, 0, 0, 0)",
             paper_bgcolor="rgba(0, 0, 0, 0)",
             showlegend=False
@@ -157,10 +156,10 @@ def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, output_d
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_layout(font=dict(color="white"))
-            with open(output_dir / 'charts' / U + '_' + V + '.json', 'w') as outfile:
+            with open(output_dir / 'charts' / (U + '_' + V + '.json'), 'w') as outfile:
                 json.dump(fig.to_json(), outfile)
 
-            fig.write_image(output_dir / 'charts' / U + '_' + V + '.png', scale=resolution // 72)
+            fig.write_image(str(output_dir / 'charts' / (U + '_' + V + '.png')), scale=resolution // 72)
     else:
         sns.violinplot(df[D], df[C])
         if len(df[D]) < 500:
@@ -170,7 +169,7 @@ def DC_viz(df, continuous, charter='Plotly', chart=False, output=False, output_d
         plt.ylabel(C.replace('_', ' ').title())
 
         if output:
-            plt.savefig(output_dir / 'charts' / U + '_' + V + '.png', dpi=resolution)
+            plt.savefig(output_dir / 'charts' / (U + '_' + V + '.png'), dpi=resolution)
 
         if chart:
             plt.show()
@@ -202,10 +201,10 @@ def CC_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, res
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_layout(font=dict(color="white"))
-            with open(output_dir / 'charts' / U + '_' + V + '.json', 'w') as outfile:
+            with open(output_dir / 'charts' / (U + '_' + V + '.json'), 'w') as outfile:
                 json.dump(fig.to_json(), outfile)
 
-            fig.write_image(output_dir / 'charts' / U + '_' + V + '.png', scale=resolution // 72)
+            fig.write_image(str(output_dir / 'charts' / (U + '_' + V + '.png')), scale=resolution // 72)
     else:
         sns.kdeplot(df[U], df[V], color='blue', shade=True, alpha=0.3, shade_lowest=False)
         if len(df[U]) < 500:
@@ -215,7 +214,7 @@ def CC_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, res
         plt.xlabel(U.replace('_', ' ').title())
         plt.ylabel(V.replace('_', ' ').title())
         if output:
-            plt.savefig(output_dir / 'charts' / U + '_' + V + '.png', dpi=resolution)
+            plt.savefig(output_dir / 'charts' / (U + '_' + V + '.png'), dpi=resolution)
 
         if chart:
             plt.show()
@@ -231,28 +230,35 @@ def matrix_viz(matrix):
     plt.show()
 
 
+def output_pairs_json(df, output_dir, pairs=None):
+    if pairs is None:
+        pairs = list(itertools.combinations(df.columns, 2))
+
+    for col1, col2 in pairs:
+        pairdf = df.loc[:, [col1, col2]].dropna(how='any')
+        pairdf.to_json(output_dir / 'json' / (col1 + '_' + col2 + '.json'))
+
+
 # Visualization Function Router
-def viz(U, V, df, discrete, continuous, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
+def viz(U, V, df, feature_types, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
     ''' Generate a visualization based on feature types '''
     plt.clf()
     plt.figure(dpi=resolution)
-
     pairdf = df.filter([U, V]).dropna(how='any')
 
     # If both features are discrete:
-    if U in discrete and V in discrete:
+    if feature_types[U] == 'd' and feature_types[V] == 'd':
         DD_viz(pairdf, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
     # If both features are continuous:
-    elif U in continuous and V in continuous:
+    elif feature_types[U] == 'c' and feature_types[V] == 'c':
         CC_viz(pairdf, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
     # If one feature is continuous and one feature is discrete:
-    elif U in continuous and V in discrete or U in discrete and V in continuous:
-        DC_viz(pairdf, continuous, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
+    elif feature_types[U] == 'c' and feature_types[V] == 'd':
+        DC_viz(pairdf, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution, discrete_first=False)
+    elif feature_types[U] == 'd' and feature_types[V] == 'c':
+        DC_viz(pairdf, charter=charter, chart=chart, output=output, output_dir=output_dir, resolution=resolution)
     else:
         raise Exception('Error on features', U, 'and', V)
-
-    if output:
-        pairdf.to_json(output_dir / 'json' / U + '_' + V + '.json')
 
     return viz
 
@@ -380,6 +386,27 @@ def calc_mi(df, feature_info, debug=False):
 
 ## Network Graph
 
+def output_graph_json(stack, feature_types, output_dir):
+    # Create a networkx graph from the list of pairs
+    G = nx.from_pandas_edgelist(stack, 'source', 'target', ['weight'])
+    nodelist = []
+    for n in set(stack['source']).union(stack['target']):
+        nodelist.append({'name': n,
+                         'type': 'continuous' if feature_types[n] == 'c' else 'discrete',
+                         'neighbors': list(dict(G[n]).keys())})
+
+    json_out = {'nodes': nodelist, 'links': stack.to_dict(orient='records')}
+    with open(output_dir / 'graph.json', 'w') as json_file:
+        json.dump(json_out, json_file)
+
+    components = []
+    for i in nx.connected_components(G):
+        components.append(list(i))
+
+    with open(output_dir / 'components.json', 'w') as json_file:
+        json.dump(components, json_file)
+
+
 def calculate_positions(G):
     # Generate position data for each node
     pos = nx.kamada_kawai_layout(G, weight='weight')
@@ -428,7 +455,10 @@ def calculate_positions(G):
     return edges, nodes
 
 
-def draw_graph(edges, nodes, title, chart=False, output=False, output_dir=None, resolution=150, **kwargs):
+def draw_graph(stack, title, chart=False, output=False, output_dir=None, resolution=150, **kwargs):
+    G = nx.from_pandas_edgelist(stack, 'source', 'target', ['weight'])
+    [edges, nodes] = calculate_positions(G)
+
     # Draw edges
     edge_trace = go.Scatter(
         x=edges['x'], y=edges['y'],
@@ -472,8 +502,10 @@ def draw_graph(edges, nodes, title, chart=False, output=False, output_dir=None, 
         fig.show()
 
     if output:
-        fig.write_image(output_dir / 'graph_example.png', scale=resolution // 72)
+        fig.write_image(str(output_dir / 'graph_example.png'), scale=resolution // 72)
 
+
+## Thresholding
 
 def find_max_component_threshold(stack):
     """
@@ -523,7 +555,8 @@ def main():
     parser.add_argument('--chart', action='store_true', default=False, help='Display images while running computation')
     parser.add_argument('--charter', choices=['Plotly', 'Seaborn'], default='Plotly', help='The plotting library to use.')
     parser.add_argument('--debug', action='store_true', default=False, help='Print updates to the console while running.')
-    parser.add_argument('--output', action='store_true', default=False, help='Output json and pngs to files.')
+    parser.add_argument('--output', action='store_true', default=False, help='Output network and feature pairs json to files.')
+    parser.add_argument('--output-chart', action='store_true', default=False, help='Output chart json and pngs to files.')
     parser.add_argument('--no-viz', action='store_true', default=False, help='Do not output pair plots, network graph, or json.')
     parser.add_argument('--no-mi', action='store_true', default=False, help='Do not compute MI. Use cached MI values instead.')
     parser.add_argument('--cache', action='store_true', default=False, help='Cache MI values to use later when generating visualizations.')
@@ -536,6 +569,7 @@ def main():
     chart = args.chart  # boolean for whether to display images while running computation
     debug = args.debug  # boolean for whether to print updates to the console while running
     output = args.output  # boolean for whether to output json and pngs to files
+    output_chart = args.output_chart  # boolean for whether to output json and pngs to files
     cache = args.cache
     no_mi = args.no_mi
     no_viz = args.no_viz
@@ -556,14 +590,17 @@ def main():
         output_dir.mkdir(parents=True, exist_ok=True)
 
     if output:
-        for d in ['charts', 'json']:
-            (output_dir / d).mkdir(parents=True, exist_ok=True)
+        (output_dir / 'json').mkdir(parents=True, exist_ok=True)
+
+    if output_chart:
+        (output_dir / 'charts').mkdir(parents=True, exist_ok=True)
 
     # Load Data
     df = load_data(input_file, sample_n=sample_n, debug=debug)
 
     # Classify Features
     feature_info = classify_features(df, discrete_threshold, debug=debug)
+    feature_types = feature_info['type'].to_dict()
     if debug:
         print('Classified Features:')
         print(feature_info)
@@ -602,40 +639,23 @@ def main():
 
     thresh_stack = thresh_stack.rename(columns={'x': 'source', 'y': 'target', 'v': 'weight'})
 
-    # Node and Edge Lists
-
-    # Create a networkx graph from the list of pairs
-    G = nx.from_pandas_edgelist(thresh_stack, 'source', 'target', ['weight'])
-
-    nodelist = []
-    for n in set(thresh_stack['source']).union(thresh_stack['target']):
-        nodelist.append({'name': n,
-                         'type': 'continuous' if n in continuous else 'discrete',
-                         'neighbors': list(dict(G[n]).keys())})
-
-    json_out = {}
-    json_out['nodes'] = nodelist
-    json_out['links'] = thresh_stack.to_dict(orient='records')
-
-    with open(output_dir / 'graph.json', 'w') as json_file:
-        json.dump(json_out, json_file)
-
-    for i, row in thresh_stack.iterrows():
-        viz(row['source'],row['target'], df, discrete, continuous, charter=charter, chart=chart, output=output,
-            output_dir=output_dir, resolution=resolution)
-
-    # Positioning
-    [edges, nodes] = calculate_positions(G)
-
-    draw_graph(edges, nodes, 'Example Graph', chart=chart, output=output, output_dir=output_dir, resolution=resolution)
-
-    components = []
-    for i in nx.connected_components(G):
-        components.append(list(i))
+    # Network Graph
 
     if output:
-        with open(output_dir / 'components.json', 'w') as json_file:
-            json.dump(components, json_file)
+        output_graph_json(thresh_stack, feature_types, output_dir)
+
+    if output_chart or chart:
+        draw_graph(thresh_stack, 'Example Graph', chart=chart, output=output_chart, output_dir=output_dir, resolution=resolution)
+
+    # Feature Pairs
+
+    if output:
+        output_pairs_json(df, output_dir, pairs=list(zip(thresh_stack['source'], thresh_stack['target'])))
+
+    if output_chart or chart:
+        for i, row in thresh_stack.iterrows():
+            viz(row['source'],row['target'], df, feature_types, charter=charter, chart=chart, output=output_chart,
+                output_dir=output_dir, resolution=resolution)
 
 
 if __name__ == '__main__':
