@@ -46,20 +46,37 @@ Congratulations, the Exploratory Analysis Tool is live in your local environment
 You can access it by the url returned from the above command, usually it is [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## User Guide of the Tool
-1. upload the json file with structures like:
+
+1. Upload the json file with structures like:
 ```json
-{
-"nodes": [{"index":1, "source": "node_1"}, {"index":2, "source": "node_2"}]
-,
-"links":[{"source": 1, "target": 2, "correlations": 0.58, "link": "node_1_to_2", "support": 300}]
-}
+{"nodes": [
+    {"name": "string_name_1",
+    "type": "continuous or discrete",
+    "neighbors": ["string_name_1", "string_name_2", "string_name_3"...]}
+ ...],
+ 
+"links": [
+    {"source": "string_name_of_source_node",
+    "target": "string_name_of_target_node",
+    "weight": 0.8986,
+    "viztype": "CC DC DD"} 
+...]}
+
 ```
 There is an example json under `utilities/example_data`
 
-2. viola! you will see a network graph with options to explore with.
+2. You should see a network graph with which to explore feature pairs with high mutual information.
 
-<b>Note<b>:
-1. please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
+<b>Note<b>: Please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
+
+
+## Data Processing
+
+Sirius works by processing cleaned data to compute pairwise feature relationships using mutual information, and generating a network graph layout for exploratory analysis. The following diagram may be helpful for understanding:
+
+
+
+
 
 ## Development
 If you would like to contribute to the development, WELCOME!
@@ -68,7 +85,7 @@ Please make sure you have `npm` installed.
 Then `npm install` to install all required js libraries for development.
 We use typescript in this project. Please execute `./node_modules/.bin/webpack` to compile typescript into javascript.
 
-Thorough documentation is required in development
+Thorough documentation is required in development.
 
 
 
