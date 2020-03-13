@@ -26,32 +26,35 @@ from plotly.colors import n_colors
 from plotly.offline import download_plotlyjs, plot, iplot #, init_notebook_mode
 
 
-def get_types(U, response_list):
-    types = {'floats': 0, 'strings': 0, 'nulls': 0}
-    for i in response_list['responses'][U]:
+def load_data(input_file, sample_n=None, debug=False):
+    # Load Data
+    df = pd.read_csv(input_file)
+    if sample_n:
+        df = df.sample(sample_n)
+
+    # Ignore ID columns
+    ignore = []
+    for i in df.columns:
         try:
-            val = float(i)
-            if not math.isnan(val):
-                # print("Value",i," is a float")
-                types['floats'] += 1
-            else:
-                # print("Value",i," is null")
-                types['nulls'] += 1
-        except ValueError:
-            try:
-                val = str(i)
-                # print("Value",i,"is a string")
-                types['strings'] += 1
-            except:
-                print('Error: Unexpected value', i, 'for feature', U)
+            # ? What is this doing?
+            np.ma.fix_invalid(df[i])
+        except:
+            pass
 
-    if types['floats'] > 0 and types['strings'] > 0:
-        print('Column', U, 'contains floats AND strings')
+        if ('_id' in i):
+            ignore.append(i)
 
-    return types
+    df = df.drop(columns=ignore)
+    df = df.replace(np.nan, None)
+    df = df.replace('nan', None)
+    df.columns = [c.replace(' ', '_') for c in df.columns]
+    if debug:
+        print(f'Loaded data from {input_file} with {df.shape[0]} observations and {df.shape[1]} features')
+
+    return df
 
 
-## Data structures
+## Visualization
 
 def compute_bandwidth(X, df):
     ''' Takes a column name and computes suggested gaussian bandwidth with the formula: 1.06*var(n^-0.2) '''
@@ -60,8 +63,6 @@ def compute_bandwidth(X, df):
     b = 1.06 * var * (n ** (-0.2))
     return b
 
-
-## Visualization
 
 # Discrete-Discrete Confusion Matrices
 def DD_viz(df, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
@@ -256,202 +257,128 @@ def viz(U, V, df, discrete, continuous, charter='Plotly', chart=False, output=Fa
     return viz
 
 
+## Feature Classification
+
+def classify_features(df, discrete_threshold, debug=False):
+    """
+    Categorize every feature/column of df as discrete or continuous according to whether or not the unique responses
+    are numeric and, if they are numeric, whether or not there are fewer unique renponses than discrete_threshold.
+    Return a dataframe with a row for each feature and columns for the type, the count of unique responses, and the
+    count of string, number or null/nan responses.
+    """
+    counts = []
+    string_counts = []
+    float_counts = []
+    null_counts = []
+    types = []
+    for col in df.columns:
+        responses = df[col].unique()
+        counts.append(len(responses))
+        string_count, float_count, null_count = 0, 0, 0
+        for value in responses:
+            try:
+                val = float(value)
+                if not math.isnan(val):
+                    float_count += 1
+                else:
+                    null_count += 1
+            except ValueError:
+                try:
+                    val = str(value)
+                    string_count += 1
+                except:
+                    print('Error: Unexpected value', value, 'for feature', col)
+
+        string_counts.append(string_count)
+        float_counts.append(float_count)
+        null_counts.append(null_count)
+        types.append('d' if len(responses) < discrete_threshold or string_count > 0 else 'c')
+
+    feature_info = pd.DataFrame({'count': counts,
+                                 'string_count': string_counts,
+                                 'float_count': float_counts,
+                                 'null_count': null_counts,
+                                 'type': types}, index=df.columns)
+    if debug:
+        print(f'Counted {sum(feature_info["type"] == "d")} discrete features and {sum(feature_info["type"] == "c")} continuous features')
+
+    return feature_info
+
+
 ## Mutual Information
 
-
-# Discrete-Discrete
-def DD_mi(df, debug=False):
-    ''' Takes two discrete feature names and calculates mutual information '''
-    return np.log2(np.e) * mutual_info_score(df.iloc[:, 0].values, df.iloc[:, 1].values)
-
-
-# ### Discrete-Continuous
-# 
-# This uses SciKit's [mutual_info_regression](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html)
-# which calculates mutual information using the nearest neighbor entropy approach described in
-# [*B. C. Ross “Mutual Information between Discrete and Continuous Data Sets”. PLoS ONE 9(2), 2014.*](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0087357)
-# 
-# This requires us to sparsify the discrete matrix by response
-def DC_mi(df, continuous, debug=False):
-    ''' Takes a subset df of one discrete and one continuous feature and, using a sparsified matrix of the discrete responses, returns mutual information score '''
-
-    U = df.columns[0]
-    V = df.columns[1]
-    if debug:
-        print(f'Calculating discrete-continious MI for {U} and {V}')
-
-    if U in continuous:
-        D = V
-        C = U
-    else:
-        D = U
-        C = V
-    if debug:
-        print(f'Discrete: {D} Continuous: {C}')
-
-    responses = df[D].unique()
-    if debug:
-        print(f'responses = {responses}')
-
-    # point-wise mutual information
-    pmi = list(mutual_info_regression(pd.get_dummies(df[D]), df[C], discrete_features=True))
-    if debug:
-        print(f'pmi list = {pmi}')
-
-    l = []
-    for i in range(len(responses)):
-        conditional_probability = df[df[D] == responses[i]].shape[0] / len(df[C])
-        l.append(pmi[i] * conditional_probability)
-
-    mi = sum(l)
-    if debug:
-        print(f'MI: {mi}')
-
-    return mi
-
-
-# Continuous-Continuous
-def CC_mi(df, debug=False):
-    ''' Takes a subset df of two continuous features and calculates mutual information using SciKit's mutual_info_regression function '''
-    U = list(df.columns)[0]
-    V = list(df.columns)[1]
-
-    if debug:
-        print(f'Calculating mutual information for {U} and {V}')
-
-    mi = mutual_info_regression(df.filter([U]), df[V])[0]
-    if debug:
-        print(f'MI: {mi}')
-
-    return mi
-
-
-# Comparison: Correlation
-def CC_corr(df, debug=False):
-    ''' Takes two continuous feature names and calculates pearson correlation '''
-
-    U = list(df.columns)[0]
-    V = list(df.columns)[1]
-
-    if debug:
-        print(f'Calculating correlation between {U} and {V}')
-
-    corr = pearsonr(df[U], df[V])[0]
-    if debug:
-        print(f'Correlation = {corr}')
-
-    return corr
-
-
-## Matrix Functions
-
-def matrixify(df):
-    ''' Takes a dataframe with columns [source,target,value] and returns a matrix where {index:source, columns:target, values:values} '''
-    m = df.pivot(index=list(df.columns)[0], columns=list(df.columns)[1], values=list(df.columns)[2])
-    return m
-
-
-## Data Processing
-
-def calc_pairtype(U, V, discrete, continuous, debug=False):
-    ''' Takes two feature names and returns the pair type ('DD': discrete/discrete, 'DC': discrete/continuous, or 'CC': continuous/continuous) '''
-
-    if debug:
-        print('Finding pair type for "', U, '" and "', V, '"')
-
-    # If both features are discrete:
-    if U in discrete and V in discrete:
-        pair_type = 'DD'
-        if debug:
-            print('"', U, '" and "', V, '" are data pair type', pair_type)
-    # If both features are continuous:
-    elif U in continuous and V in continuous:
-        pair_type = 'CC'
-        if debug:
-            print('"', U, '" and "', V, '" are data pair type', pair_type)
-    # If one feature is continuous and one feature is discrete:
-    elif U in continuous and V in discrete or U in discrete and V in continuous:
-        pair_type = 'DC'
-        if debug:
-            print('"', U, '" and "', V, '" are data pair type', pair_type)
-    else:
-        pair_type = 'Err'
-        print('Error on', U, 'and', V)
-
-    return pair_type
-
-
-def calc_mi(df, U, V, discrete, continuous, debug=False, charter='Plotly', chart=False, output=False,
-            output_dir=None, resolution=150):
-    ''' Takes two feature names and determines which mutual information method to use; returns calculated mutual information score '''
-    try:
-        pairdf = df.filter([U, V]).dropna(how='any')
-
-        if pairdf.shape[0] < 1:
-            return 0
-
-        if debug:
-            print('Calculating mutual information for', U, '(', list(df.columns).index(U), 'of',
-                  len(list(df.columns)), ')', V, '(', list(df.columns).index(V), 'of', len(list(df.columns)), ')')
-
-        mi_start_time = datetime.now()
-        if U == V:
-            return 1
-        else:
-            pair_type = calc_pairtype(U, V, discrete, continuous, debug=debug)
-            # If both features are discrete:
-            if pair_type == 'DD':
-                mi = DD_mi(pairdf, debug=debug)
-            # If both features are continuous:
-            elif pair_type == 'CC':
-                mi = CC_mi(pairdf, debug=debug)
-            # If one feature is continuous and one feature is discrete:
-            elif pair_type == 'DC':
-                mi = DC_mi(pairdf, continuous, debug=debug)
-            else:
-                mi = 0
-
-            if chart:
-                viz(U, V, df, discrete, continuous, charter=charter, chart=chart, output=output, output_dir=output_dir,
-                    resolution=resolution)
-
-            if debug:
-                print('Elapsed time:', datetime.now() - mi_start_time)
-
-        return mi
-    except:
-        return 0
-
-
-def run_calc(features, df, discrete, continuous, debug=False, charter='Plotly', chart=False, output=False, output_dir=None, resolution=150):
+def calc_mi(df, feature_info, debug=False):
     """
-    Calculate the mutual information between every pair of columns in df.
+    Calculate the mutual information between every pair of features in df.
     Return a dataframe whose columns are 'x' (the first column in the pair), 'y' (the second column),
     and 'v' (the mutual information of the pair). Each row is a distinct pair of variables and the MI between
-    them.
+    them. Features with only one response (unary features) are ignored.
+    df: a data frame whose rows are observations and columns are features.
+    feature_info: a dataframe with a row for each feature (in the same order as the columns of dm) and a 'type'
+    column that classifies each feature as 'c' (continuous) or 'd' (discrete).
     """
     start_time = datetime.now()
-    pairs = list(itertools.combinations(df.columns, 2))
-    xs, ys = zip(*pairs)
-    vs = [calc_mi(df, x, y, discrete, continuous, debug=debug, charter=charter, chart=chart, output=output,
-                  output_dir=output_dir, resolution=resolution)
-          for x, y in pairs]
+
+    # drop unary features
+    unary_cols = feature_info.index[feature_info['count'] <= 1]
+    df = df.drop(columns=unary_cols)
+    feature_info = feature_info.drop(index=unary_cols)
+
+    # Convert df into a numeric matrix for mutual information calculations
+    formatted_df = df.copy()
+    for col in formatted_df.columns:
+        if feature_info.loc[col, 'type'] == 'c':
+            formatted_df[col] = formatted_df[col].map(float)
+        elif feature_info.loc[col, 'type'] == 'd':
+            # mutual_info_regression expects numeric values for discrete columns
+            formatted_df[col] = formatted_df[col].factorize()[0]
+        else:
+            raise Exception('Error formatting column ', col)
+
+    dm = formatted_df.values  # data matrix (rows: observations, columns: features)
+
+    num_features = dm.shape[1]
+    pairs = list(itertools.combinations(range(num_features), 2))  # all pairs of features (as indices)
+    xs, ys, vs = [], [], []
+    for i, j in pairs:
+        pair_start_time = datetime.now()
+        x_name = feature_info.index[i]
+        y_name = feature_info.index[j]
+        if debug:
+            print(f'Calculating MI for {x_name} ({i} of {num_features}) and {y_name} ({j} of {num_features})')
+
+        nan_idx = np.isnan(dm[:, i]) | np.isnan(dm[:, j])  # boolean index of the rows which contain a nan value
+        u = dm[~nan_idx, i]  # select observations for which both features are present
+        v = dm[~nan_idx, j]
+        if len(u) == 0:
+            mi = 0  # no shared observations -> no mutual information
+        elif feature_info['type'][i] == 'c':  # continuous
+            if feature_info['type'][j] == 'c':
+                # mutual_info_regression expects a 2d matrix of features
+                mi = mutual_info_regression(u.reshape(-1, 1), v, discrete_features=False)[0]
+            else:  # v is discrete
+                mi = mutual_info_regression(v.reshape(-1, 1), u, discrete_features=True)[0]
+        else:  # u is discrete
+            if feature_info['type'][j] == 'c':
+                mi = mutual_info_regression(u.reshape(-1, 1), v, discrete_features=True)[0]
+            else:  # v is discrete
+                mi = np.log2(np.e) * mutual_info_score(u, v)  # convert from base e to base 2
+
+        if debug:
+            print(f'Elapsed time:', datetime.now() - pair_start_time)
+
+        xs.append(x_name)
+        ys.append(y_name)
+        vs.append(mi)
+
     if debug:
         print('Elapsed time:', datetime.now() - start_time)
-        print('Calcuated mutual information for', len(features), 'columns across', df.shape[0], 'records')
+        print('Calculated mutual information for', num_features, 'columns across', dm.shape[0], 'records')
 
     return pd.DataFrame({'x': xs, 'y': ys, 'v': vs})
 
-    # if compare_all:
-    #     matrix = pd.DataFrame(1, columns=features, index=features)
-    # else:
-    #     matrix = pd.DataFrame(1, columns=list1, index=list2)
-    #
-    # s = stack_matrix(matrix)  # ? does this work if list1 != list2?
-    # s['v'] = [calc_mi(df, x, y, discrete, continuous) for x, y in zip(s['x'], s['y'])]
-    #
-    # return s
 
+## Network Graph
 
 def calculate_positions(G):
     # Generate position data for each node
@@ -587,66 +514,6 @@ def find_max_component_threshold(stack):
     return max_component_threshold
 
 
-def load_data(input_file, sample_n=None, debug=False):
-    # Load Data
-    df = pd.read_csv(input_file)
-    if sample_n:
-        df = df.sample(sample_n)
-
-    # Ignore ID columns
-    ignore = []
-    for i in df.columns:
-        try:
-            # ? What is this doing?
-            np.ma.fix_invalid(df[i])
-        except:
-            pass
-
-        if ('_id' in i):
-            ignore.append(i)
-
-    df = df.drop(columns=ignore)
-    df = df.replace(np.nan, None)
-    df = df.replace('nan', None)
-    df.columns = [c.replace(' ', '_') for c in df.columns]
-    if debug:
-        print(f'Loaded data from {input_file} with {df.shape[0]} observations and {df.shape[1]} features')
-
-    return df
-
-
-def classify_features(df, discrete_threshold, debug=False):
-    ## Identify feature type
-
-    # Get a list of all response types
-    response_list = pd.DataFrame(columns=['responses', 'types'], index=df.columns)
-    response_list['responses'] = [list(df[col].unique()) for col in df.columns]
-    response_list['response_count'] = response_list['responses'].map(len)
-    # Delete columns from the dataframe that only have one response
-    response_list['only_one_r'] = [(len(r) < 2) for r in response_list['responses']]
-    only_one_r = list(response_list[response_list['only_one_r'] == True].index)
-    df = df.drop(columns=only_one_r)
-    response_list = response_list.drop(index=only_one_r)
-
-    response_list['types'] = [get_types(col, response_list) for col in df.columns]
-    response_list['string'] = [t['strings'] > 0 for t in response_list['types']]
-    response_list['float'] = [t['floats'] > 0 for t in response_list['types']]
-
-    # Classify features as discrete (fewer than {discrete_threshold} responses, or contains strings) or continuous (more than 15)
-    response_list['class'] = ['d' if ((len(r) < discrete_threshold) or (t['strings'] > 0)) else 'c' for r, t in
-                              zip(response_list['responses'], response_list['types'])]
-
-    # Store these groups in a list
-    discrete = list(response_list[response_list['class'] == 'd'].index)
-    continuous = list(response_list[response_list['class'] == 'c'].index)
-    response_counts = {feature: response_list['response_count'][feature] for feature in response_list.index}
-
-    if debug:
-        print(f'Counted {len(discrete)} discrete features and {len(continuous)} continuous features')
-
-    return discrete, continuous, response_counts
-
-
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='Sirius Data Processing Pipeline')
@@ -692,25 +559,17 @@ def main():
         for d in ['charts', 'json']:
             (output_dir / d).mkdir(parents=True, exist_ok=True)
 
+    # Load Data
     df = load_data(input_file, sample_n=sample_n, debug=debug)
 
-    discrete, continuous, response_counts = classify_features(df, discrete_threshold, debug=debug)
-    # drop features with only a single response
-    df = df.drop(columns=[col for col in response_counts if response_counts[col] <= 1])
-    # Format values of discrete columns as strings and continuous columns as floats
-    for col in df.columns:
-        if col in discrete:
-            df[col] = df[col].map(str)
-        elif col in continuous:
-            df[col] = df[col].map(float)
-        else:
-            print('Error formatting column ', col)
+    # Classify Features
+    feature_info = classify_features(df, discrete_threshold, debug=debug)
+    if debug:
+        print('Classified Features:')
+        print(feature_info)
 
     if not no_mi:
-        # Calculation
-        stack = run_calc(list(df.columns), df, discrete, continuous, debug=debug, charter=charter, chart=chart,
-                         output=output, output_dir=output_dir, resolution=resolution)
-
+        stack = calc_mi(df, feature_info, debug=debug)
         if cache:
             stack.to_csv(output_dir / 'results.csv', index=False)
 
@@ -732,11 +591,16 @@ def main():
     # Thresholding
 
     max_component_threshold = find_max_component_threshold(sorted_stack)
-
     # Threshold the edge list by the mutual information threshold which maximizes the component count
     thresh_stack = sorted_stack[sorted_stack['v'] > max_component_threshold]
+
+    # Add visualization type to each pair: CC, DC, or DD
+    thresh_stack['viztype'] = thresh_stack.apply(
+        lambda s: ''.join(sorted([feature_info.loc[s['x'], 'type'], feature_info.loc[s['y'], 'type']],
+                                 reverse=True)).upper(),
+        axis=1)
+
     thresh_stack = thresh_stack.rename(columns={'x': 'source', 'y': 'target', 'v': 'weight'})
-    thresh_stack['viztype'] = [calc_pairtype(x, y, discrete, continuous) for x, y in zip(thresh_stack['source'], thresh_stack['target'])]
 
     # Node and Edge Lists
 
@@ -752,7 +616,6 @@ def main():
     json_out = {}
     json_out['nodes'] = nodelist
     json_out['links'] = thresh_stack.to_dict(orient='records')
-    # json_out['edges'] = (thresh_stack).to_dict(orient='records')
 
     with open(output_dir / 'graph.json', 'w') as json_file:
         json.dump(json_out, json_file)
@@ -760,7 +623,6 @@ def main():
     for i, row in thresh_stack.iterrows():
         viz(row['source'],row['target'], df, discrete, continuous, charter=charter, chart=chart, output=output,
             output_dir=output_dir, resolution=resolution)
-        # viz(row['src'], row['target'], df, discrete, continuous)
 
     # Positioning
     [edges, nodes] = calculate_positions(G)
