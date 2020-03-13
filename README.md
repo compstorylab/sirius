@@ -74,6 +74,23 @@ Sirius works by processing cleaned data to compute pairwise feature relationship
 
 ![Sirius Data Processing Flowchart](https://raw.githubusercontent.com/compstorylab/sirius/develop/static/documentation/flowchart.png)
 
+All data processing takes place in `matrix.py`. There are a number of customizable parameters in this script:
+
+Argument | Type | Default | Description
+------------ | ------------ | ------------- | ------------ | -------------
+`--dpi` | int | `150` | Resolution of output plots
+`--discrete-threshold` | int | `5` | Number of responses below which numeric features are considered discrete
+`--chart` | boolean | `False` | Display images while running computation
+`--charter` | choice | `'Plotly'` | The plotting library to use. Options: `'Plotly'` or `'Seaborn'`
+`--debug` | boolean | `False` | Print updates to the console while running
+`--output` | boolean | `False` | Output json and pngs to files
+`--no-viz` | boolean | `False` | Do not output pair plots, network graph image, or chart json
+`--no-mi` | boolean | `False` | Do not compute MI. Use cached MI values instead
+`--cache` | boolean | `False` | Cache MI values to use later when generating visualizations
+`--sample-n` | int | `None` | Subsample the data. By default, work with all the data
+`--input-file` | string | `'example_data/data.csv'` | Location of the input data
+`--output-dir` | string | `'example_data/output'` | A directory in which to store the output json and png files
+
 
 
 ## Development
