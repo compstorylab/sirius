@@ -7,6 +7,8 @@
     <title>Home Page</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway|Rubik&display=swap" rel="stylesheet">
 
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
     <link href="{% static 'styles/web.css' %}" rel="stylesheet">
     <link href="{% static 'styles/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'styles/font-awesome.css' %}" rel="stylesheet">
@@ -21,7 +23,7 @@
         <svg width="1100" height="900"></svg>
         <div id="right-bar" class="col-4">
             <div>
-                <span class="close-btn"><i class="fa fa-times-circle"></i></span>
+                <span class="close-btn" id="close-btn"><i class="fa fa-times-circle"></i></span>
             </div>
             <div class="right-bar-content">
                 <h2>Make Connections</h2>
@@ -40,6 +42,7 @@
                 <p class="right-bar-image-title">Edge Details</p>
                 <p id="image-title"></p>
                 <img id="difference_chart">
+                <div id="plot-parent"></div>
 
             </div>
         </div>
