@@ -28,7 +28,7 @@ class HomePageView(TemplateView):
             for file in files.getlist('file_field'):
                 upload_file_instance = UploadFileField(file_field=file)
                 upload_file_instance.save()
-                if UploadJSONandImage.get_extension(file.name) == 'json':
+                if file.name == 'graph.json':
                     json_file_url = upload_file_instance.file_field.url
                     context['json_file_url'] = json_file_url
 
