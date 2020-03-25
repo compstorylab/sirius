@@ -34,6 +34,7 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string, 
     Plotly.newPlot(chartHolderId, chartData, layout);
 }
 
+// TODO: this processForHeatmap function will need change after the json structure for heatmap is updated
 /**
  * Transoform raw data into a form the heatmap function of Plotly can use. 
  * @param x An array of categorical values. Number or string
