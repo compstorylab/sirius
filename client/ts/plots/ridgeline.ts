@@ -32,7 +32,7 @@ function prepareTrace(d: Float32Array, name: String){
         showlegend: false,
         x: d,
         width: 3,
-        opacity: 0.5,
+        opacity: 0.8,
         orientation: "h",
         side: 'positive',
         points: false,
