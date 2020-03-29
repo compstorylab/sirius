@@ -62,10 +62,10 @@ export function displayChart(){
             clearImage(document.getElementById("difference_chart") as HTMLImageElement);
 
             // Select Plot by type
-            if(plotType == 'DD') {
+            if(plotType == 'DD' || plotType == 'CD' || plotType == 'DC') {
                 loadPlotylPlot(plotType, sourceName, targetName, sourceIndex, targetIndex, clickedElement);
             }
-            else if(plotType == 'CD' || plotType == 'DC' || plotType == 'CC') {
+            else if(plotType == 'CC') {
                 loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
             }
         }
