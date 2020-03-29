@@ -1,4 +1,5 @@
-import {heatmap} from "./heatmap";
+import { heatmap } from "./heatmap";
+import { CreateRidgelineChart } from "./ridgeline";
 
 /**
  * Selects plot create function by plot type
@@ -12,7 +13,7 @@ export function createPlot(type:string, data:any, chartHolderId:string) {
             break;
         case "DC":
         case "CD":
-            // TODO: Add plot function
+            CreateRidgelineChart(data, chartHolderId);
             break;
         case "CC":
             // TODO: Add plot function
