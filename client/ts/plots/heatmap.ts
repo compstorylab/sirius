@@ -29,7 +29,10 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string, 
             title: {
                 text: yName
             }
-        }
+        },
+        plot_bgcolor: "rgba(0, 0, 0, 0)",
+        paper_bgcolor: "rgba(0, 0, 0, 0)",
+        font: {color: 'white'}
     };
     Plotly.newPlot(chartHolderId, chartData, layout);
 }
