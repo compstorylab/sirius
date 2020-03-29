@@ -1,4 +1,17 @@
 import Plotly from 'plotly.js-dist';
+/**
+ * 
+ * @param data 
+ * @param chartHolderId 
+ */
+export function createHeatMap(data:any, chartHolderId:string) {
+    let keys = Object.keys(data);
+    let xAxisTitle:string = keys[0];
+    let yAxisTitle:string = keys[1];
+    let xvals = Object.values(data[keys[0]]);
+    let yvals = Object.values(data[keys[1]]);
+    heatmap(xvals, yvals, xAxisTitle, yAxisTitle,chartHolderId);
+}
 
 /**
  * Creates a heatmap from raw data using plotly.
