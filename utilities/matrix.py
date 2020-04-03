@@ -1,3 +1,7 @@
+"""
+TODO: Can probably remove all of the debug parameters now that everything has been switched to logging
+"""
+
 import itertools
 import json
 import logging
@@ -730,7 +734,6 @@ def draw_graph(
         text=nodes["name"],
         hoverinfo="text",
     )
-    filename = title.lower().replace(" ", "_")
 
     # Color the node by its number of connections
     node_trace.marker.color = nodes["centralities"]
