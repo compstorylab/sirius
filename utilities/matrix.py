@@ -352,6 +352,18 @@ def DD_mi(df, debug=False):
     """
     Takes two discrete feature names and calculates normalized mutual
     information (dividing mutual information by maximum possible)
+
+    TODO: According to wikipedia it is possible to calculate MI using a couple of entropy calculations
+        It may be possible to greatly speed up the implementation with this.
+        Link: https://en.wikipedia.org/wiki/Mutual_information#Relation_to_conditional_and_joint_entropy
+        The implementation might look something like this:
+            p_u = df[U].value_counts(normalize=True)
+            p_v = df[V].value_counts(normalize=True)
+            p_uv = df[[U, V]].apply(tuple, axis=1).value_counts(normalize=True)
+            e_u = (p_u * -np.log2(p_u)).sum()
+            e_v = (p_v * -np.log2(p_v)).sum()
+            e_uv = (p_uv * -np.log2(p_uv)).sum()
+            return e_u + e_v - e_uv
     """
     U = list(df.columns)[0]
     V = list(df.columns)[1]
