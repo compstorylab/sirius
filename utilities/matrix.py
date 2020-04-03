@@ -1,7 +1,6 @@
 import itertools
 import json
 import math
-import random
 from datetime import datetime
 from pathlib import Path
 
@@ -9,21 +8,14 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
-import plotly
 import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.graph_objs as go
-import plotly.tools as tls
-import scipy.integrate as integrate
 import seaborn as sns
-from plotly.colors import n_colors
-
 # If you're using this code locally:
-from plotly.offline import download_plotlyjs, iplot, plot  # , init_notebook_mode
-from scipy.stats import multivariate_normal, pearsonr
-from sklearn.feature_selection import f_regression, mutual_info_regression
-from sklearn.metrics import normalized_mutual_info_score
-from sklearn.neighbors import KernelDensity
+# from plotly.offline import download_plotlyjs, iplot, plot  # , init_notebook_mode
+from scipy.stats import pearsonr
+from sklearn.feature_selection import mutual_info_regression
 
 
 def get_types(U, response_list):
@@ -51,24 +43,30 @@ def get_types(U, response_list):
     return types
 
 
-## Data structures
-
-
 def compute_bandwidth(X, df):
-    """ Takes a column name and computes suggested gaussian bandwidth with the formula: 1.06*var(n^-0.2) """
+    """
+    Takes a column name and computes suggested gaussian bandwidth with the formula:
+        1.06 * var(n^-0.2)
+
+    TODO: Unused.
+    """
     var = np.var(df[X])
     n = len(df[X].notnull())
     b = 1.06 * var * (n ** (-0.2))
     return b
 
 
-## Visualization
-
-# Discrete-Discrete Confusion Matrices
 def DD_viz(
-    df, charter="Plotly", chart=False, output=False, output_dir=None, resolution=150
+        df,
+        charter="Plotly",
+        chart=False,
+        output=False,
+        output_dir=None,
+        resolution=150,
 ):
-    """ Takes a filtered dataframe of two discrete feature columns and generates a heatmap """
+    """
+    Takes a filtered dataframe of two discrete feature columns and generates a heatmap
+    """
 
     U = df.columns[0]
     V = df.columns[1]
@@ -121,18 +119,17 @@ def DD_viz(
         if chart:
             plt.show()
 
-    plt.close("all")
+        plt.close("all")
 
 
-# Discrete-Continuous Violin Plots
 def DC_viz(
-    df,
-    continuous,
-    charter="Plotly",
-    chart=False,
-    output=False,
-    output_dir=None,
-    resolution=150,
+        df,
+        continuous,
+        charter="Plotly",
+        chart=False,
+        output=False,
+        output_dir=None,
+        resolution=150,
 ):
     """ Takes a subset dataframe of one continuous and one discrete feature and generates a Violin Plot """
 
@@ -193,9 +190,8 @@ def DC_viz(
     plt.close("all")
 
 
-# Continuous-Continuous KDE Plots
 def CC_viz(
-    df, charter="Plotly", chart=False, output=False, output_dir=None, resolution=150
+        df, charter="Plotly", chart=False, output=False, output_dir=None, resolution=150,
 ):
     """ Takes two continuous feature names and generates a 2D Kernel Density Plot """
     U = list(df.columns)[0]
@@ -251,8 +247,8 @@ def CC_viz(
     plt.close("all")
 
 
-# Matrix Heatmap
-def matrix_viz(matrix):
+def matrix_heatmap(matrix):
+    # TODO: Unused.
     plt.clf()
     plt.figure(dpi=70, figsize=(10, 8))
     sns.heatmap(matrix.fillna(0))
@@ -261,16 +257,16 @@ def matrix_viz(matrix):
 
 # Visualization Function Router
 def viz(
-    U,
-    V,
-    df,
-    discrete,
-    continuous,
-    charter="Plotly",
-    chart=False,
-    output=False,
-    output_dir=None,
-    resolution=150,
+        U,
+        V,
+        df,
+        discrete,
+        continuous,
+        charter="Plotly",
+        chart=False,
+        output=False,
+        output_dir=None,
+        resolution=150,
 ):
     """ Generate a visualization based on feature types """
     plt.clf()
@@ -318,11 +314,12 @@ def viz(
     return viz
 
 
-## Mutual Information
-
-
+# Mutual Information
 def sparsify(series):
-    """ For discrete values: takes a column name and returns a sparse matrix (0 or 1) with a column for each unique response """
+    """
+    For discrete values: takes a column name and returns a sparse matrix (0 or 1)
+    with a column for each unique response
+    """
     responses = series.unique()
     m = pd.DataFrame(columns=responses)
     for val in responses:
@@ -331,9 +328,11 @@ def sparsify(series):
     return m.astype(int)
 
 
-# Discrete-Discrete
 def DD_mi(df, debug=False):
-    """ Takes two discrete feature names and calculates normalized mutual information (dividing mutual information by maximum possible) """
+    """
+    Takes two discrete feature names and calculates normalized mutual
+    information (dividing mutual information by maximum possible)
+    """
     U = list(df.columns)[0]
     V = list(df.columns)[1]
 
@@ -391,15 +390,17 @@ def DD_mi(df, debug=False):
     return mi
 
 
-# ### Discrete-Continuous
-#
-# This uses SciKit's [mutual_info_regression](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html)
-# which calculates mutual information using the nearest neighbor entropy approach described in
-# [*B. C. Ross “Mutual Information between Discrete and Continuous Data Sets”. PLoS ONE 9(2), 2014.*](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0087357)
-#
-# This requires us to sparsify the discrete matrix by response
 def DC_mi(df, continuous, debug=False):
-    """ Takes a subset df of one discrete and one continuous feature and, using a sparsified matrix of the discrete responses, returns mutual information score """
+    """
+    Calculates the mutual information between a discrete feature and a continuous feature.
+    Uses a sparsified (one-hot) encoding of the discrete feature.
+
+    Implemented with SciKit's [mutual_info_regression](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html)
+    which calculates mutual information using the nearest neighbor entropy approach described in
+    [*B. C. Ross “Mutual Information between Discrete and Continuous Data Sets”. PLoS ONE 9(2), 2014.*](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0087357)
+
+    This requires us to sparsify the discrete matrix by response.
+    """
 
     U = list(df.columns)[0]
     V = list(df.columns)[1]
@@ -438,7 +439,10 @@ def DC_mi(df, continuous, debug=False):
 
 # Continuous-Continuous
 def CC_mi(df, debug=False):
-    """ Takes a subset df of two continuous features and calculates mutual information using SciKit's mutual_info_regression function """
+    """
+    Calculates the mutual information between two continuous features using
+    SciKit's mutual_info_regression function.
+    """
     U = list(df.columns)[0]
     V = list(df.columns)[1]
 
@@ -452,9 +456,12 @@ def CC_mi(df, debug=False):
     return mi
 
 
-# Comparison: Correlation
 def CC_corr(df, debug=False):
-    """ Takes two continuous feature names and calculates pearson correlation """
+    """
+    Calculates the Pearson's correlation between two continuous features.
+
+    For use in qualitative comparisons with the mutual information implementation above.
+    """
 
     U = list(df.columns)[0]
     V = list(df.columns)[1]
@@ -469,11 +476,13 @@ def CC_corr(df, debug=False):
     return corr
 
 
-## Matrix Functions
-
-
 def matrixify(df):
-    """ Takes a dataframe with columns [source,target,value] and returns a matrix where {index:source, columns:target, values:values} """
+    """
+    Takes a dataframe with columns [source,target,value] and returns a matrix where
+    {index:source, columns:target, values:values}
+
+    TODO: Unused.
+    """
     m = df.pivot(
         index=list(df.columns)[0],
         columns=list(df.columns)[1],
@@ -482,11 +491,11 @@ def matrixify(df):
     return m
 
 
-## Data Processing
-
-
 def calc_pairtype(U, V, discrete, continuous, debug=False):
-    """ Takes two feature names and returns the pair type ('DD': discrete/discrete, 'DC': discrete/continuous, or 'CC': continuous/continuous) """
+    """
+    Takes two feature names and returns the pair type
+    ('DD': discrete/discrete, 'DC': discrete/continuous, or 'CC': continuous/continuous)
+    """
 
     if debug:
         print('Finding pair type for "', U, '" and "', V, '"')
@@ -514,19 +523,22 @@ def calc_pairtype(U, V, discrete, continuous, debug=False):
 
 
 def calc_mi(
-    df,
-    U,
-    V,
-    discrete,
-    continuous,
-    debug=False,
-    charter="Plotly",
-    chart=False,
-    output=False,
-    output_dir=None,
-    resolution=150,
+        df,
+        U,
+        V,
+        discrete,
+        continuous,
+        debug=False,
+        charter="Plotly",
+        chart=False,
+        output=False,
+        output_dir=None,
+        resolution=150,
 ):
-    """ Takes two feature names and determines which mutual information method to use; returns calculated mutual information score """
+    """
+    Takes two feature names and determines which mutual information method to use;
+    returns calculated mutual information score
+    """
     try:
         pairdf = df.filter([U, V]).dropna(how="any")
 
@@ -590,16 +602,16 @@ def calc_mi(
 
 
 def run_calc(
-    features,
-    df,
-    discrete,
-    continuous,
-    debug=False,
-    charter="Plotly",
-    chart=False,
-    output=False,
-    output_dir=None,
-    resolution=150,
+        features,
+        df,
+        discrete,
+        continuous,
+        debug=False,
+        charter="Plotly",
+        chart=False,
+        output=False,
+        output_dir=None,
+        resolution=150,
 ):
     """
     Calculate the mutual information between every pair of columns in df.
@@ -704,14 +716,14 @@ def calculate_positions(G):
 
 
 def draw_graph(
-    edges,
-    nodes,
-    title,
-    chart=False,
-    output=False,
-    output_dir=None,
-    resolution=150,
-    **kwargs,
+        edges,
+        nodes,
+        title,
+        chart=False,
+        output=False,
+        output_dir=None,
+        resolution=150,
+        **kwargs,
 ):
     # Draw edges
     edge_trace = go.Scatter(
@@ -776,7 +788,7 @@ def find_max_component_threshold(stack):
 
     # Fill in the 'e' data frame with the number of edges and number of components across a range of thresholds
     for i in np.arange(
-        np.round(stack["v"].min(), 2), np.round(stack["v"].max(), 2), 0.01
+            np.round(stack["v"].min(), 2), np.round(stack["v"].max(), 2), 0.01
     ):
         s = stack[stack["v"] > i]
 
@@ -861,7 +873,7 @@ def classify_features(df, discrete_threshold, debug=False):
     response_list["string"] = [t["strings"] > 0 for t in response_list["types"]]
     response_list["float"] = [t["floats"] > 0 for t in response_list["types"]]
 
-    # Classify features as discrete (fewer than {discrete_threshold} responses, or contains strings) or continuous (more than 15)
+    # Classify features as discrete or continuous
     response_list["class"] = [
         "d" if ((len(r) < discrete_threshold) or (t["strings"] > 0)) else "c"
         for r, t in zip(response_list["responses"], response_list["types"])
@@ -957,22 +969,20 @@ def main():
     args = parser.parse_args()
 
     # Parameter settings
-    chart = (
-        args.chart
-    )  # boolean for whether to display images while running computation
-    debug = (
-        args.debug
-    )  # boolean for whether to print updates to the console while running
+    # boolean for whether to display images while running computation
+    chart = args.chart
+    # boolean for whether to print updates to the console while running
+    debug = args.debug
     output = args.output  # boolean for whether to output json and pngs to files
     cache = args.cache
     no_mi = args.no_mi
     no_viz = args.no_viz
     charter = args.charter  # accepts 'Seaborn' or 'Plotly'
     resolution = args.dpi  # int for resolution of output plots
-    discrete_threshold = (
-        args.discrete_threshold
-    )  # number of responses below which numeric responses are considered discrete
-    compare_all = True  # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
+    # number of responses below which numeric responses are considered discrete
+    discrete_threshold = args.discrete_threshold
+    # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
+    compare_all = True
     list1, list2 = [], []
     sample_n = args.sample_n  # Work with all data (None), or just a sample?
     input_file = Path(args.input_file)  # e.g. './example_data/data.csv'
@@ -992,7 +1002,9 @@ def main():
     df = load_data(input_file, sample_n=sample_n, debug=debug)
 
     discrete, continuous, response_counts = classify_features(
-        df, discrete_threshold, debug=debug
+        df,
+        discrete_threshold,
+        debug=debug,
     )
     # drop features with only a single response
     df = df.drop(columns=[col for col in response_counts if response_counts[col] <= 1])
