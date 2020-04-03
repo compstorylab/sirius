@@ -1,5 +1,6 @@
 import itertools
 import json
+import logging
 import math
 from datetime import datetime
 from pathlib import Path
@@ -16,6 +17,8 @@ import seaborn as sns
 # from plotly.offline import download_plotlyjs, iplot, plot  # , init_notebook_mode
 from scipy.stats import pearsonr
 from sklearn.feature_selection import mutual_info_regression
+
+logger = logging.getLogger(__name__)
 
 
 def get_types(U, response_list):
@@ -35,10 +38,10 @@ def get_types(U, response_list):
                 # print("Value",i,"is a string")
                 types["strings"] += 1
             except:
-                print("Error: Unexpected value", i, "for feature", U)
+                logging.warning("Error: Unexpected value", i, "for feature", U)
 
     if types["floats"] > 0 and types["strings"] > 0:
-        print("Column", U, "contains floats AND strings")
+        logging.warning("Column", U, "contains floats AND strings")
 
     return types
 
@@ -336,8 +339,7 @@ def DD_mi(df, debug=False):
     U = list(df.columns)[0]
     V = list(df.columns)[1]
 
-    if debug:
-        print(f"Calculating discrete-discrete MI for {U} and {V}")
+    logging.debug(f"Calculating discrete-discrete MI for {U} and {V}")
 
     min_response_count = min(len(list(df[U].unique())), len(list(df[V].unique())))
     max_mi = np.log2(min_response_count)
@@ -384,8 +386,7 @@ def DD_mi(df, debug=False):
     # else:
     #     nmi = mi/max_mi
 
-    if debug:
-        print(f"MI: {mi}")
+    logging.debug(f"MI: {mi}")
 
     return mi
 
@@ -405,8 +406,7 @@ def DC_mi(df, continuous, debug=False):
     U = list(df.columns)[0]
     V = list(df.columns)[1]
 
-    if debug:
-        print(f"Calculating discrete-continious MI for {U} and {V}")
+    logging.debug(f"Calculating discrete-continious MI for {U} and {V}")
 
     if U in continuous:
         D = V
@@ -414,16 +414,13 @@ def DC_mi(df, continuous, debug=False):
     else:
         D = U
         C = V
-    if debug:
-        print(f"Discrete: {D} Continuous: {C}")
+    logging.debug(f"Discrete: {D} Continuous: {C}")
 
     responses = list(df[D].unique())
-    if debug:
-        print(f"responses = {responses}")
+    logging.debug(f"responses = {responses}")
 
     pmi = list(mutual_info_regression(sparsify(df[D]), df[C], discrete_features=True))
-    if debug:
-        print(f"pmi list = {pmi}")
+    logging.debug(f"pmi list = {pmi}")
 
     l = []
     for i in list(range(0, (len(responses)))):
@@ -431,8 +428,7 @@ def DC_mi(df, continuous, debug=False):
         l.append(pmi[i] * conditional_probability)
 
     mi = sum(l)
-    if debug:
-        print(f"MI: {mi}")
+    logging.debug(f"MI: {mi}")
 
     return mi
 
@@ -446,12 +442,10 @@ def CC_mi(df, debug=False):
     U = list(df.columns)[0]
     V = list(df.columns)[1]
 
-    if debug:
-        print(f"Calculating mutual information for {U} and {V}")
+    logging.debug(f"Calculating mutual information for {U} and {V}")
 
     mi = mutual_info_regression(df.filter([U]), df[V])[0]
-    if debug:
-        print(f"MI: {mi}")
+    logging.debug(f"MI: {mi}")
 
     return mi
 
@@ -466,12 +460,10 @@ def CC_corr(df, debug=False):
     U = list(df.columns)[0]
     V = list(df.columns)[1]
 
-    if debug:
-        print(f"Calculating correlation between {U} and {V}")
+    logging.debug(f"Calculating correlation between {U} and {V}")
 
     corr = pearsonr(df[U], df[V])[0]
-    if debug:
-        print(f"Correlation = {corr}")
+    logging.debug(f"Correlation = {corr}")
 
     return corr
 
@@ -497,27 +489,23 @@ def calc_pairtype(U, V, discrete, continuous, debug=False):
     ('DD': discrete/discrete, 'DC': discrete/continuous, or 'CC': continuous/continuous)
     """
 
-    if debug:
-        print('Finding pair type for "', U, '" and "', V, '"')
+    logging.debug('Finding pair type for "', U, '" and "', V, '"')
 
     # If both features are discrete:
     if U in discrete and V in discrete:
         pair_type = "DD"
-        if debug:
-            print('"', U, '" and "', V, '" are data pair type', pair_type)
+        logging.debug('"', U, '" and "', V, '" are data pair type', pair_type)
     # If both features are continuous:
     elif U in continuous and V in continuous:
         pair_type = "CC"
-        if debug:
-            print('"', U, '" and "', V, '" are data pair type', pair_type)
+        logging.debug('"', U, '" and "', V, '" are data pair type', pair_type)
     # If one feature is continuous and one feature is discrete:
     elif U in continuous and V in discrete or U in discrete and V in continuous:
         pair_type = "DC"
-        if debug:
-            print('"', U, '" and "', V, '" are data pair type', pair_type)
+        logging.debug('"', U, '" and "', V, '" are data pair type', pair_type)
     else:
         pair_type = "Err"
-        print("Error on", U, "and", V)
+        logging.warning("Error on", U, "and", V)
 
     return pair_type
 
@@ -545,22 +533,21 @@ def calc_mi(
         if pairdf.shape[0] < 1:
             return 0
 
-        if debug:
-            print(
-                "Calculating mutual information for",
-                U,
-                "(",
-                list(df.columns).index(U),
-                "of",
-                len(list(df.columns)),
-                ")",
-                V,
-                "(",
-                list(df.columns).index(V),
-                "of",
-                len(list(df.columns)),
-                ")",
-            )
+        logging.debug(
+            "Calculating mutual information for",
+            U,
+            "(",
+            list(df.columns).index(U),
+            "of",
+            len(list(df.columns)),
+            ")",
+            V,
+            "(",
+            list(df.columns).index(V),
+            "of",
+            len(list(df.columns)),
+            ")",
+        )
 
         mi_start_time = datetime.now()
         if U == V:
@@ -593,8 +580,7 @@ def calc_mi(
                     resolution=resolution,
                 )
 
-            if debug:
-                print("Elapsed time:", datetime.now() - mi_start_time)
+            logging.debug("Elapsed time:", datetime.now() - mi_start_time)
 
         return mi
     except:
@@ -638,27 +624,16 @@ def run_calc(
         )
         for x, y in pairs
     ]
-    if debug:
-        print("Elapsed time:", datetime.now() - start_time)
-        print(
-            "Calcuated mutual information for",
-            len(features),
-            "columns across",
-            df.shape[0],
-            "records",
-        )
+    logging.debug("Elapsed time:", datetime.now() - start_time)
+    logging.debug(
+        "Calcuated mutual information for",
+        len(features),
+        "columns across",
+        df.shape[0],
+        "records",
+    )
 
     return pd.DataFrame({"x": xs, "y": ys, "v": vs})
-
-    # if compare_all:
-    #     matrix = pd.DataFrame(1, columns=features, index=features)
-    # else:
-    #     matrix = pd.DataFrame(1, columns=list1, index=list2)
-    #
-    # s = stack_matrix(matrix)  # ? does this work if list1 != list2?
-    # s['v'] = [calc_mi(df, x, y, discrete, continuous) for x, y in zip(s['x'], s['y'])]
-    #
-    # return s
 
 
 def calculate_positions(G):
@@ -848,10 +823,9 @@ def load_data(input_file, sample_n=None, debug=False):
     df = df.replace(np.nan, None)
     df = df.replace("nan", None)
     df.columns = [c.replace(" ", "_") for c in df.columns]
-    if debug:
-        print(
-            f"Loaded data from {input_file} with {df.shape[0]} observations and {df.shape[1]} features"
-        )
+    logging.debug(
+        f"Loaded data from {input_file} with {df.shape[0]} observations and {df.shape[1]} features"
+    )
 
     return df
 
@@ -887,10 +861,9 @@ def classify_features(df, discrete_threshold, debug=False):
         for feature in response_list.index
     }
 
-    if debug:
-        print(
-            f"Counted {len(discrete)} discrete features and {len(continuous)} continuous features"
-        )
+    logging.debug(
+        f"Counted {len(discrete)} discrete features and {len(continuous)} continuous features"
+    )
 
     return discrete, continuous, response_counts
 
@@ -920,6 +893,7 @@ def main():
         default="Plotly",
         help="The plotting library to use.",
     )
+    # TODO: Can probably just replace with the more common --verbose flag
     parser.add_argument(
         "--debug",
         action="store_true",
@@ -981,13 +955,16 @@ def main():
     resolution = args.dpi  # int for resolution of output plots
     # number of responses below which numeric responses are considered discrete
     discrete_threshold = args.discrete_threshold
-    # boolean; if comparing two lists of the same length, fill in list1 and list2 accordingly
-    compare_all = True
-    list1, list2 = [], []
     sample_n = args.sample_n  # Work with all data (None), or just a sample?
     input_file = Path(args.input_file)  # e.g. './example_data/data.csv'
     output_dir = Path(args.output_dir)  # e.g. './example_data/output'
     # cd = 'example_data/output'
+
+    # Configure logging
+    if debug:
+        logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.WARNING)
 
     sns.set_style("whitegrid")
 
@@ -1015,7 +992,7 @@ def main():
         elif col in continuous:
             df[col] = df[col].map(float)
         else:
-            print("Error formatting column ", col)
+            logging.warning("Error formatting column ", col)
 
     if not no_mi:
         # Calculation
