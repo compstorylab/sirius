@@ -1,0 +1,14 @@
+{
+  "dpi": 150,
+  "discrete_threshold": 5,
+  "chart": false,
+  "charter": "Plotly",
+  "debug": false,
+  "output": false,
+  "no_viz": false,
+  "no_mi": false,
+  "cache": false,
+  "sample_n": null,
+  "input_file": "example_data/data.csv",
+  "output_dir": "example_data/output"
+}
