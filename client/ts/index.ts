@@ -15,15 +15,25 @@ import {displayChart} from "./display_difference_chart";
        drawer.open();
     });
 
-   // draw graph network
-   if (jsonUrl && jsonUrl.value){
-      // remove background image, replace with background color
-      body.style.backgroundImage = 'None';
-      // hide right panel by default when graph chart is generated
-      drawer.close();
+   // // draw graph network
+   // if (jsonUrl && jsonUrl.value){
+   //    // remove background image, replace with background color
+   //    body.style.backgroundImage = 'None';
+   //    // hide right panel by default when graph chart is generated
+   //    drawer.close();
 
-      generateGraphChart(jsonUrl);
-      displayChart();
-   }
+   //    generateGraphChart(jsonUrl);
+   //    displayChart();
+   // }
+
+   let graphJsonUrl = '/static/generated_files/graph.json';
+   console.log("graphJsonUrl", graphJsonUrl);
+    // draw graph network
+   body.style.backgroundImage = 'None';
+   // hide right panel by default when graph chart is generated
+   drawer.close();
+
+   generateGraphChart(graphJsonUrl);
+   displayChart();
 
 }());

@@ -24,7 +24,8 @@ export function generateGraphChart(jsonUrl){
         .force('link', d3.forceLink().distance(80)) // distance sets the length of each link
         .force('link', d3.forceLink().id(function(d){ return d.name; }));  // for source and targe value in links not using number based zero but based on customized string
 
-    d3.json(jsonUrl.value, function(error, data){
+    // d3.json(jsonUrl.value, function(error, data){
+    d3.json(jsonUrl, function(error, data){
         console.log("data",data);
         let links = svg.append("g")
             .selectAll("line")

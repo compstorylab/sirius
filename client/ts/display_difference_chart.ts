@@ -5,6 +5,7 @@ import {Color} from "./styles";
 import {Drawer} from './drawer';
 import {createPlot} from "./plots";
 
+let generated_files_path = '/static/generated_files/';
 /**
  * when click an edge, higlight the edge and the corresponding pair of nodes. if click on another edge, return the previous
  * clicked one into original color.
@@ -92,7 +93,8 @@ function loadPNGGraph(sourceName:string, targetName:string, sourceIndex:number, 
     let clickedElementList = [];
     let imageType = '.png';
     let staticImageFileName = sourceName + "_" + targetName + imageType;
-    let uploadFolderPath = '/static/upload_files/';
+    // let uploadFolderPath = '/static/upload_files/';
+    let uploadFolderPath = generated_files_path;
 
     let staticImageURL = uploadFolderPath + staticImageFileName;
     let imageElement:HTMLImageElement = document.getElementById("difference_chart") as HTMLImageElement;
@@ -158,8 +160,9 @@ function loadPlotylPlot(type:string, sourceName:string, targetName:string, sourc
  * @param onComplete Callback function. function(data:any):void
  * @param onError Callback function function():void
  */
-function loadJson(sourceName:string, targetName:string, onComplete, onError) {
-    let uploadFolderPath = '/static/upload_files/';
+function loadJson(sourceName: string, targetName: string, onComplete, onError) {
+    let uploadFolderPath = generated_files_path;
+    // let uploadFolderPath = '/static/upload_files/';
     $.ajax({ url: uploadFolderPath + sourceName + "_" + targetName + ".json" })
         .done(function (data) {
             onComplete(data);
