@@ -1,6 +1,9 @@
 import * as d3 from "d3";
 import {Color} from "./styles";
 
+import {displayChart} from "./display_difference_chart";
+
+
 /**
  * generate a network graph representing the connections between the features
  * @param jsonUrl: string, the url to the data file in json format
@@ -11,7 +14,7 @@ export function generateGraphChart(jsonUrl){
     //     height = document.getElementById("drawing-section").clientHeight,
     //     nodeRadius = 10;
     // svg.attr("width", width).attr("height", height);
-    let svg = d3.select('svg'),
+    let svg = d3.select('#svg-graph'),
         width = window.innerWidth-50,
         height = window.innerHeight-100,
         nodeRadius = 5;
@@ -25,15 +28,28 @@ export function generateGraphChart(jsonUrl){
         .force('link', d3.forceLink().id(function(d){ return d.name; }));  // for source and targe value in links not using number based zero but based on customized string
 
     d3.json(jsonUrl.value, function(error, data){
-        console.log("data",data);
-        let links = svg.append("g")
+        // These thicker lines make it easier for someone to click on a graph edge.
+        let bg_links = svg.append("g")
             .selectAll("line")
             .data(data.links)
             .enter()
             .append("line")
             .attr("stroke", Color.White)
+            .attr("stroke-width", 4)
+            .attr('stroke-opacity', 0.0)
+            .on('click', onLinkClick);
+
+
+        let links = svg.append("g")
+            .selectAll("line")
+            .data(data.links)
+            .enter()
+            .append("line")
+            .attr("pointer-events", "none")
+            .attr("stroke", Color.White)
             .attr("stroke-width", 2)
             .attr('stroke-opacity', 0.75);
+
 
         let nodes = svg.append("g")
             .selectAll("circle")
@@ -50,8 +66,14 @@ export function generateGraphChart(jsonUrl){
         simulation.nodes(data.nodes)
             .on("tick", ticked);
         simulation.force("link").links(data.links);
+        simulation.force("bg_link").links(data.links);
 
         function ticked(){
+            bg_links
+                .attr("x1", function(d:any) { return d.source.x; })
+                .attr("y1", function(d:any) { return d.source.y; })
+                .attr("x2", function(d:any) { return d.target.x; })
+                .attr("y2", function(d:any) { return d.target.y; });
             links
                 .attr("x1", function(d:any) { return d.source.x; })
                 .attr("y1", function(d:any) { return d.source.y; })
@@ -73,7 +95,7 @@ export function generateGraphChart(jsonUrl){
  * @param i: index
  */
 function nodeMouseOverBehavior(d, i){
-    let svg = d3.select('svg');
+    let svg = d3.select('#svg-graph');
 
     let avgCharWidth = 7;
     let textWidth = d.name.length * avgCharWidth;
@@ -118,17 +140,23 @@ function nodeMouseOutBehavior(d, i){
  * @param i index
  */
 function nodeClickBehavior(d, i){
-    // start over with all nodes shown
-    d3.selectAll("circle")
-        .style("opacity", 1);
+    let svg = d3.select('#svg-graph');
+    let circles = svg.selectAll("circle");
 
-    // grey out neighbors
+    // Reset styles
+    svg.selectAll('line')
+        .style('opacity', 1.0)
+        .style('stroke', Color.White);
+    circles.style("opacity", 1)
+           .style('stroke', Color.White)
+           .style('fill', Color.White);
+
+    // Grey out neighbors
     if (d.neighbors){
         let neighborNode = d.neighbors,
             ownName = d.name;
         // grey out non-neighbors
-        d3.selectAll("circle")
-            .filter(function(d, i){
+        circles.filter(function(d, i){
                 if  (d.name == ownName){
                     return false;
                 }
@@ -136,6 +164,50 @@ function nodeClickBehavior(d, i){
             })
             .style("opacity", 0.2);
     }
+
+}
+
+/**
+ * Handle edge clicks
+ * @param d datum from the element
+ * @param i index
+ */
+function onLinkClick(d, i) {
+    let source = d.source;
+    let target = d.target;
+    let vizType = d.viztype;
+
+
+    let svg = d3.select('#svg-graph');
+    let lines = svg.selectAll('line');
+    let circles = svg.selectAll("circle");
+
+    // Reset styles
+    svg.selectAll('line')
+        .style('opacity', 1.0)
+        .style('stroke', Color.White);
+    circles.style("opacity", 1)
+           .style('stroke', Color.White)
+           .style('fill', Color.White);
+
+
+    // Color the nodes defining the edge blue
+    circles.filter(function (d) {
+            return d.name === source.name || d.name === target.name;
+        })
+        .style('opacity', 1.0)
+        .style('stroke', Color.Blue)
+        .style('fill', Color.Blue);
+    // Color the edge blue
+    lines.filter(function (d) {
+            return d.source.name === source.name && d.target.name === target.name
+        })
+        .style('opacity', 1.0)
+        .style('stroke', Color.Blue);
+
+    // Load and display the chart
+    displayChart(vizType, source.name, target.name);
+
 }
 
 // todo: when click on reset button, all ndoes' opacity to 1
