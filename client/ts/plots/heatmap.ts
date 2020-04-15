@@ -1,4 +1,17 @@
 import Plotly from 'plotly.js-dist';
+/**
+ * 
+ * @param data 
+ * @param chartHolderId 
+ */
+export function createHeatMap(data:any, chartHolderId:string) {
+    let keys = Object.keys(data);
+    let xAxisTitle:string = keys[0];
+    let yAxisTitle:string = keys[1];
+    let xvals = Object.values(data[keys[0]]);
+    let yvals = Object.values(data[keys[1]]);
+    heatmap(xvals, yvals, xAxisTitle, yAxisTitle,chartHolderId);
+}
 
 /**
  * Creates a heatmap from raw data using plotly.
@@ -29,11 +42,15 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string, 
             title: {
                 text: yName
             }
-        }
+        },
+        plot_bgcolor: "rgba(0, 0, 0, 0)",
+        paper_bgcolor: "rgba(0, 0, 0, 0)",
+        font: {color: 'white'}
     };
     Plotly.newPlot(chartHolderId, chartData, layout);
 }
 
+// TODO: this processForHeatmap function will need change after the json structure for heatmap is updated
 /**
  * Transoform raw data into a form the heatmap function of Plotly can use. 
  * @param x An array of categorical values. Number or string
