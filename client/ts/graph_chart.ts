@@ -25,7 +25,7 @@ export function generateGraphChart(jsonUrl){
         // .force('collide', d3.forceCollide().radius(nodeRadius*1.2))
         .force('collide', d3.forceCollide())
         .force('link', d3.forceLink().distance(80)) // distance sets the length of each link
-        .force('link', d3.forceLink().id(function(d){ return d.name; }));  // for source and targe value in links not using number based zero but based on customized string
+        .force('link', d3.forceLink().id(function(d:any){ return d.name; }));  // for source and targe value in links not using number based zero but based on customized string
 
     d3.json(jsonUrl.value, function(error, data){
         // These thicker lines make it easier for someone to click on a graph edge.
@@ -156,7 +156,7 @@ function nodeClickBehavior(d, i){
         let neighborNode = d.neighbors,
             ownName = d.name;
         // grey out non-neighbors
-        circles.filter(function(d, i){
+        circles.filter(function(d:any){
                 if  (d.name == ownName){
                     return false;
                 }
@@ -192,14 +192,14 @@ function onLinkClick(d, i) {
 
 
     // Color the nodes defining the edge blue
-    circles.filter(function (d) {
+    circles.filter(function (d:any) {
             return d.name === source.name || d.name === target.name;
         })
         .style('opacity', 1.0)
         .style('stroke', Color.Blue)
         .style('fill', Color.Blue);
     // Color the edge blue
-    lines.filter(function (d) {
+    lines.filter(function (d:any) {
             return d.source.name === source.name && d.target.name === target.name
         })
         .style('opacity', 1.0)

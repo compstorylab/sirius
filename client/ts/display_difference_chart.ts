@@ -17,10 +17,10 @@ export function displayChart(plotType:string, sourceName:string, targetName:stri
     clearImage(document.getElementById("difference_chart") as HTMLImageElement);
 
     // Select Plot by type
-    if(plotType == 'DD') {
+    if(plotType == 'DD' || plotType == 'CD' || plotType == 'DC') {
         loadPlotylPlot(plotType, sourceName, targetName);
     }
-    else if(plotType == 'CD' || plotType == 'DC' || plotType == 'CC') {
+    else if(plotType == 'CC') {
         loadPNGGraph(sourceName, targetName);
     }
 }
