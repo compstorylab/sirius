@@ -1,7 +1,6 @@
 import {Drawer} from "./drawer";
 
 import {generateGraphChart} from "./graph_chart";
-import {displayChart} from "./display_difference_chart";
 
 (function(){
 
@@ -23,7 +22,6 @@ import {displayChart} from "./display_difference_chart";
       drawer.close();
 
       generateGraphChart(jsonUrl);
-      displayChart();
    }
 
 }());

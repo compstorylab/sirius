@@ -1,84 +1,34 @@
 import * as d3 from "d3";
 import * as $ from "jquery";
-import {Color} from "./styles";
 
 import {Drawer} from './drawer';
 import {createPlot} from "./plots";
 
-/**
- * when click an edge, higlight the edge and the corresponding pair of nodes. if click on another edge, return the previous
- * clicked one into original color.
- * @param clickedElementList: array, [[source_node_index, target_node_index, edge_dom_obj], [...] ]
- * @param nodes: d3 selection obj, returned from d3.selectAll("circle")
- * @param sourceIndex: int, index of the source node
- * @param targetIndex: int, index of the target node
- * @param clickedElement: obj, the clicked edge, which is a line svg element 
- */
-function clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement){
-    // get the previously clicked item, if it is not empty, turn it to original color
-    let clickedItemsArray = clickedElementList.pop();
-    if (clickedItemsArray){
-        let previousClickedSourceIndex = clickedItemsArray[0],
-            previousClickedTargetIndex = clickedItemsArray[1],
-            previousClickedEdge = clickedItemsArray[2];
-        nodes.nodes()[previousClickedSourceIndex].style.fill = Color.White;
-        nodes.nodes()[previousClickedSourceIndex].setAttribute('stroke', Color.White);
-        nodes.nodes()[previousClickedTargetIndex].style.fill = Color.White;
-        nodes.nodes()[previousClickedTargetIndex].setAttribute('stroke', Color.White);
-        previousClickedEdge.setAttribute('stroke', Color.White);
-    }
-
-    // save the clicked items info into an array
-    clickedElementList.push([sourceIndex, targetIndex, clickedElement]);
-    //highlight the clicked edge, related pairs of nodes
-    nodes.nodes()[sourceIndex].style.fill = Color.Blue;
-    nodes.nodes()[sourceIndex].setAttribute('stroke', Color.Blue);
-    nodes.nodes()[targetIndex].style.fill = Color.Blue;
-    nodes.nodes()[targetIndex].setAttribute('stroke', Color.Blue);
-    clickedElement.setAttribute('stroke', Color.Blue);
-}
 
 /**
  * when user click on an edge, display the static chart corresponding to the pair of nodes if the chart is available. if not
  * display a message.
  * highlight the clicked edge and its nodes.
  */
-export function displayChart(){
-    // add event listener to the document, ensure the listener can be created before the target element, lke line, is created
-    document.addEventListener("click", function(e){
-        let clickedElement: any = e.target;
+export function displayChart(plotType:string, sourceName:string, targetName:string){
+    // Clear previous plots first
+    // @ts-ignore
+    Plotly.purge('plot-parent');
+    clearImage(document.getElementById("difference_chart") as HTMLImageElement);
 
-        if (clickedElement.nodeName=='line'){
-            let sourceName = clickedElement.__data__.source.name,
-                sourceIndex = clickedElement.__data__.source.index,
-                targetName = clickedElement.__data__.target.name,
-                targetIndex = clickedElement.__data__.target.index,
-                plotType = clickedElement.__data__.viztype;
-
-
-            // Clear previous plots first
-            // @ts-ignore
-            Plotly.purge('plot-parent');
-            clearImage(document.getElementById("difference_chart") as HTMLImageElement);
-
-            // Select Plot by type
-            if(plotType == 'DD' || plotType == 'CD' || plotType == 'DC') {
-                loadPlotylPlot(plotType, sourceName, targetName, sourceIndex, targetIndex, clickedElement);
-            }
-            else if(plotType == 'CC') {
-                loadPNGGraph(sourceName, targetName, sourceIndex, targetIndex, clickedElement);
-            }
-        }
-    });
+    // Select Plot by type
+    if(plotType == 'DD' || plotType == 'CD' || plotType == 'DC') {
+        loadPlotylPlot(plotType, sourceName, targetName);
+    }
+    else if(plotType == 'CC') {
+        loadPNGGraph(sourceName, targetName);
+    }
 }
 
 function setImage(imageElement:HTMLImageElement, staticImageURL:string){
     imageElement.src = staticImageURL;
     imageElement.width = document.querySelector(".right-bar-image").clientWidth;
     imageElement.height = imageElement.width * 2/3;
-
-    console.log("imageElement", imageElement);
-    console.log("imageElement size", imageElement.width, imageElement.height);
 }
 
 function clearImage(imageElement:HTMLImageElement) {
@@ -88,7 +38,7 @@ function clearImage(imageElement:HTMLImageElement) {
 }
 
 
-function loadPNGGraph(sourceName:string, targetName:string, sourceIndex:number, targetIndex:number, clickedElement:HTMLElement){
+function loadPNGGraph(sourceName:string, targetName:string){
     let clickedElementList = [];
     let imageType = '.png';
     let staticImageFileName = sourceName + "_" + targetName + imageType;
@@ -106,15 +56,8 @@ function loadPNGGraph(sourceName:string, targetName:string, sourceIndex:number, 
         url: staticImageURL,
         success: function(){
             setImage(imageElement, staticImageURL);
-
-            // highlight currently clicked nodes, turn the previous clicked items into original color
-            clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
-
         },
         error: function(){
-            // highlight currently clicked nodes, turn the previous clicked items into original color
-            clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
-
             // todo: in the future, using another way to handle missing pictures?
             let errorMsg:string = "No Image For this Edge";
             Drawer.getInstance().open({mode:'plot', title: errorMsg});
@@ -129,11 +72,8 @@ function loadPNGGraph(sourceName:string, targetName:string, sourceIndex:number, 
  * @param {string} type
  * @param {string} sourceName
  * @param {string} targetName
- * @param {number} sourceIndex
- * @param {number} targetIndex
- * @param {HTMLElement} clickedElement
  */
-function loadPlotylPlot(type:string, sourceName:string, targetName:string, sourceIndex:number, targetIndex:number, clickedElement:HTMLElement){
+function loadPlotylPlot(type:string, sourceName:string, targetName:string){
     loadJson(sourceName, targetName,
         function (data){
             let imageTitle = sourceName.split("_").join(" ").toUpperCase() + ' VS ' + targetName.split("_").join(" ").toUpperCase();
@@ -143,10 +83,6 @@ function loadPlotylPlot(type:string, sourceName:string, targetName:string, sourc
         function () {
             Drawer.getInstance().open({mode:'plot', title: "Could not load data to plot."});
         });
-
-    let clickedElementList = [];
-    let nodes = d3.selectAll("circle");
-    clickHighlight(clickedElementList, nodes, sourceIndex, targetIndex, clickedElement);
 }
 
 
