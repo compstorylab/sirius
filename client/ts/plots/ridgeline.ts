@@ -1,6 +1,6 @@
 import Plotly from 'plotly.js-dist';
 /**
- * pricess Discrete-Continuous data into ridgeline chart ready data
+ * process Discrete-Continuous data into ridgeline chart ready data
  * @param data: {x: [list of string, discrete], y:[list of float, continuous], attributes:[x_name, y_name]}
  * return {x: [list of UNIQUE string, discrete], y:{ unique_x_1: [list of float], unique_x_2:[list of float]}, attributes:[x_name, y_name]}
  */
@@ -55,7 +55,7 @@ export function CreateRidgelineChart(data: any, chartHolderId: String): void {
         chartData.push(prepareTrace(readyData.y[d], d))
     });
 
-    var layout = {
+    let layout = {
         // title: 'hey new graph', // need configuration
         legend: {tracegroupap:0},
         xaxis: {showgrid: false, zeroline: false, title: readyData.attributes[1]}, 
