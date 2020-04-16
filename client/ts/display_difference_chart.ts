@@ -16,13 +16,7 @@ export function displayChart(plotType:string, sourceName:string, targetName:stri
     Plotly.purge('plot-parent');
     clearImage(document.getElementById("difference_chart") as HTMLImageElement);
 
-    // Select Plot by type
-    if(plotType == 'DD' || plotType == 'CD' || plotType == 'DC') {
-        loadPlotylPlot(plotType, sourceName, targetName);
-    }
-    else if(plotType == 'CC') {
-        loadPNGGraph(sourceName, targetName);
-    }
+    loadPlotylPlot(plotType, sourceName, targetName);
 }
 
 function setImage(imageElement:HTMLImageElement, staticImageURL:string){
