@@ -77,33 +77,11 @@ export function Create2DDensityChart(data: any, chartHolderId: String): void {
     };
     let chartData = [scatter_trace, density_trace, x_histogram, y_histogram],
         layout = {
-            xaxis: {
-                domain: [0, 0.85],
-                showgrid: false,
-                zeroline: false,
-                title: feature_1_name
-            },
-            yaxis: {
-                domain: [0, 0.85],
-                showgrid: false,
-                zeroline: false,
-                title: feature_2_name
-            },
-            xaxis2: {
-                domain: [0.85, 1],
-                showgrid: false,
-                zeroline: false
-            },
-            yaxis2: {
-                domain: [0.85, 1],
-                showgrid: false,
-                zeroline: false
-            },
+            xaxis: { domain: [0, 0.85], showgrid: false, zeroline: false, title: feature_1_name },
+            yaxis: { domain: [0, 0.85], showgrid: false, zeroline: false, title: feature_2_name },
+            xaxis2: { domain: [0.85, 1],showgrid: false, zeroline: false },
+            yaxis2: { domain: [0.85, 1], showgrid: false, zeroline: false },
             showlegend: false,
-            autosize: false,
-            //width: 600,
-            //height: 550,
-            //margin: {t: 50},
             hovermode: 'closest',
             bargap: 0,
             plot_bgcolor: "rgba(0, 0, 0, 0)",
