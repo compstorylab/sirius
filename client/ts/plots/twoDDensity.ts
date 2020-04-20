@@ -12,17 +12,13 @@ import Plotly from 'plotly.js-dist';
 function processCCData(data) {
     let x,
         y,
-        attr_array = [],
-        values_array = [];
+        attr_array = [];
 
-    for (const [key, value] of Object.entries(data)) {
-        attr_array.push(key);
-        values_array.push(Object.values(value));
-    }
+    attr_array = Object.keys(data);
+    x = Object.values(data[attr_array[0]])
+    y = Object.values(data[attr_array[1]])
 
-    x = values_array[0];
-    y = values_array[1];
-    return {"x": x, "y":y, "attributes":attr_array}
+    return { "x": x, "y": y, "attributes": attr_array }
 }
 
 /**
@@ -32,7 +28,7 @@ function processCCData(data) {
  */
 export function Create2DDensityChart(data: any, chartHolderId: String): void {
     let readyData = processCCData(data);
-    console.log('cc data', readyData);
+    console.log("readyData", readyData);
     let x = readyData.x,
         y = readyData.y,
         feature_1_name = readyData.attributes[0],
