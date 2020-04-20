@@ -1,5 +1,6 @@
 import { createHeatMap } from "./heatmap";
 import { CreateRidgelineChart } from "./ridgeline";
+import { Create2DDensityChart } from "./twoDDensity";
 
 /**
  * Selects plot create function by plot type
@@ -16,7 +17,7 @@ export function createPlot(type:string, data:any, chartHolderId:string) {
             CreateRidgelineChart(data, chartHolderId);
             break;
         case "CC":
-            // TODO: Add plot function
+            Create2DDensityChart(data, chartHolderId);
             break;
     }
 }
