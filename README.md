@@ -42,6 +42,10 @@ welcome to create a pull request.
 
     ```python manage.py runserver```
     
+7. Install the data processing script
+
+   ```pip install -e .```
+    
 Congratulations, the Exploratory Analysis Tool is live in your local environment!
 You can access it by the url returned from the above command, usually it is [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
@@ -74,18 +78,17 @@ Sirius works by processing cleaned data to compute pairwise feature relationship
 
 ![Sirius Data Processing Flowchart](https://raw.githubusercontent.com/compstorylab/sirius/develop/static/documentation/flowchart.png)
 
-All data processing can be run from the command line using `matrix.py`. There are a number of customizable parameters in this script, which can be changed using flags when running the script from the command line:
+After installing the `sirius` package, all data processing can be run from the command line using the command `sirius` or by invoking the package using `python -m sirius`.  There are a number of customizable parameters in this script, which can be changed using flags when running the script from the command line:
 
 Argument | Type | Default | Description
 ------------ | :-------------: | :-------------: | ------------
 `--dpi` | int | `150` | Resolution of output plots
 `--discrete-threshold` | int | `5` | Number of responses below which numeric features are considered discrete
-`--chart` | boolean | `False` | Display images while running computation
+`--output-chart` | boolean | `False` | Display images while running computation
 `--charter` | choice | `'Plotly'` | The plotting library to use. Options: `'Plotly'` or `'Seaborn'`
 `--debug` | boolean | `False` | Print updates to the console while running
-`--output` | boolean | `False` | Output json and pngs to files
-`--no-viz` | boolean | `False` | Do not output pair plots, network graph image, or chart json
-`--no-mi` | boolean | `False` | Do not compute MI. Use cached MI values instead
+`--output-json` | boolean | `False` | Output json and pngs to files
+`--output-limit-n` | int | `None` | Maximum number of data points to export into pairwise chart json files. By default, export all data points.
 `--cache` | boolean | `False` | Cache MI values to use later when generating visualizations
 `--sample-n` | int | `None` | Subsample the data. By default, work with all the data
 `--input-file` | string | `'example_data/data.csv'` | Location of the input data csv
@@ -93,9 +96,9 @@ Argument | Type | Default | Description
 
 For example, to process custom data using the tool, one might run from the command line:
 
-`python3 matrix.py --debug --input-file=my_custom_data/data.csv --output-dir=my_custom_data/output --sample-n=1000 --no-viz --cache > my_custom_data.log.v$(date "+%Y%m%d")` which would run the `matrix.py` script with debugging enabled, specifying custom directories for data input and outpt, using a 1k-observation sample from the data frame, outputting no visualization data, caching mutual information scores, and saving all logs to a log file named with today's date.
+    sirius --debug --input-file=my_custom_data/data.csv --output-dir=my_custom_data/output --sample-n=1000 --cache > my_custom_data.log
 
-
+which would run the data processing script with debugging enabled, specifying custom directories for data input and outpt, using a 1k-observation sample from the data frame, caching mutual information scores, and saving all logs to a log file.
 
 
 ## Development

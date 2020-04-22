@@ -2,7 +2,10 @@ import math
 import pandas as pd
 import numpy as np
 
-def load_data(input_file, sample_n=None, debug=False, ignore=[]):
+
+def load_data(input_file, sample_n=None, debug=False, ignore=None):
+    if ignore is None:
+        ignore = []
     # Load Data
     df = pd.read_csv(input_file)
     if sample_n:
@@ -17,12 +20,14 @@ def load_data(input_file, sample_n=None, debug=False, ignore=[]):
 
     return df
 
+
 def compute_bandwidth(X, df):
     ''' Takes a column name and computes suggested gaussian bandwidth with the formula: 1.06*var(n^-0.2) '''
     var = np.var(df[X])
     n = len(df[X].notnull())
     b = 1.06 * var * (n ** (-0.2))
     return b
+
 
 ## Feature Classification
 

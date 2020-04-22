@@ -1,8 +1,17 @@
-from sirius import *
+from pathlib import Path
+
+import pandas as pd
+
+from . import setup
+from .data_processing import classify_features, load_data
+from .mutual_info import calc_mi
+from .network import output_graph_json, output_pairs_json, threshold_by_max_component
+from .visualization import draw_graph, viz
+
 
 def main():
     
-    args = setup.argSetup()
+    args = setup.arg_setup()
     print("args['cache']:",args['cache'])
 
     # create output directories, if needed
@@ -57,11 +66,7 @@ def main():
                 output_dir=Path(args['output_dir']), resolution=args['dpi'])
 
 
-
-
 if __name__ == '__main__':
-    import cProfile
-    cProfile.run('main()')
-
+    main()
 
 
