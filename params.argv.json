@@ -9,5 +9,5 @@
   "sample_n": null,
   "output_limit_n": null,
   "input_file": "example_data/data.csv",
-  "output_dir": "example_data/output",
+  "output_dir": "example_data/output"
 }
