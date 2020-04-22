@@ -17,34 +17,34 @@ welcome to create a pull request.
 `python 3` and `git` are required before you start the setting up process
 ### Setting Up the Tool
 1. Clone the repo to your local directory
-2. Enter the directory, create a virtual environment and activate it
+2. Enter the directory, create a conda environment, and activate it
 
-    ```
-    python3 -m venv venv
-    source venv/bin/activate
-    
-    ```
-    
+       conda create -n myenv python=3.7
+       conda activate myenv
 3. Install required packages
 
-    ```pip install -r requirements.txt```
-4. Create a .env file under the project folder, which contains 
+   ```
+   pip install -r requirements.txt
+   ```
+4. Install the data processing script and its dependencies. 
+   The data processing script depends on the Plotly Orca library which can be installed using conda.
+
+       conda install -n myenv -c plotly plotly-orca
+       pip install -e .   
+5. Create a .env file under the project folder, which contains 
     ```text
        SIRIUS_SETTINGS_SECRET_KEY={your string value here with quotes}
        (this one is optional)ENVIRONMENT={"dev" or "qa" or "prod"}
     ```
     secret key should be set to a unique, unpredictable value. It is used for sessions, messages, PasswordResetView tokens
-    or any usage of is cryptographic signing unless a different key is provided.
-5. Execute the following command to set up the database structure
+    or any usage of is cryptographic signing unless a different key is provided.  
+6. Execute the following command to set up the database structure
 
-    ```python manage.py migrate```    
-6. Start the server
+    ```python manage.py migrate```  
+7. Start the server
 
     ```python manage.py runserver```
-    
-7. Install the data processing script
 
-   ```pip install -e .```
     
 Congratulations, the Exploratory Analysis Tool is live in your local environment!
 You can access it by the url returned from the above command, usually it is [http://127.0.0.1:8000](http://127.0.0.1:8000)
