@@ -3,9 +3,11 @@
 import pandas as pd
 import numpy as np
 import networkx as nx
+import itertools
 import json
 import seaborn as sns
 sns.set_style("whitegrid")
+
 
 def output_pairs_json(df, output_dir, pair_info=None, num_sample=None, random_state=None):
     """

@@ -2,11 +2,8 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 import itertools
-from sklearn.feature_selection import f_regression, mutual_info_regression
+from sklearn.feature_selection import mutual_info_regression
 from sklearn.metrics import mutual_info_score
-from scipy.stats import multivariate_normal, pearsonr
-import scipy.integrate as integrate
-from sklearn.neighbors import KernelDensity
 
 
 def calc_mi(df, feature_info, debug=False):

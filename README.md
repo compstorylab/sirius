@@ -17,30 +17,34 @@ welcome to create a pull request.
 `python 3` and `git` are required before you start the setting up process
 ### Setting Up the Tool
 1. Clone the repo to your local directory
-2. Enter the directory, create a virtual environment and activate it
+2. Enter the directory, create a conda environment, and activate it
 
-    ```
-    python3 -m venv venv
-    source venv/bin/activate
-    
-    ```
-    
+       conda create -n myenv python=3.7
+       conda activate myenv
 3. Install required packages
 
-    ```pip install -r requirements.txt```
-4. Create a .env file under the project folder, which contains 
+   ```
+   pip install -r requirements.txt
+   ```
+4. Install the data processing script and its dependencies. 
+   The data processing script depends on the Plotly Orca library which can be installed using conda.
+
+       conda install -n myenv -c plotly plotly-orca
+       pip install -e .   
+5. Create a .env file under the project folder, which contains 
     ```text
        SIRIUS_SETTINGS_SECRET_KEY={your string value here with quotes}
        (this one is optional)ENVIRONMENT={"dev" or "qa" or "prod"}
     ```
     secret key should be set to a unique, unpredictable value. It is used for sessions, messages, PasswordResetView tokens
-    or any usage of is cryptographic signing unless a different key is provided.
-5. Execute the following command to set up the database structure
+    or any usage of is cryptographic signing unless a different key is provided.  
+6. Execute the following command to set up the database structure
 
-    ```python manage.py migrate```    
-6. Start the server
+    ```python manage.py migrate```  
+7. Start the server
 
     ```python manage.py runserver```
+
     
 Congratulations, the Exploratory Analysis Tool is live in your local environment!
 You can access it by the url returned from the above command, usually it is [http://127.0.0.1:8000](http://127.0.0.1:8000)
@@ -74,18 +78,17 @@ Sirius works by processing cleaned data to compute pairwise feature relationship
 
 ![Sirius Data Processing Flowchart](https://raw.githubusercontent.com/compstorylab/sirius/develop/static/documentation/flowchart.png)
 
-All data processing can be run from the command line using `matrix.py`. There are a number of customizable parameters in this script, which can be changed using flags when running the script from the command line:
+After installing the `sirius` package, all data processing can be run from the command line using the command `sirius` or by invoking the package using `python -m sirius`.  There are a number of customizable parameters in this script, which can be changed using flags when running the script from the command line:
 
 Argument | Type | Default | Description
 ------------ | :-------------: | :-------------: | ------------
 `--dpi` | int | `150` | Resolution of output plots
 `--discrete-threshold` | int | `5` | Number of responses below which numeric features are considered discrete
-`--chart` | boolean | `False` | Display images while running computation
+`--output-chart` | boolean | `False` | Display images while running computation
 `--charter` | choice | `'Plotly'` | The plotting library to use. Options: `'Plotly'` or `'Seaborn'`
 `--debug` | boolean | `False` | Print updates to the console while running
-`--output` | boolean | `False` | Output json and pngs to files
-`--no-viz` | boolean | `False` | Do not output pair plots, network graph image, or chart json
-`--no-mi` | boolean | `False` | Do not compute MI. Use cached MI values instead
+`--output-json` | boolean | `False` | Output json and pngs to files
+`--output-limit-n` | int | `None` | Maximum number of data points to export into pairwise chart json files. By default, export all data points.
 `--cache` | boolean | `False` | Cache MI values to use later when generating visualizations
 `--sample-n` | int | `None` | Subsample the data. By default, work with all the data
 `--input-file` | string | `'example_data/data.csv'` | Location of the input data csv
@@ -93,9 +96,9 @@ Argument | Type | Default | Description
 
 For example, to process custom data using the tool, one might run from the command line:
 
-`python3 matrix.py --debug --input-file=my_custom_data/data.csv --output-dir=my_custom_data/output --sample-n=1000 --no-viz --cache > my_custom_data.log.v$(date "+%Y%m%d")` which would run the `matrix.py` script with debugging enabled, specifying custom directories for data input and outpt, using a 1k-observation sample from the data frame, outputting no visualization data, caching mutual information scores, and saving all logs to a log file named with today's date.
+    sirius --debug --input-file=my_custom_data/data.csv --output-dir=my_custom_data/output --sample-n=1000 --cache > my_custom_data.log
 
-
+which would run the data processing script with debugging enabled, specifying custom directories for data input and outpt, using a 1k-observation sample from the data frame, caching mutual information scores, and saving all logs to a log file.
 
 
 ## Development

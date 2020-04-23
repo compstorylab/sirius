@@ -12,6 +12,7 @@ from plotly.colors import n_colors
 from plotly.offline import download_plotlyjs, plot, iplot, init_notebook_mode
 import json
 
+
 # Discrete-Discrete Confusion Matrices
 def DD_viz(df, charter='Plotly', output_chart=True, output_dir=None, resolution=150):
     ''' Takes a filtered dataframe of two discrete feature columns and generates a heatmap '''
@@ -148,12 +149,12 @@ def CC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution
 
 
 # Matrix Heatmap
-def matrix_viz(matrix):
+def matrix_viz(matrix, output_chart=False, output_dir=None, resolution=150):
     plt.clf()
     plt.figure(dpi=70, figsize=(10, 8))
     sns.heatmap(matrix.fillna(0))
     if output_chart:
-        plt.savefig(output_dir / ('heatmap.png'), dpi=resolution)
+        plt.savefig(output_dir / 'heatmap.png', dpi=resolution)
 
 
 # Visualization Function Router
@@ -182,6 +183,7 @@ def viz(U, V, df, feature_info, charter='Plotly', output_chart=False, output_jso
                 json.dump(pairdf.to_dict(), outfile)
 
     return viz
+
 
 def calculate_positions(G):
     # Generate position data for each node
@@ -229,6 +231,7 @@ def calculate_positions(G):
     nodes = dict(x=node_x, y=node_y, name=node_name, adjacencies=node_adjacencies, centralities=node_centralities)
 
     return edges, nodes
+
 
 def draw_graph(stack, title, output_chart=False, output_dir=None, resolution=150, **kwargs):
     G = nx.from_pandas_edgelist(stack, 'x', 'y', ['v'])
