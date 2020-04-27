@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+function command_exists {
+  if [ -x "$(command -v $1)" ]; then
+    echo "Found $1 at $(command -v $1)"
+  else
+    echo "Error: Could not find $1" >&2
+    exit 1
+  fi
+}
+
+function echo_step {
+  echo "Step: $1"
+}
+
+# Is there Python 3
+command_exists "python3"
+
+# Is there Conda?
+command_exists "conda"
+
+# Is there Git?
+command_exists "git"
+
+# Create the env using conda
+echo_step "Create the virtual environment"
+conda create -y -n sirius_env python=3.7 pip
+
+# Start it up
+echo_step "Activate the virtual environment"
+source /anaconda3/etc/profile.d/conda.sh
+conda activate sirius_env
+
+# Add conda packages
+echo_step "Add Pip the virtual environment"
+conda install -y -n sirius_env pip
+conda install -y -n sirius_env -c plotly plotly-orca
+
+# Add Pip packages
+pip install -r requirements.txt
+pip install -e .
+
+# Create and/or append to the environment file
+echo "SIRIUS_SETTINGS_SECRET_KEY=$(openssl rand -base64 66)" >> .env
+
+# Setup database for Django
+python manage.py migrate
+
