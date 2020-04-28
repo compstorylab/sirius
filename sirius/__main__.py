@@ -5,7 +5,7 @@ import pandas as pd
 from . import setup
 from .data_processing import classify_features, load_data
 from .mutual_info import calc_mi
-from .network import output_graph_json, output_pairs_json, threshold_by_max_component
+from .network import output_graph_json, output_pairs_json, threshold_using_backbone_method
 from .visualization import draw_graph, viz
 
 
@@ -49,7 +49,7 @@ def main():
     # sorted_stack = sorted_stack[sorted_stack['v'] < 1]
 
     # Threshold the edge list by the mutual information threshold which maximizes the component count
-    pair_info = threshold_by_max_component(pair_info, output_chart=args['output_chart'], resolution=args['dpi'])
+    pair_info = threshold_using_backbone_method(pair_info)
 
     # Sirius JSON
 

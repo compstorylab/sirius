@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 import networkx as nx
+from scipy import integrate
 import itertools
 import json
 import seaborn as sns
@@ -69,9 +70,59 @@ def output_graph_json(pair_info, feature_info, output_dir):
 
     with open(output_dir / 'components.json', 'w') as json_file:
         json.dump(components, json_file)
+        
+## Dynamic Thresholding Using Backbone Method
+
+def disparity_filter(G, weight='weight'):
+    ''' Compute significance scores (alpha) for weighted edges in G as defined in Serrano et al. 2009
+        References:
+            Palakorn Achananuparp, "Python Backbone Network": https://github.com/aekpalakorn/python-backbone-network
+            M. A. Serrano et al. (2009) Extracting the Multiscale backbone of complex weighted networks. PNAS, 106:16, pp. 6483-6488.
+    '''
+    B = nx.Graph()
+    for u in G:
+        k = len(G[u])
+        if k > 1:
+            sum_w = sum(np.absolute(G[u][v][weight]) for v in G[u])
+            for v in G[u]:
+                w = G[u][v][weight]
+                p_ij = float(np.absolute(w))/sum_w
+                alpha_ij = 1 - (k-1) * integrate.quad(lambda x: (1-x)**(k-2), 0, p_ij)[0]
+                B.add_edge(u, v, weight = w, alpha=float('%.4f' % alpha_ij))
+    return B
+
+def disparity_filter_alpha_cut(G,weight='weight',alpha_t=0.4, cut_mode='or'):
+    ''' Performs a cut of the graph previously filtered through the disparity_filter function.
+        
+        References:
+            Palakorn Achananuparp, "Python Backbone Network": https://github.com/aekpalakorn/python-backbone-network
+            M. A. Serrano et al. (2009) Extracting the Multiscale backbone of complex weighted networks. PNAS, 106:16, pp. 6483-6488.
+    '''    
+    
+    B = nx.Graph()
+    for u, v, w in G.edges(data=True):
+
+        try:
+            alpha = w['alpha']
+        except KeyError: #there is no alpha, so we assign 1. It will never pass the cut
+            alpha = 1
+
+        if alpha<alpha_t:
+            B.add_edge(u,v, weight=w[weight])
+    return B
+
+def threshold_using_backbone_method(pair_info):
+    G = nx.Graph()
+    G.add_nodes_from(list(dict.fromkeys((list(pair_info['x'].unique()) + list(pair_info['y'].unique())))))
+    G.add_weighted_edges_from(list(zip(pair_info['x'], pair_info['y'],pair_info['v'])))
+    alpha = 0.05
+    G = disparity_filter(G)
+    G2 = nx.Graph([(u, v, d) for u, v, d in G.edges(data=True) if d['alpha'] < alpha])
+    thresheld_edgelist = nx.to_pandas_edgelist(G2).drop(columns='alpha').rename(columns={'source':'x','target':'y','weight':'v'})
+    return thresheld_edgelist
 
 
-## Thresholding
+## Static Thresholding (deprecated)
 
 def threshold_by_max_component(pair_info, output_chart=False, resolution=150):
     max_component_threshold = find_max_component_threshold(pair_info, output_chart=output_chart, resolution=resolution)

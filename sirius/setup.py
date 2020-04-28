@@ -12,9 +12,9 @@ DEFAULTS = {
     "charter": "Plotly",
     "cache": True,
     "sample_n": None,
-    "input_file": None,
-    "output_dir": None,
     "output_limit_n": None,
+    "input_file": "../example_data/data.csv",
+    "output_dir": "../example_data/output"
 }
 
 def arg_setup():

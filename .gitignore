@@ -14,9 +14,10 @@ tmp/
 migrations/
 
 db.sqlite3
-utilities/demo_widsdatathon2020/
+demo_widsdatathon2020/
+example_data/output/
 utilities/.ipynb_checkpoints/
 utilities/*/.DS_Store
 .DS_Store
 utilities/paper/
-utillities/graph_test.json
+utilities/graph_test.json

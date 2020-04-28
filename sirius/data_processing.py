@@ -31,7 +31,7 @@ def compute_bandwidth(X, df):
 
 ## Feature Classification
 
-def classify_features(df, discrete_threshold, debug=False):
+def classify_features(df, discrete_threshold=10, debug=False):
     """
     Categorize every feature/column of df as discrete or continuous according to whether or not the unique responses
     are numeric and, if they are numeric, whether or not there are fewer unique renponses than discrete_threshold.

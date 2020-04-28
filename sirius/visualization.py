@@ -14,7 +14,7 @@ import json
 
 
 # Discrete-Discrete Confusion Matrices
-def DD_viz(df, charter='Plotly', output_chart=True, output_dir=None, resolution=150):
+def DD_viz(df, charter='Plotly', output_chart=True, output_dir=None, resolution=150, display=False):
     ''' Takes a filtered dataframe of two discrete feature columns and generates a heatmap '''
 
     U = df.columns[0]
@@ -43,7 +43,7 @@ def DD_viz(df, charter='Plotly', output_chart=True, output_dir=None, resolution=
             plot_bgcolor="rgba(0, 0, 0, 0)",
             paper_bgcolor="rgba(0, 0, 0, 0)",
         )
-
+        if display: fig.show()
         if output_chart:
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
@@ -55,6 +55,7 @@ def DD_viz(df, charter='Plotly', output_chart=True, output_dir=None, resolution=
         sns.heatmap(s, annot=True, cmap="Blues", cbar=False, linewidths=1)
         plt.xlabel(U.replace('_', ' ').title())
         plt.ylabel(V.replace('_', ' ').title())
+        if display: plt.show()
         if output_chart:
             plt.savefig(output_dir / 'charts' / (U + '_' + V + '.png'), dpi=resolution)
 
@@ -62,7 +63,7 @@ def DD_viz(df, charter='Plotly', output_chart=True, output_dir=None, resolution=
 
 
 # Discrete-Continuous Violin Plots
-def DC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution=150, discrete_first=True):
+def DC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution=150, discrete_first=True, display=False):
     ''' Takes a subset dataframe of one continuous and one discrete feature and generates a Violin Plot '''
 
     U = df.columns[0]
@@ -90,6 +91,7 @@ def DC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution
             paper_bgcolor="rgba(0, 0, 0, 0)",
             showlegend=False
         )
+        if display: fig.show()
         if output_chart:
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
@@ -104,14 +106,14 @@ def DC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution
                           linewidth=1)  # Only show a swarm plot if there are fewer than 500 data points
         plt.xlabel(D.replace('_', ' ').title())
         plt.ylabel(C.replace('_', ' ').title())
-
+        if display: plt.show()
         if output_chart:
             plt.savefig(output_dir / 'charts' / (U + '_' + V + '.png'), dpi=resolution)
 
     plt.close('all')
 
 # Continuous-Continuous KDE Plots
-def CC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution=150):
+def CC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution=150, display=False):
     ''' Takes two continuous feature names and generates a 2D Kernel Density Plot '''
     U = list(df.columns)[0]
     V = list(df.columns)[1]
@@ -127,7 +129,7 @@ def CC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution
             paper_bgcolor="rgba(0, 0, 0, 0)",
             showlegend=False
         )
-
+        if display: fig.show()
         if output_chart:
             fig.update_xaxes(tickcolor='white', tickfont=dict(color='white'))
             fig.update_yaxes(tickcolor='white', tickfont=dict(color='white'))
@@ -141,6 +143,7 @@ def CC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution
 
         plt.xlabel(U.replace('_', ' ').title())
         plt.ylabel(V.replace('_', ' ').title())
+        if display: plt.show()
         if output_chart:
             plt.savefig(output_dir / 'charts' / (U + '_' + V + '.png'), dpi=resolution)
             
@@ -151,14 +154,14 @@ def CC_viz(df, charter='Plotly', output_chart=False, output_dir=None, resolution
 # Matrix Heatmap
 def matrix_viz(matrix, output_chart=False, output_dir=None, resolution=150):
     plt.clf()
-    plt.figure(dpi=70, figsize=(10, 8))
+    plt.figure(dpi=resolution, figsize=(10, 8))
     sns.heatmap(matrix.fillna(0))
     if output_chart:
         plt.savefig(output_dir / 'heatmap.png', dpi=resolution)
 
 
 # Visualization Function Router
-def viz(U, V, df, feature_info, charter='Plotly', output_chart=False, output_json=False, output_dir=None, resolution=150):
+def viz(U, V, df, feature_info, charter='Plotly', output_chart=False, output_json=False, output_dir=None, resolution=150, display=False):
     ''' Generate a visualization based on feature types '''
     plt.clf()
     plt.figure(dpi=resolution)
@@ -166,15 +169,15 @@ def viz(U, V, df, feature_info, charter='Plotly', output_chart=False, output_jso
     feature_types = feature_info['type'].to_dict()
     # If both features are discrete:
     if feature_types[U] == 'd' and feature_types[V] == 'd':
-        DD_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution)
+        DD_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution, display=display)
     # If both features are continuous:
     elif feature_types[U] == 'c' and feature_types[V] == 'c':
-        CC_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution)
+        CC_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution, display=display)
     # If one feature is continuous and one feature is discrete:
     elif feature_types[U] == 'c' and feature_types[V] == 'd':
-        DC_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution, discrete_first=False)
+        DC_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution,display=display, discrete_first=False)
     elif feature_types[U] == 'd' and feature_types[V] == 'c':
-        DC_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution)
+        DC_viz(pairdf, charter=charter, output_chart=output_chart, output_dir=output_dir, resolution=resolution,display=display)
     else:
         raise Exception('Error on features', U, 'and', V)
         
@@ -184,10 +187,23 @@ def viz(U, V, df, feature_info, charter='Plotly', output_chart=False, output_jso
 
     return viz
 
+def show_edge_thinning(original, thinned):
+    original['source']='all'
+    thinned['source']='thresheld'
+    combined = original.append(thinned)
+    plt.clf()
+    plt.figure()
+    g = sns.FacetGrid(combined, hue="source", legend_out=True)
+    f = g.map(sns.distplot, "v",  rug=False, kde=False)
+    plt.xlabel('Mutual information value')
+    plt.ylabel('Number of edges')
+    plt.show()
+    return
 
-def calculate_positions(G):
+
+def calculate_positions(G, layout=nx.fruchterman_reingold_layout):
     # Generate position data for each node
-    pos = nx.kamada_kawai_layout(G, weight='weight')
+    pos = layout(G, weight='weight')
 
     # Save x, y locations of each edge
     edge_x = []
@@ -233,9 +249,9 @@ def calculate_positions(G):
     return edges, nodes
 
 
-def draw_graph(stack, title, output_chart=False, output_dir=None, resolution=150, **kwargs):
+def draw_graph(stack, title, output_chart=False, output_dir=None, resolution=150, display=False,  layout=nx.fruchterman_reingold_layout, **kwargs):
     G = nx.from_pandas_edgelist(stack, 'x', 'y', ['v'])
-    [edges, nodes] = calculate_positions(G)
+    [edges, nodes] = calculate_positions(G, layout=layout)
 
     # Draw edges
     edge_trace = go.Scatter(
@@ -275,3 +291,4 @@ def draw_graph(stack, title, output_chart=False, output_dir=None, resolution=150
 
     if output_chart:
         fig.write_image(str(output_dir / 'graph_example.png'), scale=resolution // 72)
+    if display: fig.show()
