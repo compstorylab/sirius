@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.templatetags.static import static
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .forms import UploadJSONandImage
@@ -15,17 +16,23 @@ class HomePageView(TemplateView):
         form = UploadJSONandImage()
         context['upload_form'] = form
 
+        # If data already exists in the upload directory, display the graph
+        if os.path.exists('static/upload_files/graph.json'):
+            context['json_file_url'] = static('upload_files/graph.json')
+
         return context
 
     def post(self, *args, **kwargs):
         context = {}
         files = self.request.FILES
         form = UploadJSONandImage(self.request.POST, files)
+
         if os.path.exists('static/upload_files/'):
             shutil.rmtree('static/upload_files/')
-        if form.is_valid() and UploadJSONandImage.validate_extension(files.getlist('file_field')):
+        if form.is_valid():
+            files_list = UploadJSONandImage.filter(files.getlist('file_field'))
             # form cleaned data only check one file instead a list of files, so add extra validation process above
-            for file in files.getlist('file_field'):
+            for file in files_list:
                 upload_file_instance = UploadFileField(file_field=file)
                 upload_file_instance.save()
                 if file.name == 'graph.json':
