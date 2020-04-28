@@ -49,6 +49,7 @@ echo "SIRIUS_SETTINGS_SECRET_KEY=$(openssl rand -base64 66)" >> .env
 
 # Setup database for Django
 echo_step "Setup the database for Django."
+python manage.py makemigrations
 python manage.py migrate
 
 echo_step "Start the conda environment"

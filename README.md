@@ -84,12 +84,15 @@ which would run the data processing script with debugging enabled, specifying cu
 
 ## Graph Tool
 
+#### Activate the environment
+From the root of the project folder run ```conda activate sirius_env```.
+
 #### Start the Server
 From the root of the project folder run ```python manage.py runserver```.
 Then, navigate a browser window to [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 #### Upload Data
-Click the upload data button. Select the output from the data processing steps.
+Click the upload data button. Select the output from the data processing** steps.
 ##### Typical structure for a network graph:
 ```json
 {
