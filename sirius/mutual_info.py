@@ -20,8 +20,8 @@ def calc_mi(df, feature_info, debug=False):
 
     # drop unary features
     unary_cols = feature_info.index[feature_info['count'] <= 1]
-    df = df.drop(columns=unary_cols)
-    feature_info = feature_info.drop(index=unary_cols)
+    df = df.drop(columns=unary_cols, errors='ignore')
+    feature_info = feature_info.drop(index=unary_cols, errors='ignore')
 
     # Convert df into a numeric matrix for mutual information calculations
     formatted_df = df.copy()

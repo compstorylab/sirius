@@ -11,7 +11,7 @@ def load_data(input_file, sample_n=None, debug=False, ignore=None):
     if sample_n:
         df = df.sample(sample_n)
 
-    df = df.drop(columns=ignore)
+    df = df.drop(columns=ignore,errors='ignore')
     df = df.replace(np.nan, None)
     df = df.replace('nan', None)
     df.columns = [c.replace(' ', '_') for c in df.columns]
