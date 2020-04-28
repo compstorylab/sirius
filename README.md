@@ -14,13 +14,22 @@ features for imputation models, as well as indicate potential unexpected relatio
 We will walk through how to set up this tool in your local environment. If you would like to participate in the development,
 welcome to create a pull request.
 ### Prerequisites
-`python 3` and `git` are required before you start the setting up process
+`conda`, `python 3`, and `git` are required before you start the setting up process
 ### Setting Up the Tool
+#### Setup script
+Run this script from the root of the project in the terminal.
+```bash
+./util_setup_app.sh
+```
+If the script fails, follow the steps outlined in the manual installation section.
+
+
+#### Manual Setup
 1. Clone the repo to your local directory
 2. Enter the directory, create a conda environment, and activate it
 
-       conda create -n myenv python=3.7
-       conda activate myenv
+       conda create -n sirius_env python=3.7
+       conda activate sirius_env
 3. Install required packages
 
    ```
@@ -29,7 +38,7 @@ welcome to create a pull request.
 4. Install the data processing script and its dependencies. 
    The data processing script depends on the Plotly Orca library which can be installed using conda.
 
-       conda install -n myenv -c plotly plotly-orca
+       conda install -n sirius_env -c plotly plotly-orca
        pip install -e .   
 5. Create a .env file under the project folder, which contains 
     ```text
@@ -41,36 +50,8 @@ welcome to create a pull request.
 6. Execute the following command to set up the database structure
 
     ```python manage.py migrate```  
-7. Start the server
 
-    ```python manage.py runserver```
-
-    
 Congratulations, the Exploratory Analysis Tool is live in your local environment!
-You can access it by the url returned from the above command, usually it is [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-## User Guide of the Tool
-
-1. Upload the json file with structures like:
-```json
-{"nodes": [
-    {"name": "string_name_1",
-    "type": "continuous OR discrete",
-    "neighbors": ["string_name_1", "string_name_2", "string_name_3"]}],
- 
-"links": [
-    {"source": "string_name_of_source_node",
-    "target": "string_name_of_target_node",
-    "weight": 0.8986,
-    "viztype": "CC or DC or DD"}]}
-
-```
-There is an example json under `utilities/example_data`
-
-2. You should see a network graph with which to explore feature pairs with high mutual information.
-
-<b>Note</b>: Please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
-
 
 ## Data Processing
 
@@ -98,7 +79,46 @@ For example, to process custom data using the tool, one might run from the comma
 
     sirius --debug --input-file=my_custom_data/data.csv --output-dir=my_custom_data/output --sample-n=1000 --cache > my_custom_data.log
 
-which would run the data processing script with debugging enabled, specifying custom directories for data input and outpt, using a 1k-observation sample from the data frame, caching mutual information scores, and saving all logs to a log file.
+which would run the data processing script with debugging enabled, specifying custom directories for data input and output, using a 1k-observation sample from the data frame, caching mutual information scores, and saving all logs to a log file.
+
+
+## Graph Tool
+
+#### Start the Server
+From the root of the project folder run ```python manage.py runserver```.
+Then, navigate a browser window to [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+#### Upload Data
+Click the upload data button. Select the output from the data processing steps.
+##### Typical structure for a network graph:
+```json
+{
+  "nodes": [
+    {
+      "name": "string_name_1",
+      "type": "continuous OR discrete",
+      "neighbors": ["string_name_1", "string_name_2", "string_name_3"]
+    }
+  ],
+  "links": [
+    {
+      "source": "string_name_of_source_node",
+      "target": "string_name_of_target_node",
+      "weight": 0.8986,
+      "viztype": "CC or DC or DD"
+    }
+  ]
+}
+```
+See the 'example_data' folder for more detail.
+
+#### Explore the graph
+You should see a network graph with which to explore feature pairs with high mutual information. 
+Nodes represent features. Hover over a node for the feature name. Graph edges represent a node pair analysis. 
+Click on a graph edge for details. 
+
+<b>Note</b>: Please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
+
 
 
 ## Development
@@ -106,7 +126,7 @@ If you would like to contribute to the development, WELCOME!
 
 Please make sure you have `npm` installed.
 Then `npm install` to install all required js libraries for development.
-We use typescript in this project. Please execute `./node_modules/.bin/webpack` to compile typescript into javascript.
+We use TypeScript in this project. Please execute `./node_modules/.bin/webpack` to compile typescript into JavaScript.
 
 Thorough documentation is required in development.
 
