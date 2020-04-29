@@ -34,7 +34,11 @@
                 <p>Click on any edge to explore connections.</p>
                 <form class="upload-form" method="post" id="upload-form" encType="multipart/form-data">
                     {% csrf_token %}
-                    <input class="file-input-box" type="file" name="{{ upload_form.file_field.html_name }}" id="upload-box" multiple/>
+                    <input type="file"
+                           class="file-input-box"
+                           name="{{ upload_form.file_field.html_name }}"
+                           id="upload-box"
+                           webkitdirectory mozdirectory msdirectory odirectory directory multiple />
                     <label class="btn btn-primary" for="upload-box">Upload Your Dataset</label>
                 </form>
             </div>

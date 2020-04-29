@@ -103,7 +103,7 @@ export class Drawer {
         let fileInput:HTMLInputElement = event.target as HTMLInputElement;
         let filesList:FileList = fileInput.files;
         if(filesList.length > 0) {
-        let formElement:HTMLFormElement = document.getElementById('upload-form') as HTMLFormElement;
+            let formElement:HTMLFormElement = document.getElementById('upload-form') as HTMLFormElement;
             formElement.submit();
         }
     };
