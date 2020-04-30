@@ -91,26 +91,6 @@ def disparity_filter(G, weight='weight'):
                 B.add_edge(u, v, weight = w, alpha=float('%.4f' % alpha_ij))
     return B
 
-def disparity_filter_alpha_cut(G,weight='weight',alpha_t=0.4, cut_mode='or'):
-    ''' Performs a cut of the graph previously filtered through the disparity_filter function.
-        
-        References:
-            Palakorn Achananuparp, "Python Backbone Network": https://github.com/aekpalakorn/python-backbone-network
-            M. A. Serrano et al. (2009) Extracting the Multiscale backbone of complex weighted networks. PNAS, 106:16, pp. 6483-6488.
-    '''    
-    
-    B = nx.Graph()
-    for u, v, w in G.edges(data=True):
-
-        try:
-            alpha = w['alpha']
-        except KeyError: #there is no alpha, so we assign 1. It will never pass the cut
-            alpha = 1
-
-        if alpha<alpha_t:
-            B.add_edge(u,v, weight=w[weight])
-    return B
-
 def threshold_using_backbone_method(pair_info):
     G = nx.Graph()
     G.add_nodes_from(list(dict.fromkeys((list(pair_info['x'].unique()) + list(pair_info['y'].unique())))))

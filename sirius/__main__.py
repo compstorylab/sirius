@@ -33,35 +33,33 @@ def main():
         print('Classified Features:')
         print(feature_info)
         
-    stack = calc_mi(df, feature_info, debug=args['debug'])
+    edges = calc_mi(df, feature_info, debug=args['debug'])
     if args['cache']:
-        stack.to_csv(Path(args['output_dir']) / 'results.csv', index=False)
+        edges.to_csv(Path(args['output_dir']) / 'results.csv', index=False)
         # Re-import the Mutual Information results
         # (this is helpful if you want to re-generate visualizations
         # without having to re-run the mutual information calculations)
-        pair_info = pd.read_csv(Path(args['output_dir']) / 'results.csv')
-    else:
-        pair_info = stack
+        edges = pd.read_csv(Path(args['output_dir']) / 'results.csv')
         
 
     # Sort our values and (optionally) exclude Mutual Infomation scores above 1 (which are often proxies for one another)
-    pair_info = pair_info.sort_values(by='v', ascending=False)
+    edges = edges.sort_values(by='v', ascending=False)
     # sorted_stack = sorted_stack[sorted_stack['v'] < 1]
 
     # Threshold the edge list by the mutual information threshold which maximizes the component count
-    pair_info = threshold_using_backbone_method(pair_info)
+    thresheld_edges = threshold_using_backbone_method(edges)
 
     # Sirius JSON
 
     if args['output_json']:
-        output_graph_json(pair_info, feature_info, Path(args['output_dir']))
-        output_pairs_json(df, Path(args['output_dir']), pair_info, num_sample=args['output_limit_n'])
+        output_graph_json(edges, feature_info, Path(args['output_dir']))
+        output_pairs_json(df, Path(args['output_dir']), thresheld_edges, num_sample=args['output_limit_n'])
 
     # Visualizations
 
     if args['output_chart']:
-        draw_graph(pair_info, 'Example Graph', output_chart=args['output_chart'], output_dir=Path(args['output_dir']), resolution=args['dpi'])
-        for x, y in zip(pair_info['x'], pair_info['y']):
+        draw_graph(thresheld_edges, 'Example Graph', output_chart=args['output_chart'], output_dir=Path(args['output_dir']), resolution=args['dpi'])
+        for x, y in zip(thresheld_edges['x'], thresheld_edges['y']):
             viz(x, y, df, feature_info, charter=args['charter'], output_chart=args['output_chart'], output_json=args['output_json'],
                 output_dir=Path(args['output_dir']), resolution=args['dpi'])
 
