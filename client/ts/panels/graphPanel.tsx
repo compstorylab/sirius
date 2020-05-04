@@ -1,23 +1,48 @@
 import * as React from 'react'
 import * as ReactDOM from "react-dom";
 
-// import { types } from './types';
-// import { defaults } from './defaults';
-import cytoscape from 'cytoscape/dist/cytoscape.esm.js';
-// import { patch } from './patch';
+import { connect } from 'react-redux'
 
+import cytoscape from 'cytoscape/dist/cytoscape.esm.js';
+import cola from 'cytoscape-cola/cytoscape-cola.js';
+console.log(cytoscape)
+console.log(cola)
 
 export interface GraphPanelProps  {
     id?:string,
     className?:string,
-    style?:any
+    style?:any,
+    graphData?:any
 }
 
-/**
- * The `CytoscapeComponent` is a React component that allows for the declarative creation
- * and modification of a Cytoscape instance, a graph visualisation.
- */
-export class GraphPanel extends React.Component<GraphPanelProps> {
+let defaults = {
+  name: 'euler',
+  springLength: edge => 80,
+  springCoeff: edge => 0.0008,
+  mass: node => 4,
+  gravity: -1.2,
+  pull: 0.001,
+  theta: 0.666,
+  dragCoeff: 0.02,
+  movementThreshold: 1,
+  timeStep: 20,
+  refresh: 10,
+  animate: true,
+  animationDuration: undefined,
+  animationEasing: undefined,
+  maxIterations: 500,
+  maxSimulationTime: 4000,
+  ungrabifyWhileSimulating: false,
+  fit: true,
+  padding: 30,
+  boundingBox: undefined,
+  ready: function(){}, // on layoutready
+  stop: function(){}, // on layoutstop
+  randomize: false
+};
+
+
+class GraphPanel extends React.Component<GraphPanelProps> {
     _cy:any;
 
     constructor(props) {
@@ -26,27 +51,24 @@ export class GraphPanel extends React.Component<GraphPanelProps> {
 
     componentDidMount() {
         const container = ReactDOM.findDOMNode(this);
-
-         const elements = [
-           { data: { id: 'one', label: 'Node 1' }, position: { x: 0, y: 0 } },
-           { data: { id: 'two', label: 'Node 2' }, position: { x: 100, y: 0 } },
-           { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
-        ];
-
-         console.log(cytoscape)
-
         this._cy = new cytoscape({
             container,
-            elements
         });
-        this.updateCytoscape(null, this.props);
+
+         const elements = this.props.graphData;
+         if (elements) {
+            // console.log(this._cy.json())
+            this.updateCytoscape(null, this.props);
+         }
     }
 
     updateCytoscape(prevProps, newProps) {
         const cy = this._cy;
-        const { diff, toJson, get, forEach } = newProps;
+        const { graphData } = newProps;
         // patch(cy, prevProps, newProps, diff, toJson, get, forEach);
 
+        this._cy.json({ elements: graphData });
+        this._cy.layout({name: 'breadthfirst'}).run();
 
     }
 
@@ -59,7 +81,21 @@ export class GraphPanel extends React.Component<GraphPanelProps> {
     }
 
     render() {
-    const { id, className, style } = this.props;
-    return <div id={id} className={className} style={{ width: '100%', height: '900px' }}></div>
+        const { id, className, style } = this.props;
+        return <div id={id} className={className} style={{ width: '100%', height: '900px' }}></div>
     }
 }
+
+
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+    graphData: state.graphData
+  }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GraphPanel)
