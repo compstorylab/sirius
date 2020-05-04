@@ -6,6 +6,7 @@ from .forms import UploadJSONandImage
 from .models import UploadFileField
 import shutil
 import os
+from sirius_graph_tool import settings
 
 
 class HomePageView(TemplateView):
@@ -15,15 +16,26 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         form = UploadJSONandImage()
         context['upload_form'] = form
+        context['allow_upload'] = not settings.USE_OUTPUT_FOLDER
 
-        # If data already exists in the upload directory, display the graph
-        if os.path.exists('static/upload_files/graph.json'):
-            context['json_file_url'] = static('upload_files/graph.json')
+        if settings.USE_OUTPUT_FOLDER:
+            output_prefix = settings.STATICFILES_DIRS[1][0]
+            output_dir = settings.STATICFILES_DIRS[1][1]
+            if os.path.exists(os.path.join(output_dir, 'graph.json')):
+                context['json_file_url'] = static(output_prefix + '/graph.json')
+            context['chart_png_path'] = f'{static("")}{output_prefix}/charts/'
+            context['chart_json_path'] = f'{static("")}{output_prefix}/json/'
+        else:
+            # If data already exists in the upload directory, display the graph
+            if os.path.exists('static/upload_files/graph.json'):
+                context['json_file_url'] = static('upload_files/graph.json')
+            context['chart_png_path'] = f'{static("")}upload_files/'
+            context['chart_json_path'] = f'{static("")}upload_files/'
 
         return context
 
     def post(self, *args, **kwargs):
-        context = {}
+        context = self.get_context_data(*args, **kwargs)
         files = self.request.FILES
         form = UploadJSONandImage(self.request.POST, files)
 

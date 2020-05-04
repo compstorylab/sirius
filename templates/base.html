@@ -1,5 +1,7 @@
 {% load static i18n %}
 
+{% load static i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +31,12 @@
     {{ form_error }}
 </body>
 
+<script type="text/javascript">
+    let allowUpload = {{ allow_upload|yesno:"true,false" }};
+    let chartPngPath = "{{ chart_png_path }}";
+    let chartJsonPath = "{{ chart_json_path }}";
+</script>
 <script type="text/javascript" src="{% static 'scripts/graph.js' %}"></script>
 </html>
-
-
 
 
