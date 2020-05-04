@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import json
 import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -29,7 +30,6 @@ ENVIRONMENT = env.str('ENVIRONMENT', 'dev')
 DEBUG = (ENVIRONMENT == 'local' or ENVIRONMENT == 'dev')
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -123,5 +123,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    'static'
+    'static',
 ]
+
+USE_OUTPUT_FOLDER = False
+# Use the output directory from params.argv.json, if it exists.
+sirius_params_path = os.path.join(BASE_DIR, 'params.argv.json')
+if os.path.exists(sirius_params_path):
+    with open(sirius_params_path, 'r') as f:
+        try:
+            params = json.load(f)
+            second_dir = params.get('output_dir')
+            if second_dir:
+                USE_OUTPUT_FOLDER = True
+                STATICFILES_DIRS.append(('processed', second_dir))
+        except Exception:
+            print("Error reading: params.argv.json")

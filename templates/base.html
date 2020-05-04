@@ -17,37 +17,40 @@
 <body class="base-bg">
     <nav class="navbar navbar-expand-lg eat-bar">
         <span class="navbar-brand eat-nav-title">SIRIUS <span class="small">Exploratory Analysis Tool</span></span>
-        <span class="navbar-brand upload-link" id="upload-link">Upload Dataset</span>
+        <span class="navbar-brand upload-link{% if not allow_upload %} d-none{% endif %}" id="upload-link">Upload Dataset</span>
     </nav>
-    <div id="drawing-section" class="container">
-        <svg id="svg-graph" width="1100" height="900"></svg>
-        <div id="right-bar" class="col-4">
-            <div>
-                <span class="close-btn" id="close-btn"><i class="fa fa-times-circle"></i></span>
+    <div id="drawing-section" class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <svg id="svg-graph" viewBox="0 0 1100 900" style="width: 100%; height: auto;"></svg>
             </div>
-            <div class="right-bar-content">
-                <h2>Make Connections</h2>
-                <p>
-                    Humans before us mapped out the constellations to tell stories. We are looking to help researchers map
-                    out connections in any data set so they can reveal stories from them.
-                </p>
-                <p>Click on any edge to explore connections.</p>
-                <form class="upload-form" method="post" id="upload-form" encType="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="file"
-                           class="file-input-box"
-                           name="{{ upload_form.file_field.html_name }}"
-                           id="upload-box"
-                           webkitdirectory mozdirectory msdirectory odirectory directory multiple />
-                    <label class="btn btn-primary" for="upload-box">Upload Your Dataset</label>
-                </form>
-            </div>
-            <div class="right-bar-image" hidden>
-                <p class="right-bar-image-title">Edge Details</p>
-                <p id="image-title"></p>
-                <img id="difference_chart">
-                <div id="plot-parent"></div>
-
+            <div id="right-bar" class="col-4">
+                <div>
+                    <span class="close-btn" id="close-btn"><i class="fa fa-times-circle"></i></span>
+                </div>
+                <div class="right-bar-content">
+                    <h2>Make Connections</h2>
+                    <p>
+                        Humans before us mapped out the constellations to tell stories. We are looking to help researchers map
+                        out connections in any data set so they can reveal stories from them.
+                    </p>
+                    <p>Click on any edge to explore connections.</p>
+                    <form class="upload-form" method="post" id="upload-form" encType="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file"
+                               class="file-input-box"
+                               name="{{ upload_form.file_field.html_name }}"
+                               id="upload-box"
+                               webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+                        <label class="btn btn-primary" for="upload-box">Upload Your Dataset</label>
+                    </form>
+                </div>
+                <div class="right-bar-image" hidden>
+                    <p class="right-bar-image-title">Edge Details</p>
+                    <p id="image-title"></p>
+                    <img id="difference_chart">
+                    <div id="plot-parent"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -57,5 +60,10 @@
 {{ form_error }}
 </body>
 
+<script type="text/javascript">
+    let allowUpload = {{ allow_upload|yesno:"true,false" }};
+    let chartPngPath = "{{ chart_png_path }}";
+    let chartJsonPath = "{{ chart_json_path }}";
+</script>
 <script type="text/javascript" src="{% static 'scripts/graph.js' %}"></script>
 </html>
