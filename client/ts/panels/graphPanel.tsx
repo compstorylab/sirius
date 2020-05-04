@@ -4,9 +4,6 @@ import * as ReactDOM from "react-dom";
 import { connect } from 'react-redux'
 
 import cytoscape from 'cytoscape/dist/cytoscape.esm.js';
-import cola from 'cytoscape-cola/cytoscape-cola.js';
-console.log(cytoscape)
-console.log(cola)
 
 export interface GraphPanelProps  {
     id?:string,
@@ -15,32 +12,30 @@ export interface GraphPanelProps  {
     graphData?:any
 }
 
-let defaults = {
-  name: 'euler',
-  springLength: edge => 80,
-  springCoeff: edge => 0.0008,
-  mass: node => 4,
-  gravity: -1.2,
-  pull: 0.001,
-  theta: 0.666,
-  dragCoeff: 0.02,
-  movementThreshold: 1,
-  timeStep: 20,
-  refresh: 10,
-  animate: true,
-  animationDuration: undefined,
-  animationEasing: undefined,
-  maxIterations: 500,
-  maxSimulationTime: 4000,
-  ungrabifyWhileSimulating: false,
-  fit: true,
-  padding: 30,
-  boundingBox: undefined,
-  ready: function(){}, // on layoutready
-  stop: function(){}, // on layoutstop
-  randomize: false
-};
-
+const defaultConfig = {
+    style: [
+        {
+            selector: 'node',
+            style: {
+                'label': 'data(id)',
+                'background-color': 'white',
+                "width": "10px",
+                "height": "10px",
+                "font-size": "6px",
+                "color": "#fff",
+            }
+        },
+        {
+            selector: "edge",
+            "style": {
+                "opacity": "0.4",
+                "line-color": "white",
+                "width": "2",
+                "overlay-padding": "3px"
+            }
+        },
+    ]
+}
 
 class GraphPanel extends React.Component<GraphPanelProps> {
     _cy:any;
@@ -51,13 +46,18 @@ class GraphPanel extends React.Component<GraphPanelProps> {
 
     componentDidMount() {
         const container = ReactDOM.findDOMNode(this);
-        this._cy = new cytoscape({
-            container,
-        });
+        this._cy = new cytoscape(Object.assign({}, defaultConfig, {container: container}));
+        this._cy.on(
+            'click',
+            'edge',
+            (evt:any) => {
+                var node = evt.target;
+                console.log(node.data() );
+            }
+        )
 
          const elements = this.props.graphData;
          if (elements) {
-            // console.log(this._cy.json())
             this.updateCytoscape(null, this.props);
          }
     }
@@ -68,7 +68,7 @@ class GraphPanel extends React.Component<GraphPanelProps> {
         // patch(cy, prevProps, newProps, diff, toJson, get, forEach);
 
         this._cy.json({ elements: graphData });
-        this._cy.layout({name: 'breadthfirst'}).run();
+        this._cy.layout({name: 'cose'}).run();
 
     }
 
@@ -77,6 +77,7 @@ class GraphPanel extends React.Component<GraphPanelProps> {
     }
 
     componentWillUnmount() {
+        this._cy.removeListener('click')
         this._cy.destroy();
     }
 

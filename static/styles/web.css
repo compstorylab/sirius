@@ -47,6 +47,8 @@ span.navbar-brand.upload-link:hover{
     overflow: visible;
     background-color: var(--right-bar-bg-color);
     height: max(900px, 100vh);
+
+    color: white;
 }
 
 #right-bar{

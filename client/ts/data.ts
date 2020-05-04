@@ -1,10 +1,46 @@
 import axios from "axios";
+import {saveGraph, saveFilterOptions} from "./store";
 
-export function loadGraphJSON(url:string):Promise<any> {
+export function loadGraphJSON(url:string, store:any):Promise<any> {
     return axios.get(url)
-       .then((response) => {
-          return convertToCYFormat(response.data);
-       })
+        .then((response) => {
+          return response.data;
+        })
+        .then((data) => {
+            store.dispatch(saveFilterOptions(getNodeProperties(data)));
+            store.dispatch(saveGraph(convertToCYFormat(data)));
+            console.log(store.getState())
+        })
+}
+
+function getNodeProperties(graphDictionary:any) {
+
+    let nodeIds:Array<string> = [];
+    let nodeTypes:Set<string> = new Set()
+    let minWeight = Number.MAX_VALUE;
+    let maxWeight = Number.MIN_VALUE;
+
+    let nodeList = graphDictionary['nodes']
+    for (let i = 0; i < nodeList.length; i++) {
+        let node = nodeList[i];
+        nodeIds.push(node.name);
+        nodeTypes.add(node.type);
+    }
+
+    let edgeList = graphDictionary['links']
+    for (let j = 0; j < edgeList.length; j++) {
+        let edge = edgeList[j];
+        minWeight = Math.min(minWeight, edge.weight);
+        maxWeight = Math.max(maxWeight, edge.weight);
+    }
+
+    nodeIds.sort();
+
+    return {
+        nodeIds,
+        nodeTypes: Array.from(nodeTypes),
+        weight: [minWeight, maxWeight]
+    }
 }
 
 function convertToCYFormat(graphDictionary:any):any {
@@ -42,3 +78,4 @@ function convertToCYFormat(graphDictionary:any):any {
 //    { data: { id: 'two', label: 'Node 2' }, position: { x: 100, y: 0 } },
 //    { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
 // ];
+

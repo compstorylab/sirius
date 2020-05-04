@@ -2,20 +2,17 @@ import * as React from 'react'
 import * as ReactDOM from "react-dom";
 
 import {loadGraphJSON} from './data'
-import {Sidebar} from './panels/sidebar'
+import Sidebar from './panels/sidebar'
 import GraphPanel from './panels/graphPanel'
 
 import { Provider } from 'react-redux'
-import {store, saveGraph} from './store'
+import { store } from './store'
 
 
 
 let jsonUrl:HTMLInputElement = document.getElementById('json-url') as HTMLInputElement;
 if (jsonUrl && jsonUrl.value){
-   loadGraphJSON(jsonUrl.value)
-       .then((data) => {
-           store.dispatch(saveGraph(data));
-       })
+   loadGraphJSON(jsonUrl.value, store)
 }
 
 ReactDOM.render(
