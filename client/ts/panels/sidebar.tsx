@@ -63,22 +63,22 @@ class Sidebar extends React.Component<SidebarProps> {
                     }
                     </Form.Control>
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label>Feature type</Form.Label>
-                    <div id={"node-type-checkboxes"}>
-                        {nodeTypeOption.map((type, i) => (
-                            <div key={`ntcb-${i}`} className="mb-3">
-                              <Form.Check
-                                type='checkbox'
-                                id={type}
-                                label={type}
-                                onChange={this.onNodeTypeCheckBoxChange}
-                                defaultChecked
-                              />
-                            </div>
-                          ))}
-                    </div>
-                </Form.Group>
+                {/*<Form.Group>*/}
+                {/*    <Form.Label>Feature type</Form.Label>*/}
+                {/*    <div id={"node-type-checkboxes"}>*/}
+                {/*        {nodeTypeOption.map((type, i) => (*/}
+                {/*            <div key={`ntcb-${i}`} className="mb-3">*/}
+                {/*              <Form.Check*/}
+                {/*                type='checkbox'*/}
+                {/*                id={type}*/}
+                {/*                label={type}*/}
+                {/*                onChange={this.onNodeTypeCheckBoxChange}*/}
+                {/*                defaultChecked*/}
+                {/*              />*/}
+                {/*            </div>*/}
+                {/*          ))}*/}
+                {/*    </div>*/}
+                {/*</Form.Group>*/}
             </Form>
         </div>
     }

@@ -19,7 +19,6 @@
 <body class="base-bg">
     <nav class="navbar navbar-expand-lg eat-bar">
         <span class="navbar-brand eat-nav-title">SIRIUS <span class="small">Exploratory Analysis Tool</span></span>
-        <span class="navbar-brand upload-link" id="upload-link">Upload Dataset</span>
     </nav>
     <div id="drawing-section" class="container-responsive">
         <div class="row">
@@ -27,6 +26,7 @@
             <div id="sidebar" class="col-4 side-panel"></div>
         </div>
     </div>
+    <div id="chart_overlay"></div>
     <input hidden value="{{ json_file_url }}" id="json-url">
     {{ form_error }}
 </body>

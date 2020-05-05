@@ -1,41 +1,19 @@
 import * as React from 'react'
 import * as ReactDOM from "react-dom";
-
 import { connect } from 'react-redux'
-
 import cytoscape from 'cytoscape/dist/cytoscape.esm.js';
+
+import {graphStyle} from './graphStyle'
+import {saveChartInfo} from '../store'
 
 export interface GraphPanelProps  {
     id?:string,
     className?:string,
     style?:any,
-    graphData?:any
+    graphData?:any,
+    saveChartInfo:any
 }
 
-const defaultConfig = {
-    style: [
-        {
-            selector: 'node',
-            style: {
-                'label': 'data(id)',
-                'background-color': 'white',
-                "width": "10px",
-                "height": "10px",
-                "font-size": "6px",
-                "color": "#fff",
-            }
-        },
-        {
-            selector: "edge",
-            "style": {
-                "opacity": "0.4",
-                "line-color": "white",
-                "width": "2",
-                "overlay-padding": "3px"
-            }
-        },
-    ]
-}
 
 class GraphPanel extends React.Component<GraphPanelProps> {
     _cy:any;
@@ -44,17 +22,31 @@ class GraphPanel extends React.Component<GraphPanelProps> {
         super(props);
     }
 
+    onEdgeClick = (evt:any) => {
+        var node = evt.target;
+        this.props.saveChartInfo(node.data())
+    }
+
+    onNodeSelect = (evt:any) => {
+        var node = evt.target;
+
+        this._cy.nodes().unselect();
+        this._cy.nodes().removeClass('highlighted');
+        this._cy.nodes().removeClass('selected');
+        this._cy.edges().removeClass('highlighted');
+
+        node.openNeighborhood().addClass('highlighted');
+        node.addClass('selected');
+    }
+
     componentDidMount() {
         const container = ReactDOM.findDOMNode(this);
+        const defaultConfig = {
+            style: graphStyle
+        }
         this._cy = new cytoscape(Object.assign({}, defaultConfig, {container: container}));
-        this._cy.on(
-            'click',
-            'edge',
-            (evt:any) => {
-                var node = evt.target;
-                console.log(node.data() );
-            }
-        )
+        this._cy.on('click', 'edge', this.onEdgeClick);
+        this._cy.on('click', 'node', this.onNodeSelect);
 
          const elements = this.props.graphData;
          if (elements) {
@@ -64,12 +56,24 @@ class GraphPanel extends React.Component<GraphPanelProps> {
 
     updateCytoscape(prevProps, newProps) {
         const cy = this._cy;
-        const { graphData } = newProps;
-        // patch(cy, prevProps, newProps, diff, toJson, get, forEach);
+        const { graphData, filterSelections } = newProps;
 
-        this._cy.json({ elements: graphData });
-        this._cy.layout({name: 'cose'}).run();
+        if(!prevProps.graphData) {
+            this._cy.json({ elements: graphData });
+            this._cy.layout({name: 'cose'}).run();
+        }
 
+        this._cy.nodes().removeClass('highlighted');
+        this._cy.nodes().removeClass('selected');
+        this._cy.edges().removeClass('highlighted');
+        if (filterSelections && filterSelections.nodeNames) {
+            let t = this._cy.nodes().filter((ele:any) => {
+                return filterSelections.nodeNames.indexOf(ele.id()) > -1
+            });
+            t.openNeighborhood().addClass('highlighted');
+            t.removeClass('highlighted');
+            t.addClass('selected');
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -89,12 +93,13 @@ class GraphPanel extends React.Component<GraphPanelProps> {
 
 
 const mapStateToProps = (state /*, ownProps*/) => {
-  return {
-    graphData: state.graphData
-  }
+    return {
+        graphData: state.graphData,
+        filterSelections: state.filterSelections
+    }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {saveChartInfo}
 
 export default connect(
   mapStateToProps,
