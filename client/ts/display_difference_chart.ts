@@ -36,7 +36,8 @@ function loadPNGGraph(sourceName:string, targetName:string){
     let clickedElementList = [];
     let imageType = '.png';
     let staticImageFileName = sourceName + "_" + targetName + imageType;
-    let uploadFolderPath = '/static/upload_files/';
+    // @ts-ignore chartPngPath in the global scope. Check the html.
+    let uploadFolderPath = chartPngPath;
 
     let staticImageURL = uploadFolderPath + staticImageFileName;
     let imageElement:HTMLImageElement = document.getElementById("difference_chart") as HTMLImageElement;
@@ -89,7 +90,8 @@ function loadPlotylPlot(type:string, sourceName:string, targetName:string){
  * @param onError Callback function function():void
  */
 function loadJson(sourceName:string, targetName:string, onComplete, onError) {
-    let uploadFolderPath = '/static/upload_files/';
+    // @ts-ignore chartJsonPath in the global scope. Check the html.
+    let uploadFolderPath = chartJsonPath;
     $.ajax({ url: uploadFolderPath + sourceName + "_" + targetName + ".json" })
         .done(function (data) {
             onComplete(data);
