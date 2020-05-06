@@ -1,5 +1,3 @@
-import Plotly from 'plotly.js-dist';
-
 /**
  * process Continuous-Continuous data into format that is ready for creating 2d density plot with histogram subplots
  * @param data read from raw json file, in the format of 
@@ -15,7 +13,9 @@ function processCCData(data) {
         attr_array = [];
 
     attr_array = Object.keys(data);
-    x = Object.values(data[attr_array[0]])
+    // @ts-ignore
+     x = Object.values(data[attr_array[0]])
+    // @ts-ignore
     y = Object.values(data[attr_array[1]])
 
     return { "x": x, "y": y, "attributes": attr_array }
@@ -24,11 +24,9 @@ function processCCData(data) {
 /**
  * create 2d density plot with histograms
  * @param data data read from json file
- * @param chartHolderId string, indicate which DOM to insert the chart
  */
-export function Create2DDensityChart(data: any, chartHolderId: String): void {
+export function create2DDensityChart(data:any):any {
     let readyData = processCCData(data);
-    console.log("readyData", readyData);
     let x = readyData.x,
         y = readyData.y,
         feature_1_name = readyData.attributes[0],
@@ -45,7 +43,7 @@ export function Create2DDensityChart(data: any, chartHolderId: String): void {
           size: 2,
           opacity: 0.8
         },
-        type: 'scatter'
+        type: 'scattergl'
     },
     density_trace = {
         x: x,
@@ -80,10 +78,10 @@ export function Create2DDensityChart(data: any, chartHolderId: String): void {
             showlegend: false,
             hovermode: 'closest',
             bargap: 0,
-            plot_bgcolor: "rgba(0, 0, 0, 0)",
-            paper_bgcolor: "rgba(0, 0, 0, 0)",
-            font: { color: 'white' },
+            font: { color: 'black' },
         };
-    Plotly.newPlot(chartHolderId, chartData, layout);
-
+    return {
+        chartData,
+        layout
+    };
 }

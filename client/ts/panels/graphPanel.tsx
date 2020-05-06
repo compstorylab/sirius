@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import { connect } from 'react-redux'
 import cytoscape from 'cytoscape/dist/cytoscape.esm.js';
 
+import {loadChartJson} from '../data'
 import {graphStyle} from './graphStyle'
 import {saveChartInfo} from '../store'
 
@@ -11,7 +12,8 @@ export interface GraphPanelProps  {
     className?:string,
     style?:any,
     graphData?:any,
-    saveChartInfo:any
+    saveChartInfo:any,
+    edgeWeightExtents:any
 }
 
 
@@ -23,8 +25,25 @@ class GraphPanel extends React.Component<GraphPanelProps> {
     }
 
     onEdgeClick = (evt:any) => {
-        var node = evt.target;
-        this.props.saveChartInfo(node.data())
+        let edge = evt.target;
+        let chartInfo:any = edge.data()
+        let source:string = chartInfo.source;
+        let target:string = chartInfo.target;
+        let vizType:string = chartInfo.viztype;
+
+        let sourceType = edge.source().data().type
+        let targetType = edge.target().data().type
+        loadChartJson(source, target)
+            .then((data) => {
+                this.props.saveChartInfo({
+                    source,
+                    sourceType,
+                    target,
+                    targetType,
+                    vizType,
+                    data: data
+                });
+            });
     }
 
     onNodeSelect = (evt:any) => {
@@ -42,7 +61,7 @@ class GraphPanel extends React.Component<GraphPanelProps> {
     componentDidMount() {
         const container = ReactDOM.findDOMNode(this);
         const defaultConfig = {
-            style: graphStyle
+            style: graphStyle()
         }
         this._cy = new cytoscape(Object.assign({}, defaultConfig, {container: container}));
         this._cy.on('click', 'edge', this.onEdgeClick);
@@ -87,7 +106,7 @@ class GraphPanel extends React.Component<GraphPanelProps> {
 
     render() {
         const { id, className, style } = this.props;
-        return <div id={id} className={className} style={{ width: '100%', height: '900px' }}></div>
+        return <div id={id} className={className} style={{ width: '100%', height: '900px' }}/>
     }
 }
 
@@ -95,7 +114,8 @@ class GraphPanel extends React.Component<GraphPanelProps> {
 const mapStateToProps = (state /*, ownProps*/) => {
     return {
         graphData: state.graphData,
-        filterSelections: state.filterSelections
+        filterSelections: state.filterSelections,
+        edgeWeightExtents: state.filterOptions.edgeWeightExtents
     }
 }
 

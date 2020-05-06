@@ -2,10 +2,15 @@ import { createStore } from 'redux'
 
 const startState:any = {
   graphData: null,
-  filterOptions: null,
-  filterSelections: null,
-  chartInfo: null
+  filterOptions: {
+    nodeIds: [],
+    nodeTypes: [],
+    edgeWeightExtents: [0, 20]
+  }, // Options for rendering filter options
+  filterSelections: null, // Selections fro the filter form
+  chartInfo: null, // Info needed to load and display the chart
 }
+
 export let store:any = createStore(siriusReducer, startState);
 
 function siriusReducer(state = 0, action) {
@@ -55,5 +60,4 @@ export function saveChartInfo(chartInfo:any) {
     data: chartInfo
   }
 }
-
 

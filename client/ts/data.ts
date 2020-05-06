@@ -9,7 +9,6 @@ export function loadGraphJSON(url:string, store:any):Promise<any> {
         .then((data) => {
             store.dispatch(saveFilterOptions(getNodeProperties(data)));
             store.dispatch(saveGraph(convertToCYFormat(data)));
-            console.log(store.getState())
         })
 }
 
@@ -39,7 +38,7 @@ function getNodeProperties(graphDictionary:any) {
     return {
         nodeIds,
         nodeTypes: Array.from(nodeTypes),
-        weight: [minWeight, maxWeight]
+        edgeWeightExtents: [minWeight, maxWeight]
     }
 }
 
@@ -79,3 +78,21 @@ function convertToCYFormat(graphDictionary:any):any {
 //    { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
 // ];
 
+
+/**
+ * Tries to load the JSON by alternating node names.
+ * It is not clear which name should be first from the graph.
+ * @param {string} sourceName
+ * @param {string} targetName
+ */
+export function loadChartJson(sourceName:string, targetName:string) {
+    // @ts-ignore chartJsonPath in the global scope. Check the html.
+    let uploadFolderPath = chartJsonPath;
+    return axios.get(uploadFolderPath + sourceName + "_" + targetName + ".json" )
+        .catch(() => {
+            return axios.get(uploadFolderPath + targetName + "_" + sourceName + ".json")
+        })
+        .then((response:any) => {
+            return response.data
+        })
+}

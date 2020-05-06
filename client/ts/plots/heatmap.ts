@@ -1,27 +1,11 @@
-import Plotly from 'plotly.js-dist';
-/**
- * 
- * @param data 
- * @param chartHolderId 
- */
-export function createHeatMap(data:any, chartHolderId:string) {
-    let keys = Object.keys(data);
-    let xAxisTitle:string = keys[0];
-    let yAxisTitle:string = keys[1];
-    let xvals = Object.values(data[keys[0]]);
-    let yvals = Object.values(data[keys[1]]);
-    heatmap(xvals, yvals, xAxisTitle, yAxisTitle,chartHolderId);
-}
-
 /**
  * Creates a heatmap from raw data using plotly.
  * @param x An array of categorical values. Number or string
  * @param y An array of categrorical values. Numnber or string
  * @param xName Title for the x-axis
  * @param yName Title for the y-axis
- * @param chartHolderId The id of the html element to render the chart in.
  */
-export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string, chartHolderId:string): void {
+export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string): any {
     let data = processForHeatmap(x, y);
     let chartData = [
         {
@@ -35,22 +19,25 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string, 
     let layout = {
         xaxis: {
             title: {
-                text: xName
+                text: xName,
+                font: {
+                    color: 'black'
+                }
             }
         },
         yaxis: {
             title: {
-                text: yName
+                text: yName,
+                font: {
+                    color: 'black'
+                }
             }
         },
-        plot_bgcolor: "rgba(0, 0, 0, 0)",
-        paper_bgcolor: "rgba(0, 0, 0, 0)",
-        font: {color: 'white'}
+        font: {color: 'black'}
     };
-    Plotly.newPlot(chartHolderId, chartData, layout);
+    return {chartData, layout};
 }
 
-// TODO: this processForHeatmap function will need change after the json structure for heatmap is updated
 /**
  * Transoform raw data into a form the heatmap function of Plotly can use. 
  * @param x An array of categorical values. Number or string
@@ -65,13 +52,9 @@ export function processForHeatmap(x:Array<any>, y:Array<any>) {
 
     let counts = create2dZeroMatrix(x_labels.length, y_labels.length);
 
-    // let count_max = -99999;
-    // let count_min = 99999;
     let n = x.length;
     for (let i = 0; i < n; i++){
         counts[y_label_index[y[i]]][x_label_index[x[i]]] ++
-        // count_max = Math.max(counts[y_label_index[y[i]]][x_label_index[x[i]]], count_max)
-        // count_min = Math.min(counts[y_label_index[y[i]]][x_label_index[x[i]]], count_min)
     }
 
     return {
@@ -90,7 +73,7 @@ export function processForHeatmap(x:Array<any>, y:Array<any>) {
 function create2dZeroMatrix(x:number, y:number, initialValue:any=0):Array<Array<number>> {
     let matrix = Array<Array<number>>();
     for(let i = 0; i < y; i++){
-        let arr = new Array();
+        let arr = [];
         for (let j = 0; j < x; j++) {
             arr.push(initialValue);
         }

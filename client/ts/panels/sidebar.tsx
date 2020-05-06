@@ -57,8 +57,8 @@ class Sidebar extends React.Component<SidebarProps> {
                                   id={'node-name-selector'}
                                   onChange={this.onNodeNameSelectChange}
                                   as={"select"} multiple>
-                    {nodeNames.map((nodeName) => {
-                        return <option>{nodeName}</option>
+                    {nodeNames.map((nodeName, i:number) => {
+                        return <option key={`_${i}`}>{nodeName}</option>
                     })
                     }
                     </Form.Control>

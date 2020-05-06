@@ -1,84 +1,63 @@
-import * as React from 'react'
-import * as ReactDOM from "react-dom";
-import { connect } from 'react-redux'
-
 import axios from 'axios';
-
-import Col from "react-bootstrap/Col"
-import Container from "react-bootstrap/Container"
+import * as React from 'react'
+import { connect } from 'react-redux'
 import Modal from "react-bootstrap/Modal";
-import Row from "react-bootstrap/Row"
 
+import {PlotlyPlot} from '../plots/basePlot';
 import {saveChartInfo} from '../store'
-import {createPlot} from "../plots";
 
 export interface ChartOverlayProps {
     saveChartInfo:any,
-    chartInfo?:any
+    chartInfo?:any,
 }
 
 class ChartOverlay extends React.Component<ChartOverlayProps> {
 
-    loadPlotylPlot(type:string, sourceName:string, targetName:string){
-        loadJson(sourceName, targetName)
-            .then((data:any) => {
-                console.log(data)
-            })
+    constructor(props:any) {
+        super(props);
     }
 
     onClose = (evt:any) => {
-        console.log('close')
         this.props.saveChartInfo(null);
     }
 
     render() {
-        if(this.props.chartInfo) {
-            return  (
-                <Modal size="lg"
-                       show={true}
-                       onHide={this.onClose}>
-                    <Modal.Header closeButton >
-                        <Modal.Title id="contained-modal-title-vcenter">Chart name</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Container>
-                            <Row className="show-grid">
-                                <Col xs={12} md={8}>
-                                </Col>
-                                <Col xs={6} md={4}>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Modal.Body>
-                </Modal>
-            );
-        }
-        else {
-            return null
+        let title:string = '';
+        let vizType:string = '';
+        let chartData:any = null;
+        let sourceName:string = '';
+        let sourceType:string = '';
+        let targetName:string = '';
+        let targetType:string = '';
+        if(this.props.chartInfo){
+            title = `${this.props.chartInfo.source} vs ${this.props.chartInfo.target}`;
+            vizType = this.props.chartInfo.vizType;
+            chartData = this.props.chartInfo.data;
+            sourceName = this.props.chartInfo.source;
+            sourceType = this.props.chartInfo.sourceType;
+            targetName = this.props.chartInfo.target;
+            targetType = this.props.chartInfo.targetType;
         }
 
+        return  (
+            <Modal size="lg"
+                   show={this.props.chartInfo !== null}
+                   onHide={this.onClose}>
+                <Modal.Header closeButton >
+                    <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <PlotlyPlot data={chartData}
+                                chartType={vizType}
+                                sourceName={sourceName}
+                                sourceType={sourceType}
+                                targetName={targetName}
+                                targetType={targetType}/>
+                </Modal.Body>
+            </Modal>
+        );
     }
 }
-
-/**
- * Tries to load the JSON by alternating node names.
- * It is not clear which name should be first from the graph.
- * @param {string} sourceName
- * @param {string} targetName
- */
-function loadJson(sourceName:string, targetName:string) {
-    // @ts-ignore chartJsonPath in the global scope. Check the html.
-    let uploadFolderPath = chartJsonPath;
-    return axios.get(uploadFolderPath + sourceName + "_" + targetName + ".json" )
-        .catch(() => {
-            return axios.get(uploadFolderPath + targetName + "_" + sourceName + ".json")
-        })
-        .then((response:any) => {
-            return response.data
-        })
-}
-
-
 
 const mapStateToProps = (state /*, ownProps*/) => {
     return {
