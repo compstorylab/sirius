@@ -99,7 +99,7 @@ class GraphPanel extends React.Component<GraphPanelProps> {
             t.addClass('selected');
 
 
-            this._cy.fit(t, 250)
+            this._cy.fit(t.neighborhood(), 100)
         }
     }
 
