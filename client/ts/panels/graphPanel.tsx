@@ -79,7 +79,11 @@ class GraphPanel extends React.Component<GraphPanelProps> {
 
         if(!prevProps.graphData) {
             this._cy.json({ elements: graphData });
-            this._cy.layout({name: 'cose'}).run();
+            const layoutConfig =  {
+                name: 'cose',
+                animate: false
+            };
+            this._cy.layout(layoutConfig).run();
         }
 
         this._cy.nodes().removeClass('highlighted');
@@ -89,9 +93,13 @@ class GraphPanel extends React.Component<GraphPanelProps> {
             let t = this._cy.nodes().filter((ele:any) => {
                 return filterSelections.nodeNames.indexOf(ele.id()) > -1
             });
+
             t.openNeighborhood().addClass('highlighted');
             t.removeClass('highlighted');
             t.addClass('selected');
+
+
+            this._cy.fit(t, 250)
         }
     }
 

@@ -14,6 +14,7 @@ export function graphStyle():any {
         "height": "10px",
         "label": "data(id)",
         "font-size": "3px",
+        "font-weight": "bold",
         "text-valign": "top",
         "text-halign": "center",
         "text-margin-y": "-1x",

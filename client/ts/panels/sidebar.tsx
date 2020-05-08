@@ -46,6 +46,10 @@ class Sidebar extends React.Component<SidebarProps> {
         }
 
         let nodeNames:Array<string> = this.props.filterOptions.nodeIds;
+        if(!nodeNames || nodeNames.length === 0) {
+            nodeNames = ['No Data'];
+        }
+
         let nodeTypeOption:Array<any> = this.props.filterOptions.nodeTypes;
 
         return <div>

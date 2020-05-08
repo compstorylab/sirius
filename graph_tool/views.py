@@ -17,6 +17,7 @@ class HomePageView(TemplateView):
         form = UploadJSONandImage()
         context['upload_form'] = form
         context['allow_upload'] = not settings.USE_OUTPUT_FOLDER
+        print(not settings.USE_OUTPUT_FOLDER)
 
         if settings.USE_OUTPUT_FOLDER:
             output_prefix = settings.STATICFILES_DIRS[1][0]

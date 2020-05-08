@@ -19,6 +19,7 @@ if (jsonUrl && jsonUrl.value){
        });
 }
 
+
 ReactDOM.render(
     <Provider store={store}>
         <Sidebar/>
@@ -37,3 +38,18 @@ ReactDOM.render(
     </Provider> ,
     document.getElementById('chart_overlay')
 )
+
+
+// For file uploads
+let fileSelectComponent = document.getElementById("upload-box");
+if(fileSelectComponent) {
+    fileSelectComponent.addEventListener('change', (event) => {
+            let fileInput: HTMLInputElement = event.target as HTMLInputElement;
+            let filesList: FileList = fileInput.files;
+            if (filesList.length > 0) {
+                let formElement: HTMLFormElement = document.getElementById('upload-form') as HTMLFormElement;
+                formElement.submit();
+            }
+        }
+    );
+}
