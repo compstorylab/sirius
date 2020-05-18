@@ -42,6 +42,15 @@ span.navbar-brand.upload-link:hover{
 .container.drawing-section-container{
     margin:0;
 }
+
+.side-panel {
+    overflow: visible;
+    background-color: var(--right-bar-bg-color);
+    height: max(900px, 100vh);
+
+    color: white;
+}
+
 #right-bar{
     overflow: visible;
     background-color: var(--right-bar-bg-color);
