@@ -13,6 +13,7 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string):
             y: data['y'],
             z: data['z'],
             type: 'heatmap',
+            colorscale: [[0, 'rgb(247, 251, 255)'], [1, 'rgb(9, 48, 107)']], // #F7FBFF to #09306B
             hoverongaps: false
         }
     ];
@@ -56,7 +57,6 @@ export function processForHeatmap(x:Array<any>, y:Array<any>) {
     for (let i = 0; i < n; i++){
         counts[y_label_index[y[i]]][x_label_index[x[i]]] ++
     }
-
     return {
         x: x_labels,
         y: y_labels,
@@ -69,6 +69,7 @@ export function processForHeatmap(x:Array<any>, y:Array<any>) {
  * @param x An integer denoting the number of columns
  * @param y An integer denoting the number of rows
  * @param initialValue The initial value.
+ * @return matrix Array<Array<number>>
  */
 function create2dZeroMatrix(x:number, y:number, initialValue:any=0):Array<Array<number>> {
     let matrix = Array<Array<number>>();
@@ -104,4 +105,3 @@ function getLabelIndexDict(labels){
     }
     return d
 }
-
