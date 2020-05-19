@@ -13,7 +13,7 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string):
             y: data['y'],
             z: data['z'],
             type: 'heatmap',
-            colorscale: [[0, 'rgb(247, 251, 255)'], [1, 'rgb(9, 48, 107)']], // #F7FBFF to #09306B
+            colorscale: [[0, '#F7FBFF'], [1, '#09306B']],
             hoverongaps: false
         }
     ];
