@@ -11,47 +11,22 @@ be a daunting task, given the size of the data set. This analytic tool could the
 features for imputation models, as well as indicate potential unexpected relationships between variables
 
 ## Getting Started
-We will walk through how to set up this tool in your local environment. If you would like to participate in the development,
-welcome to create a pull request.
+
 ### Prerequisites
-`conda`, `python 3`, and `git` are required before you start the setting up process
-### Setting Up the Tool
+The software listed below are needed before getting started. 
+* [conda](https://docs.conda.io/en/latest/)
+* [Python 3](https://www.python.org/)
+* [Git](https://git-scm.com/)
+
+### Install Sirius
+
 #### Setup script
-Run this script from the root of the project in the terminal.
+There is a helper script to install Sirius. It may not work for all configurations. If it fails, then run the each 
+step in util_setup_app.sh manually.
 ```bash
+# Run helper script.
 ./util_setup_app.sh
 ```
-If the script fails, follow the steps outlined in the manual installation section.
-
-
-#### Manual Setup
-1. Clone the repo to your local directory
-2. Enter the directory, create a conda environment, and activate it
-
-       conda create -n sirius_env python=3.7
-       conda activate sirius_env
-3. Install required packages
-
-   ```
-   pip install -r requirements.txt
-   ```
-4. Install the data processing script and its dependencies. 
-   The data processing script depends on the Plotly Orca library which can be installed using conda.
-
-       conda install -n sirius_env -c plotly plotly-orca
-       pip install -e .   
-5. Create a .env file under the project folder, which contains 
-    ```text
-       SIRIUS_SETTINGS_SECRET_KEY={your string value here with quotes}
-       (this one is optional)ENVIRONMENT={"dev" or "qa" or "prod"}
-    ```
-    secret key should be set to a unique, unpredictable value. It is used for sessions, messages, PasswordResetView tokens
-    or any usage of is cryptographic signing unless a different key is provided.  
-6. Execute the following command to set up the database structure
-
-    ```python manage.py migrate```  
-
-Congratulations, the Exploratory Analysis Tool is live in your local environment!
 
 ## Data Processing
 
