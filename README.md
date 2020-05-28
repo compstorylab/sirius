@@ -76,7 +76,24 @@ which would run the data processing script with debugging enabled, specifying cu
 
 
 ## Graph Tool
+The graph tool is a Django web server that runs locally. It reads data from one of two sources and renders a network 
+graph in a browser window. The nodes in the graph represent features or variables. The edges connecting nodes represent 
+the relationships between the features/variables. You can explore these relationships by clicking on edges. A graph 
+detailing the statistical relationship between the nodes is displayed. For large graphs, the filter panel makes it 
+easier to find the node you want.
 
+Data can pulled from one of two locations. The default location is read from params.argv.json. These are default 
+parameters for the data processing tool. Specifically, the Graph tool looks in output directory defined by `output_dir`. 
+When `output_dir` is undefined, users are given the option to manually upload the output from the data processing steps. 
+
+#### Graph key
+| Data type  | Node shape |
+|------------|------------|
+| Discrete   | Square     |
+| Continuous | Circle     |
+
+
+### Run the graph tool
 #### Activate the environment
 From the root of the project folder run ```conda activate sirius_env```.
 
@@ -107,15 +124,6 @@ Click the upload data button. Select the output from the data processing** steps
 }
 ```
 See the 'example_data' folder for more detail.
-
-#### Explore the graph
-You should see a network graph with which to explore feature pairs with high mutual information. 
-Nodes represent features. Hover over a node for the feature name. Graph edges represent a node pair analysis. 
-Click on a graph edge for details. 
-
-<b>Note</b>: Please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
-
-
 
 ## Development
 If you would like to contribute to the development, WELCOME!
