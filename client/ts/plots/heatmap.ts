@@ -17,6 +17,22 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string):
             hoverongaps: false
         }
     ];
+    let annotation_array = [];
+    for (let i = 0; i < data['y'].length; i++){
+        for (let j = 0; j < data['x'].length; j++){
+            let eachCell = {
+                xref: 'x1',
+                yref: 'y1',
+                x: data['x'][j],
+                y: data['y'][i],
+                text: data['z'][i][j],
+                font: { color: 'black' },
+                showarrow: false
+            }
+            annotation_array.push(eachCell);
+        }
+    }
+
     let layout = {
         xaxis: {
             title: {
@@ -34,7 +50,8 @@ export function heatmap(x:Array<any>, y:Array<any>, xName:string, yName:string):
                 }
             }
         },
-        font: {color: 'black'}
+        font: { color: 'black' },
+        annotations: annotation_array
     };
     return {chartData, layout};
 }
