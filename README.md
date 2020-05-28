@@ -11,6 +11,9 @@ be a daunting task, given the size of the data set. This analytic tool could the
 features for imputation models, as well as indicate potential unexpected relationships between variables
 
 ## Getting Started
+Sirius has two major components. The data processing tool and the graph tool. The data processing tool is a Python 
+package that runs from the command line. The graph tool is a local web server that 
+visualizes output from the data processor. Details for running each follow below.
 
 ### Prerequisites
 The software listed below are needed before getting started. 
@@ -21,11 +24,26 @@ The software listed below are needed before getting started.
 ### Install Sirius
 
 #### Setup script
-There is a helper script to install Sirius. It may not work for all configurations. If it fails, then run the each 
-step in util_setup_app.sh manually.
+To help you get started a setup script is provided. Please note that it may not work for all systems. 
+If the script fails, you can run through the steps in the script manually. 
 ```bash
-# Run helper script.
+# Run setup script.
 ./util_setup_app.sh
+```
+
+#### Test your setup
+Now that Sirius has been setup, let do a test run. Run the following commands from the application root.
+```bash
+# 1 - Activate the Conda env
+conda activate sirius_env
+
+# 2 - Process example data. A low sample size is used to reduce processing time.
+sirius --sample-n=10
+
+# 3 - Visualize the output
+python manage.py runserver
+
+# 4 - Navigate your browser to http://127.0.0.1:8000
 ```
 
 ## Data Processing
