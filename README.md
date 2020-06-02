@@ -134,5 +134,5 @@ We use TypeScript in this project. Please execute `./node_modules/.bin/webpack` 
 
 Thorough documentation is required in development.
 
-
-
+## Bug and Issue Reporting
+Please submit bugs and issues with the [Github issue tracker](https://github.com/compstorylab/sirius).  
