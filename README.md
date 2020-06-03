@@ -11,47 +11,40 @@ be a daunting task, given the size of the data set. This analytic tool could the
 features for imputation models, as well as indicate potential unexpected relationships between variables
 
 ## Getting Started
-We will walk through how to set up this tool in your local environment. If you would like to participate in the development,
-welcome to create a pull request.
+Sirius has two major components. The data processing tool and the graph tool. The data processing tool is a Python 
+package that runs from the command line. The graph tool is a local web server that 
+visualizes output from the data processor. Details for running each follow below.
+
 ### Prerequisites
-`conda`, `python 3`, and `git` are required before you start the setting up process
-### Setting Up the Tool
+The software listed below are needed before getting started. 
+* [conda](https://docs.conda.io/en/latest/)
+* [Python 3](https://www.python.org/)
+* [Git](https://git-scm.com/)
+
+### Install Sirius
+
 #### Setup script
-Run this script from the root of the project in the terminal.
+To help you get started a setup script is provided. Please note that it may not work for all systems. 
+If the script fails, you can run through the steps in the script manually. 
 ```bash
+# Run setup script.
 ./util_setup_app.sh
 ```
-If the script fails, follow the steps outlined in the manual installation section.
 
+#### Test your setup
+Now that Sirius has been setup, let do a test run. Run the following commands from the application root.
+```bash
+# 1 - Activate the Conda env
+conda activate sirius_env
 
-#### Manual Setup
-1. Clone the repo to your local directory
-2. Enter the directory, create a conda environment, and activate it
+# 2 - Process example data. A low sample size is used to reduce processing time.
+sirius --sample-n=10
 
-       conda create -n sirius_env python=3.7
-       conda activate sirius_env
-3. Install required packages
+# 3 - Visualize the output
+python manage.py runserver
 
-   ```
-   pip install -r requirements.txt
-   ```
-4. Install the data processing script and its dependencies. 
-   The data processing script depends on the Plotly Orca library which can be installed using conda.
-
-       conda install -n sirius_env -c plotly plotly-orca
-       pip install -e .   
-5. Create a .env file under the project folder, which contains 
-    ```text
-       SIRIUS_SETTINGS_SECRET_KEY={your string value here with quotes}
-       (this one is optional)ENVIRONMENT={"dev" or "qa" or "prod"}
-    ```
-    secret key should be set to a unique, unpredictable value. It is used for sessions, messages, PasswordResetView tokens
-    or any usage of is cryptographic signing unless a different key is provided.  
-6. Execute the following command to set up the database structure
-
-    ```python manage.py migrate```  
-
-Congratulations, the Exploratory Analysis Tool is live in your local environment!
+# 4 - Navigate your browser to http://127.0.0.1:8000
+```
 
 ## Data Processing
 
@@ -83,7 +76,24 @@ which would run the data processing script with debugging enabled, specifying cu
 
 
 ## Graph Tool
+The graph tool is a Django web server that runs locally. It reads data from one of two sources and renders a network 
+graph in a browser window. The nodes in the graph represent features or variables. The edges connecting nodes represent 
+the relationships between the features/variables. You can explore these relationships by clicking on edges. A graph 
+detailing the statistical relationship between the nodes is displayed. For large graphs, the filter panel makes it 
+easier to find the node you want.
 
+Data can pulled from one of two locations. The default location is read from params.argv.json. These are default 
+parameters for the data processing tool. Specifically, the Graph tool looks in output directory defined by `output_dir`. 
+When `output_dir` is undefined, users are given the option to manually upload the output from the data processing steps. 
+
+#### Graph key
+| Data type  | Node shape |
+|------------|------------|
+| Discrete   | Square     |
+| Continuous | Circle     |
+
+
+### Run the graph tool
 #### Activate the environment
 From the root of the project folder run ```conda activate sirius_env```.
 
@@ -115,15 +125,6 @@ Click the upload data button. Select the output from the data processing** steps
 ```
 See the 'example_data' folder for more detail.
 
-#### Explore the graph
-You should see a network graph with which to explore feature pairs with high mutual information. 
-Nodes represent features. Hover over a node for the feature name. Graph edges represent a node pair analysis. 
-Click on a graph edge for details. 
-
-<b>Note</b>: Please use "_" as delimiters between features/variables name, for example, "feature1_feature2"
-
-
-
 ## Development
 If you would like to contribute to the development, WELCOME!
 
@@ -133,5 +134,5 @@ We use TypeScript in this project. Please execute `./node_modules/.bin/webpack` 
 
 Thorough documentation is required in development.
 
-
-
+## Bug and Issue Reporting
+Please submit bugs and issues with the [Github issue tracker](https://github.com/compstorylab/sirius).  

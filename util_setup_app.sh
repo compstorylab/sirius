@@ -38,7 +38,7 @@ echo_step "Add Plotly to conda environment."
 conda install -y -n sirius_env -c plotly plotly-orca
 
 # Add Pip packages
-echo_step "INstall requirements using Pip."
+echo_step "Install requirements using Pip."
 pip install -r requirements.txt
 echo_step "Install sirius as a package."
 pip install -e .
