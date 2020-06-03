@@ -52,7 +52,7 @@ def main():
     # Sirius JSON
 
     if args['output_json']:
-        output_graph_json(edges, feature_info, Path(args['output_dir']))
+        output_graph_json(thresheld_edges, feature_info, Path(args['output_dir']))
         output_pairs_json(df, Path(args['output_dir']), thresheld_edges, num_sample=args['output_limit_n'])
 
     # Visualizations
