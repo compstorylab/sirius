@@ -10,8 +10,15 @@ export interface SidebarProps {
     saveFilterSelections:any
 }
 
+/**
+ * This is the filter panel that sits on the right side of the screen.
+ * It is used to select nodes within the adjoining network graph.
+ */
 class Sidebar extends React.Component<SidebarProps> {
 
+    /**
+     * Gets all selections from fields in the filter panel
+     */
     gatherFilterSelections(){
         let nodeNameSelector:HTMLSelectElement = document.getElementById('node-name-selector') as HTMLSelectElement
         let selectedOptions = nodeNameSelector.selectedOptions;
@@ -30,11 +37,18 @@ class Sidebar extends React.Component<SidebarProps> {
         }
     }
 
+    /**
+     * Event handler for name select input
+     */
     onNodeNameSelectChange = (evt:any) => {
         this.props.saveFilterSelections(
             this.gatherFilterSelections())
     }
 
+    /**
+     * Handler for node type check boxes
+     * Note: These have been commented out
+     */
     onNodeTypeCheckBoxChange = (evt:any) => {
         this.props.saveFilterSelections(
             this.gatherFilterSelections())

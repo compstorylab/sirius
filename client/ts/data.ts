@@ -12,6 +12,10 @@ export function loadGraphJSON(url:string, store:any):Promise<any> {
         })
 }
 
+/**
+ * Get properties of the nodes frm the graph for use in the filter panel.
+ * @param graphDictionary Json representation of the graph loaded from the server.
+ */
 function getNodeProperties(graphDictionary:any) {
 
     let nodeIds:Array<string> = [];
