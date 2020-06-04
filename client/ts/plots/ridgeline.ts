@@ -1,24 +1,40 @@
-import Plotly from 'plotly.js-dist';
 /**
  * process Discrete-Continuous data into ridgeline chart ready data
  * @param data: {x: [list of string, discrete], y:[list of float, continuous], attributes:[x_name, y_name]}
  * return {x: [list of UNIQUE string, discrete], y:{ unique_x_1: [list of float], unique_x_2:[list of float]}, attributes:[x_name, y_name]}
  */
-function processDCData(data){
-    let uniqueX = [... new Set(data.x)];
-    let indexList = {};
-    uniqueX.map(function(d: any){
-        indexList[d] = []
-    });
-    data.x.map(function(d, i){
-        indexList[d].push(data.y[i]);
-    });
-    let result = {
-        x: uniqueX,
-        y: indexList,
-        attributes: data.attributes
+function processDCData(data, sourceName:string, sourceType:string, targetName:string, targetType:string){
+    let discreteName:string = '';
+    let continuousName:string = '';
+    if(sourceType == 'discrete' && targetType == 'continuous') {
+        discreteName = sourceName;
+        continuousName = targetName;
     }
-    return result
+    else {
+        discreteName = targetName;
+        continuousName = sourceName;
+    }
+
+    let uniqueX:Set<any> = new Set();
+    let indexedLists = {};
+
+    let discreteData = data[discreteName]
+    let continuousData = data[continuousName]
+    for (const property in discreteData) {
+        uniqueX.add(discreteData[property])
+
+        if (!indexedLists.hasOwnProperty(discreteData[property])){
+            indexedLists[discreteData[property]] = [];
+        }
+        indexedLists[discreteData[property]].push(continuousData[property]);
+    }
+
+    return {
+        x: Array.from(uniqueX),
+        y: indexedLists,
+        xName: discreteName,
+        yName: continuousName
+    }
 }
 /**
  * prepare the trace data required to draw the ridgeline chart
@@ -42,28 +58,28 @@ function prepareTrace(d: Float32Array, name: String){
     };
 }
 
-/** 
+/**
  * create ridgeline chart using positive side violine chart
- * @param data: data read from json file
- * @param chartHolderId: string, indicate which DOM to insert the chart
+ * @param data
+ * @param sourceName
+ * @param sourceType
+ * @param targetName
+ * @param targetType
  */
 // TODO: the json structure can be updated to avoid the expensive processDCData() process
-export function CreateRidgelineChart(data: any, chartHolderId: String): void {
-    let readyData = processDCData(data),
-        chartData = [];
-    readyData.x.map((d: any)=>{
-        chartData.push(prepareTrace(readyData.y[d], d))
+export function ridgelineChart(data:any, sourceName:string, sourceType:string, targetName:string, targetType:string): any {
+    let readyData = processDCData(data, sourceName, sourceType, targetName, targetType);
+    let chartData = readyData.x.map((d: any) => {
+        return prepareTrace(readyData.y[d], d)
     });
 
     let layout = {
         // title: 'hey new graph', // need configuration
         legend: {tracegroupap:0},
-        xaxis: {showgrid: false, zeroline: false, title: readyData.attributes[1]}, 
-        yaxis: {title: readyData.attributes[0]},
-        plot_bgcolor: "rgba(0, 0, 0, 0)",
-        paper_bgcolor: "rgba(0, 0, 0, 0)",
-        font: {color: 'white'},
+        xaxis: {showgrid: false, zeroline: false, title: readyData.yName},
+        yaxis: {title: readyData.xName},
+        font: {color: 'black'},
 
     };
-    Plotly.newPlot(chartHolderId, chartData, layout);
+    return {chartData, layout};
 }

@@ -16,11 +16,17 @@
   "dependencies": {
     "@types/d3": "^4.10.0",
     "@types/plotly.js": "^1.44.28",
-    "bootstrap": "^4.3.1",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "cytoscape": "^3.14.2",
     "d3": "^4.10.0",
-    "jquery": "^3.4.1",
-    "plotly.js-dist": "^1.52.2",
-    "popper.js": "^1.16.0"
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "ts-loader": "^4.0.0",

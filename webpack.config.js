@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry:{
-        graph: __dirname + '/client/ts/index.ts',
+        graph: __dirname + '/client/ts/index.tsx',
     },
     output:{
         path: __dirname + '/static/scripts',
