@@ -15,6 +15,7 @@ def load_data(input_file, sample_n=None, debug=False, ignore=None):
     df = df.replace(np.nan, None)
     df = df.replace('nan', None)
     df.columns = [c.replace(' ', '_') for c in df.columns]
+    df.columns = [c.replace('/', '_') for c in df.columns]
     if debug:
         print(f'Loaded data from {input_file} with {df.shape[0]} observations and {df.shape[1]} features')
 

@@ -7,6 +7,7 @@ from scipy import integrate
 import itertools
 import json
 import seaborn as sns
+import matplotlib.pyplot as plt
 sns.set_style("whitegrid")
 
 
@@ -91,15 +92,95 @@ def disparity_filter(G, weight='weight'):
                 B.add_edge(u, v, weight = w, alpha=float('%.4f' % alpha_ij))
     return B
 
-def threshold_using_backbone_method(pair_info):
+def optimize_alpha(graph, debug=False, output_chart=False):
+    edgelist = pd.DataFrame(data=graph.edges(data=True),columns=['source','target','data'])
+    edgelist['weight']=[d['weight'] for d in edgelist['data']]
+    edgelist['alpha']=[d['alpha'] for d in edgelist['data']]
+    edgelist.drop(columns=['data'],inplace=True)
+    #print(edgelist)
+    if debug:
+        print('Alpha Distribution')
+        sns.displot(edgelist['alpha'])
+        if output_chart:
+            plt.savefig(output_dir / 'alpha_distribution.png', dpi=args['resolution'])
+        plt.show()
+        plt.clf()
+    
+    # Create a data frame of edge counts and number of components for a given threshold
+    alpha_frame = pd.DataFrame(columns=['alpha', 'edge_count', 'components'])
+    
+    prior_connected = 0
+
+    # Fill in the 'alpha_frame' summary table with the number of edges and number of components across a range of thresholds
+    for i in np.arange(edgelist['alpha'].min(), edgelist['alpha'].max(), 0.001):
+        
+        subgraph = nx.from_pandas_edgelist(edgelist[edgelist['alpha']<i])
+        
+        connected = nx.number_connected_components(subgraph)
+        
+        alpha_frame = alpha_frame.append({'alpha': i, 'edge_count': len(list(subgraph.edges)),
+                      'components': connected}, ignore_index=True)
+        
+        if connected==1:
+            if connected < prior_connected:
+                break
+        else:
+            prior_connected = connected
+            
+    if alpha_frame['components'].max()==1:
+        # If this granularity level still yields one mega-component, re-filter with higher granularity:
+        alpha_frame = pd.DataFrame(columns=['alpha', 'edge_count', 'components'])
+        prior_connected = 0
+
+        # Fill in the 'alpha_frame' summary table with the number of edges and number of components across a range of thresholds
+        for i in np.arange(edgelist['alpha'].min(), edgelist['alpha'].max(), 0.0001):
+
+            subgraph = nx.from_pandas_edgelist(edgelist[edgelist['alpha']<i])
+
+            connected = nx.number_connected_components(subgraph)
+
+            alpha_frame = alpha_frame.append({'alpha': i, 'edge_count': len(list(subgraph.edges)),
+                          'components': connected}, ignore_index=True)
+
+            if connected==1:
+                if connected < prior_connected:
+                    break
+            else:
+                prior_connected = connected
+        
+    
+    optimum = alpha_frame[alpha_frame['components']==alpha_frame['components'].max()]
+    alpha = list(optimum['alpha'])[-1] # Choose the highest alpha value that provides the maximum component count
+    
+    if debug:
+        #print('Alpha Frame')
+        #print(alpha_frame)
+        print('Edge Count')
+        sns.lineplot(x=alpha_frame['alpha'], y=alpha_frame['edge_count'])
+        if output_chart:
+            plt.savefig(output_dir / 'edge_count.png', dpi=args['resolution'])
+        plt.show()
+        plt.clf()
+        print('Component Count')
+        sns.lineplot(x=alpha_frame['alpha'], y=alpha_frame['components'])
+        if output_chart:
+            plt.savefig(output_dir / 'component_count.png', dpi=args['resolution'])
+        plt.show()
+        plt.clf()
+        print(f"Maximum component count is {alpha_frame['components'].max()} at alpha value {alpha} with {list(optimum['edge_count'])[0]} edges")
+    
+    return nx.Graph([(u, v, d) for u, v, d in graph.edges(data=True) if d['alpha'] < alpha])
+
+
+def threshold_using_backbone_method(pair_info, debug=False, output_chart=False):
     G = nx.Graph()
     G.add_nodes_from(list(dict.fromkeys((list(pair_info['x'].unique()) + list(pair_info['y'].unique())))))
     G.add_weighted_edges_from(list(zip(pair_info['x'], pair_info['y'],pair_info['v'])))
-    alpha = 0.05
-    G = disparity_filter(G)
-    G2 = nx.Graph([(u, v, d) for u, v, d in G.edges(data=True) if d['alpha'] < alpha])
-    thresheld_edgelist = nx.to_pandas_edgelist(G2).drop(columns='alpha').rename(columns={'source':'x','target':'y','weight':'v'})
+    G2 = disparity_filter(G)
+    G3 = optimize_alpha(G2, debug=debug, output_chart=output_chart)
+    thresheld_edgelist = nx.to_pandas_edgelist(G3).rename(columns={'source':'x','target':'y','weight':'v'})
     return thresheld_edgelist
+
 
 
 ## Static Thresholding (deprecated)

@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 from pathlib import Path
 
 
@@ -10,7 +11,7 @@ DEFAULTS = {
     "output_json": True,
     "output_chart": True,
     "charter": "Plotly",
-    "cache": True,
+    "cache": False,
     "sample_n": None,
     "output_limit_n": None,
     "input_file": "../example_data/data.csv",
@@ -18,13 +19,21 @@ DEFAULTS = {
 }
 
 def arg_setup():
-    print('argsetup reached')
+    print('Argument setup reached')
     parser = argparse.ArgumentParser(description='Sirius Data Processing Pipeline')
     params = DEFAULTS.copy()
-    params_filename = './params.argv.json'
+    params_filename = '../params.argv.json'
+    print(f'Searching for parameters in {params_filename}')
     if Path(params_filename).exists():
+        print(f'Located parameters file {params_filename}')
         with open(params_filename, 'r') as f:
             params.update(json.load(f))
+            for filepath in ['input_file','output_dir']:
+                relpath = '../'+params[filepath]
+                params[filepath]=relpath
+    else:
+        print(f'No parameters file located at {params_filename}. Using defaults from setup.pys')
+        params = DEFAULTS.copy()
 
     parser.add_argument('--dpi', type=int, default=params['dpi'], help='resolution of output plots')
     parser.add_argument('--discrete-threshold', type=int, default=params['discrete_threshold'],

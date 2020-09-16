@@ -187,21 +187,8 @@ def viz(U, V, df, feature_info, charter='Plotly', output_chart=False, output_jso
 
     return viz
 
-def show_edge_thinning(original, thinned):
-    original['source']='all'
-    thinned['source']='thresheld'
-    combined = original.append(thinned)
-    plt.clf()
-    plt.figure()
-    g = sns.FacetGrid(combined, hue="source", legend_out=True)
-    f = g.map(sns.distplot, "v",  rug=False, kde=False)
-    plt.xlabel('Mutual information value')
-    plt.ylabel('Number of edges')
-    plt.show()
-    return
 
-
-def calculate_positions(G, layout=nx.fruchterman_reingold_layout):
+def calculate_positions(G, layout=nx.spring_layout):
     # Generate position data for each node
     pos = layout(G, weight='weight')
 
@@ -215,8 +202,10 @@ def calculate_positions(G, layout=nx.fruchterman_reingold_layout):
         x1, y1 = pos[edge[1]]
         edge_x.append(x0)
         edge_x.append(x1)
+        edge_x.append(None)
         edge_y.append(y0)
         edge_y.append(y1)
+        edge_y.append(None)
 
     # Bundle it all up in a dict:
     edges = dict(x=edge_x, y=edge_y)
@@ -257,22 +246,25 @@ def draw_graph(stack, title, output_chart=False, output_dir=None, resolution=150
     edge_trace = go.Scatter(
         x=edges['x'], y=edges['y'],
         line=dict(width=0.5, color='#888'),
-        mode='lines+markers',
+        mode='lines',
         hoverinfo='text')
 
     # Draw nodes
     node_trace = go.Scatter(
         x=nodes['x'],
         y=nodes['y'],
-        mode='markers+text',
+        mode='markers',
+        marker=dict(
+            size=10,
+            #color='darkblue',
+            color=nodes['centralities'],
+            colorscale="Viridis",
+            line=dict(color='black',width=2)
+        ),
         text=nodes['name'],
         hoverinfo='text')
     filename = title.lower().replace(" ", "_")
-
-    # Color the node by its number of connections
-    # node_trace.marker.color = nodes['adjacencies']
-    node_trace.marker.color = nodes['centralities']
-
+    
     # Draw figure
     fig = go.Figure(
         data=[edge_trace, node_trace],
@@ -292,3 +284,18 @@ def draw_graph(stack, title, output_chart=False, output_dir=None, resolution=150
     if output_chart:
         fig.write_image(str(output_dir / 'graph_example.png'), scale=resolution // 72)
     if display: fig.show()
+
+        
+# DEPRECATED: Show edge thinning
+def show_edge_thinning(original, thinned):
+    original['source']='all'
+    thinned['source']='thresheld'
+    combined = original.append(thinned)
+    plt.clf()
+    plt.figure()
+    g = sns.FacetGrid(combined, hue="source", legend_out=True)
+    f = g.map(sns.histplot, x=combined["v"])
+    plt.xlabel('Mutual information value')
+    plt.ylabel('Number of edges')
+    plt.show()
+    return
