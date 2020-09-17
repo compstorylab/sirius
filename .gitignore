@@ -15,7 +15,6 @@ tmp/
 migrations/
 
 db.sqlite3
-example_icu/*
 example_*/output/
 utilities/.ipynb_checkpoints/
 utilities/*/.DS_Store
