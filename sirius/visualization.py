@@ -284,6 +284,8 @@ def draw_graph(stack, title, output_chart=False, output_dir=None, resolution=150
     if output_chart:
         fig.write_image(str(output_dir / 'graph_example.png'), scale=resolution // 72)
     if display: fig.show()
+        
+    return
 
         
 # DEPRECATED: Show edge thinning

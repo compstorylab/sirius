@@ -181,6 +181,15 @@ def threshold_using_backbone_method(pair_info, debug=False, output_chart=False):
     thresheld_edgelist = nx.to_pandas_edgelist(G3).rename(columns={'source':'x','target':'y','weight':'v'})
     return thresheld_edgelist
 
+def get_components(edgelist):
+    G = nx.Graph()
+    G.add_nodes_from(list(dict.fromkeys((list(edgelist['x'].unique()) + list(edgelist['y'].unique())))))
+    G.add_weighted_edges_from(list(zip(edgelist['x'], edgelist['y'],edgelist['v'])))
+    components = []
+    for c in nx.connected_components(G):
+        components.append(list(c))
+    return components
+
 
 
 ## Static Thresholding (deprecated)
