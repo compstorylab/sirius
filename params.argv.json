@@ -5,7 +5,7 @@
   "output_json": true,
   "output_chart": true,
   "charter": "Plotly",
-  "cache": true,
+  "cache": false,
   "sample_n": null,
   "output_limit_n": null,
   "input_file": "example_housing/data.csv",

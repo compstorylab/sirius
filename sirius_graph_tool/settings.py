@@ -14,6 +14,8 @@ import os
 import json
 import environ
 
+print("FOUND SETTINGS")
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -126,13 +128,15 @@ STATICFILES_DIRS = [
     'static',
 ]
 
-USE_OUTPUT_FOLDER = False
+USE_OUTPUT_FOLDER = True
 # Use the output directory from params.argv.json, if it exists.
 sirius_params_path = os.path.join(BASE_DIR, 'params.argv.json')
+print(f"Params path exists? {os.path.exists(sirius_params_path)}")
 if os.path.exists(sirius_params_path):
     with open(sirius_params_path, 'r') as f:
         try:
             params = json.load(f)
+            print(params)
             second_dir = params.get('output_dir')
             if second_dir:
                 USE_OUTPUT_FOLDER = True

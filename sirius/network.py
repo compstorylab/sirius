@@ -107,7 +107,7 @@ def optimize_alpha(graph, debug=False, output_chart=False):
         plt.clf()
     
     # Create a data frame of edge counts and number of components for a given threshold
-    alpha_frame = pd.DataFrame(columns=['alpha', 'edge_count', 'components'])
+    alpha_frame = pd.DataFrame(columns=['alpha', 'edge_count', 'connected', 'component_sizes', 'ratio'])
     
     prior_connected = 0
 
@@ -118,8 +118,17 @@ def optimize_alpha(graph, debug=False, output_chart=False):
         
         connected = nx.number_connected_components(subgraph)
         
+        component_sizes = []
+            
+        for c in nx.connected_components(subgraph):
+            component_sizes.append(len(list(c)))
+        try:
+            ratio = component_sizes[0]/component_sizes[1]
+        except:
+            ratio = 99999
+        
         alpha_frame = alpha_frame.append({'alpha': i, 'edge_count': len(list(subgraph.edges)),
-                      'components': connected}, ignore_index=True)
+                      'connected': connected, 'component_sizes': component_sizes, 'ratio': ratio}, ignore_index=True)
         
         if connected==1:
             if connected < prior_connected:
@@ -127,9 +136,9 @@ def optimize_alpha(graph, debug=False, output_chart=False):
         else:
             prior_connected = connected
             
-    if alpha_frame['components'].max()==1:
+    if alpha_frame['connected'].max()==1:
         # If this granularity level still yields one mega-component, re-filter with higher granularity:
-        alpha_frame = pd.DataFrame(columns=['alpha', 'edge_count', 'components'])
+        alpha_frame = pd.DataFrame(columns=['alpha', 'edge_count', 'connected', 'component_sizes', 'ratio'])
         prior_connected = 0
 
         # Fill in the 'alpha_frame' summary table with the number of edges and number of components across a range of thresholds
@@ -138,9 +147,18 @@ def optimize_alpha(graph, debug=False, output_chart=False):
             subgraph = nx.from_pandas_edgelist(edgelist[edgelist['alpha']<i])
 
             connected = nx.number_connected_components(subgraph)
+        
+            component_sizes = []
+            
+            for c in nx.connected_components(subgraph):
+                component_sizes.append(len(list(c)))
+            try:
+                ratio = component_sizes[0]/component_sizes[1]
+            except:
+                ratio = 99999
 
             alpha_frame = alpha_frame.append({'alpha': i, 'edge_count': len(list(subgraph.edges)),
-                          'components': connected}, ignore_index=True)
+                          'connected': connected, 'component_sizes': component_sizes, 'ratio': ratio}, ignore_index=True)
 
             if connected==1:
                 if connected < prior_connected:
@@ -149,25 +167,34 @@ def optimize_alpha(graph, debug=False, output_chart=False):
                 prior_connected = connected
         
     
-    optimum = alpha_frame[alpha_frame['components']==alpha_frame['components'].max()]
-    alpha = list(optimum['alpha'])[-1] # Choose the highest alpha value that provides the maximum component count
+    optimum_size = alpha_frame[alpha_frame['connected']==alpha_frame['connected'].max()]
+    optimum_ratio = alpha_frame[alpha_frame['ratio']==min(alpha_frame['ratio'], key=lambda x:abs(x-1))]
+    alpha = list(optimum_size['alpha'])[-1] # Choose the highest alpha value that provides the maximum component count
+    alpha2 = list(optimum_ratio['alpha'])[-1]
     
     if debug:
         #print('Alpha Frame')
         #print(alpha_frame)
         print('Edge Count')
-        sns.lineplot(x=alpha_frame['alpha'], y=alpha_frame['edge_count'])
+        sns.lineplot(x=alpha_frame['alpha'].astype(float), y=alpha_frame['edge_count'].astype(float))
         if output_chart:
             plt.savefig(output_dir / 'edge_count.png', dpi=args['resolution'])
         plt.show()
         plt.clf()
         print('Component Count')
-        sns.lineplot(x=alpha_frame['alpha'], y=alpha_frame['components'])
+        sns.lineplot(x=alpha_frame['alpha'].astype(float), y=alpha_frame['connected'].astype(float))
         if output_chart:
             plt.savefig(output_dir / 'component_count.png', dpi=args['resolution'])
         plt.show()
         plt.clf()
-        print(f"Maximum component count is {alpha_frame['components'].max()} at alpha value {alpha} with {list(optimum['edge_count'])[0]} edges")
+        print('Component Ratio: Largest vs. second largest')
+        sns.lineplot(x=alpha_frame['alpha'].astype(float)[1:-2], y=alpha_frame['ratio'].astype(float)[1:-2])
+        if output_chart:
+            plt.savefig(output_dir / 'component_ratio.png', dpi=args['resolution'])
+        plt.show()
+        plt.clf()
+        print(f"Maximum component count is {alpha_frame['connected'].max()} at alpha value {alpha} with {list(optimum_size['edge_count'])[0]} edges")
+        print(f"Component 1st vs. 2nd size ratio closest to 1 is {min(alpha_frame['ratio'], key=lambda x:abs(x-1))} with {list(optimum_ratio['connected'])[0]} connected components at alpha value {alpha2} with {list(optimum_ratio['edge_count'])[0]} edges")
     
     return nx.Graph([(u, v, d) for u, v, d in graph.edges(data=True) if d['alpha'] < alpha])
 
