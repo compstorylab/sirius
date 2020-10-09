@@ -5,9 +5,9 @@
   "output_json": true,
   "output_chart": true,
   "charter": "Plotly",
-  "cache": false,
-  "sample_n": null,
+  "cache": true,
+  "sample_n": 1000,
   "output_limit_n": null,
-  "input_file": "example_housing/data.csv",
-  "output_dir": "example_housing/output"
+  "input_file": "example_icu/data.csv",
+  "output_dir": "example_icu/output"
 }
