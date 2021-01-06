@@ -16,7 +16,7 @@
   "dependencies": {
     "@types/d3": "^4.10.0",
     "@types/plotly.js": "^1.44.28",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "cytoscape": "^3.14.2",
     "d3": "^4.10.0",
